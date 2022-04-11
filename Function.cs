@@ -8,13 +8,16 @@ namespace PrimeNumbers
 {
     class Function
     {
-        private int[] primes;
+        private bool isPrime;
         private string input;
+        private int[] primes;
         private int a, b;
 
         public Function()
         {
             InputRange();
+            Calculate();
+            Output();
         }
 
         public void InputRange()
@@ -56,6 +59,18 @@ namespace PrimeNumbers
             // swap order of vars if it's incorrect (using tuples)
             if (a > b)
                 (a, b) = (b, a);
+        }
+
+        public void Calculate()
+        {
+
+        }
+
+        public void Output()
+        {
+            Console.WriteLine();
+            foreach (int i in primes)
+                Console.Write($"{i}\t");
         }
 
     }
