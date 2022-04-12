@@ -90,29 +90,33 @@ namespace PrimeNumbers
 
         public void Verify()
         {
-
             bool isCorrect = true;
 
+            // getting file numbers and parse them into a new list
             input = System.IO.File.ReadAllText("../../../verification_primes.txt");
             input = input.Replace('\n', '\t');
             verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
             if (b > 104729)
                 Console.WriteLine("\nUnable to check all the numbers calculated as verification list only contains primes not exceeding 104729.");
+            
             else
             {
+                // if no primes calculated (their list is empty)
                 if (primes.Equals(null))
                     Console.WriteLine("There is nothing to check as no primes were calculated.");
 
                 else
                 {
-                    for (int i = verificationPrimes.IndexOf(primes[0]), j = 0; j < primes.Count - 1; i++, j++)
+                    // compare the nums between two lists, one to one
+                    for (int i = verificationPrimes.IndexOf(primes[0]), j = 0; j < primes.Count; i++, j++)
                         if (verificationPrimes[i] != primes[j])
                         {
                             isCorrect = false;
                             break;
                         }
 
+                    // outcome of checks
                     if (isCorrect)
                         Console.WriteLine("All calculations were done right.");
                     else
