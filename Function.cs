@@ -30,7 +30,7 @@ namespace PrimeNumbers
                 Console.Write("Input first value: ");
                 input = Console.ReadLine();
 
-                if (int.TryParse(input, out int x) && (x >= 1))
+                if (int.TryParse(input, out int x) && (x > 1))
                 {
                     a = x;
                     break;
@@ -48,7 +48,7 @@ namespace PrimeNumbers
                 Console.Write("Input second value: ");
                 input = Console.ReadLine();
 
-                if (int.TryParse(input, out int x) && (x >= 1))
+                if (int.TryParse(input, out int x) && (x > 1))
                 {
                     b = x;
                     break;
@@ -121,9 +121,9 @@ namespace PrimeNumbers
 
                     // outcome of checks
                     if (isCorrect)
-                        Console.WriteLine("All calculations were done right.");
+                        Console.WriteLine("\nAll calculations were done right.");
                     else
-                        Console.WriteLine("Calculations done wrong.");
+                        Console.WriteLine("\nCalculations done wrong.");
                 }
             }
         }
