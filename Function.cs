@@ -93,7 +93,8 @@ namespace PrimeNumbers
 
             bool isCorrect = true;
 
-            input = System.IO.File.ReadAllText(@"../../../verification_primes.txt");
+            input = System.IO.File.ReadAllText("../../../verification_primes.txt");
+            input = input.Replace('\n', '\t');
             verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
             if (b > 104729)
@@ -105,7 +106,7 @@ namespace PrimeNumbers
 
                 else
                 {
-                    for (int i = verificationPrimes.IndexOf(primes[0]), j = 0; j < primes.Count-1; i++, j++)
+                    for (int i = verificationPrimes.IndexOf(primes[0]), j = 0; j < primes.Count - 1; i++, j++)
                         if (verificationPrimes[i] != primes[j])
                         {
                             isCorrect = false;
