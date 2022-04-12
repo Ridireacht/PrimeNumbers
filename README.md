@@ -6,7 +6,10 @@ A project whose sole purpose is to improve my basics of C# knowledge, which is d
   - [X] Add checks to those inputs
   - [X] Make calculation method itself (trial division)
   - [X] Add output of values calculated
-- [ ] Prove calculations to be valid and optimize the algorithm itself
+- [ ] Prove calculations to be valid, optimize the algorithm itself and fix security issues
+  - [X] Prepare a function that compares calculated primes with the actual list of primes from an external file
+  - [ ] Optimize algorithm with more accurate range, even/uneven number handler and other stuff
+  - [ ] Add try {} catch blocks to handle possible exceptions
 - [ ] Optimize function with multi-threading
 - [ ] Make it save the result in a database, and if calculations were ever done once, make it use data from database instead of recalculating numbers already known
 - [ ] Make the DB calls asynchronous with async/await
