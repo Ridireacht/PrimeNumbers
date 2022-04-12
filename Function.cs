@@ -108,9 +108,12 @@ namespace PrimeNumbers
 
                 else
                 {
+                    // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
+                    verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
+
                     // compare the nums between two lists, one to one
-                    for (int i = verificationPrimes.IndexOf(primes[0]), j = 0; j < primes.Count; i++, j++)
-                        if (verificationPrimes[i] != primes[j])
+                    for (int i = 0; i < primes.Count; i++)
+                        if (verificationPrimes[i] != primes[i])
                         {
                             isCorrect = false;
                             break;
