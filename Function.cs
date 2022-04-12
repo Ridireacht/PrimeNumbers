@@ -8,7 +8,8 @@ namespace PrimeNumbers
 {
     class Function
     {
-        private List<int> primes = new List<int> ();
+        private List<int> verificationPrimes = new List<int>();
+        private List<int> primes = new List<int>();
         private bool isPrime;
         private string input;
         private int a, b;
@@ -18,6 +19,7 @@ namespace PrimeNumbers
             InputRange();
             Calculate();
             Output();
+            Verify();
         }
 
         public void InputRange()
@@ -84,6 +86,14 @@ namespace PrimeNumbers
             foreach (int i in primes)
                 Console.Write($"{i}  ");
             Console.WriteLine();
+        }
+
+        public void Verify()
+        {
+            input = System.IO.File.ReadAllText(@"../../../verification_primes.txt");
+            verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
+
+
         }
 
     }
