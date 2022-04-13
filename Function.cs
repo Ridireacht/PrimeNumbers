@@ -91,6 +91,7 @@ namespace PrimeNumbers
         public void Verify()
         {
             bool isCorrect = true;
+            int rangeEnd = primes.Count;
 
             // getting file numbers and parse them into a new list
             input = System.IO.File.ReadAllText("../../../verification_primes.txt");
@@ -104,19 +105,25 @@ namespace PrimeNumbers
 
             else
             {
-                if (b > verificationPrimes.Last())
-                    Console.WriteLine($"\nUnable to check all the numbers calculated as the biggest prime in verification list is {verificationPrimes.Last()}.\n");
-
                 // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
                 verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
 
+                // if there are more calculated primes other than verification ones
+                if (b > verificationPrimes.Last())
+                {
+                    Console.WriteLine($"\nUnable to check all the numbers calculated as the biggest prime in verification list is {verificationPrimes.Last()}.\n");
+                    rangeEnd = verificationPrimes.Count;
+                }
+
+
                 // compare the nums between two lists, one to one
-                for (int i = 0; i < primes.Count; i++)
+                for (int i = 0; i < rangeEnd; i++)
                     if (verificationPrimes[i] != primes[i])
                     {
                         isCorrect = false;
                         break;
                     }
+
 
                 // outcome of checks
                 if (isCorrect)
