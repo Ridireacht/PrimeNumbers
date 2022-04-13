@@ -24,7 +24,9 @@ namespace PrimeNumbers
 
         public void InputRange()
         {
-            
+
+            Console.WriteLine("Your input has to be >= 2.\n");
+
             // inputting and checking first var
             while (true)
             {
@@ -137,7 +139,7 @@ namespace PrimeNumbers
 
                 Console.WriteLine();
                 // outcome of all checks
-                if (numsChecked == 1)
+                if ((numsChecked == 1) && (!isCorrect))
                     Console.WriteLine("\nThe very first calculated prime num is already wrong, so all the sequence.");
                 else
                     Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}");
