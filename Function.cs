@@ -68,8 +68,14 @@ namespace PrimeNumbers
 
         public void Calculate()
         {
+
             for (int i = a; i <= b; i++)
             {
+                // all the numbers corresponding to the statements below aren't prime,
+                // so we skip them immediately
+                if (((i % 2 == 0) && (i != 2)) || ((i % 3 == 0) && (i != 3)))
+                    continue;
+
                 isPrime = true;
 
                 for (int j = 2; j <= i / 2; j++)
