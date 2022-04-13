@@ -24,6 +24,7 @@ namespace PrimeNumbers
 
         public void InputRange()
         {
+            
             // inputting and checking first var
             while (true)
             {
@@ -69,7 +70,7 @@ namespace PrimeNumbers
             {
                 isPrime = true;
 
-                for (int j = 2; j < i; j++)
+                for (int j = 2; j <= i / 2; j++)
                 {
                     if (i % j == 0)
                         isPrime = false;
