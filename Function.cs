@@ -92,6 +92,9 @@ namespace PrimeNumbers
         {
             bool isCorrect = true;
             int rangeEnd = primes.Count;
+            int lastCorrect = 0;
+            int numsChecked = 0;
+
 
             // getting file numbers and parse them into a new list
             input = System.IO.File.ReadAllText("../../../verification_primes.txt");
@@ -118,14 +121,26 @@ namespace PrimeNumbers
 
                 // compare the nums between two lists, one to one
                 for (int i = 0; i < rangeEnd; i++)
+                {
+                    numsChecked += 1;
+
                     if (verificationPrimes[i] != primes[i])
                     {
                         isCorrect = false;
                         break;
                     }
 
+                    lastCorrect = verificationPrimes[i];
+                }
 
-                // outcome of checks
+
+                Console.WriteLine();
+                // outcome of all checks
+                if (numsChecked == 1)
+                    Console.WriteLine("\nThe very first calculated prime num is already wrong, so all the sequence.");
+                else
+                    Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}");
+
                 if (isCorrect)
                     Console.WriteLine("\nAll calculations were done right.");
                 else
