@@ -9,7 +9,7 @@ A project whose sole purpose is to improve my basics of C# knowledge, which is d
 - [ ] Prove calculations to be valid, optimize the algorithm itself, fix security issues and simply enchance your program
   - [X] Prepare a function that compares calculated primes with the actual list of primes from an external file, while also counting number of primes checked and saves the last correct one ***(done 12.04.2022 - 13.04.2022)***
   - [X] Optimize algorithm with more accurate range, even/uneven number handler and other stuff ***(done 13.04.2022)***
-  - [ ] Embed a timer for algorithm and its results' verification function, so you could see their performance
+  - [X] Embed a timer for algorithm and its results' verification function, so you could see their performance ***(done 13.04.2022)***
   - [ ] Add try {} catch blocks to handle possible exceptions and just generally fix existing bugs
 - [ ] Optimize function with multi-threading
 - [ ] Make it save the result in a database, and if calculations were ever done once, make it use data from database instead of recalculating numbers already known
