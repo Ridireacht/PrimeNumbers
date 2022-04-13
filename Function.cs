@@ -104,7 +104,7 @@ namespace PrimeNumbers
 
 
             // if no primes calculated (their list is empty)
-            if (primes.Equals(null))
+            if (!primes.Any())
                 Console.WriteLine("There is nothing to check as no primes were calculated.");
 
             else
