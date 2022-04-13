@@ -97,35 +97,35 @@ namespace PrimeNumbers
             input = input.Replace('\n', '\t');
             verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
-            if (b > 104729)
-                Console.WriteLine("\nUnable to check all the numbers calculated as verification list only contains primes not exceeding 104729.");
-            
+
+            // if no primes calculated (their list is empty)
+            if (primes.Equals(null))
+                Console.WriteLine("There is nothing to check as no primes were calculated.");
+
             else
             {
-                // if no primes calculated (their list is empty)
-                if (primes.Equals(null))
-                    Console.WriteLine("There is nothing to check as no primes were calculated.");
+                if (b > verificationPrimes.Last())
+                    Console.WriteLine($"\nUnable to check all the numbers calculated as the biggest prime in verification list is {verificationPrimes.Last()}.\n");
 
+                // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
+                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
+
+                // compare the nums between two lists, one to one
+                for (int i = 0; i < primes.Count; i++)
+                    if (verificationPrimes[i] != primes[i])
+                    {
+                        isCorrect = false;
+                        break;
+                    }
+
+                // outcome of checks
+                if (isCorrect)
+                    Console.WriteLine("\nAll calculations were done right.");
                 else
-                {
-                    // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
-                    verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
+                    Console.WriteLine("\nCalculations done wrong.");
 
-                    // compare the nums between two lists, one to one
-                    for (int i = 0; i < primes.Count; i++)
-                        if (verificationPrimes[i] != primes[i])
-                        {
-                            isCorrect = false;
-                            break;
-                        }
-
-                    // outcome of checks
-                    if (isCorrect)
-                        Console.WriteLine("\nAll calculations were done right.");
-                    else
-                        Console.WriteLine("\nCalculations done wrong.");
-                }
             }
+            
         }
 
     }
