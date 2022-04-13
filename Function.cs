@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 
 namespace PrimeNumbers
 {
@@ -10,6 +12,7 @@ namespace PrimeNumbers
     {
         private List<int> verificationPrimes = new List<int>();
         private List<int> primes = new List<int>();
+        Stopwatch timer = new Stopwatch();
         private bool isPrime;
         private string input;
         private int a, b;
@@ -68,6 +71,7 @@ namespace PrimeNumbers
 
         public void Calculate()
         {
+            timer = Stopwatch.StartNew();
 
             for (int i = a; i <= b; i++)
             {
@@ -87,6 +91,8 @@ namespace PrimeNumbers
                 if (isPrime)
                     primes.Add(i);
             }
+
+            timer.Stop();
         }
 
         public void Output()
@@ -94,7 +100,7 @@ namespace PrimeNumbers
             Console.WriteLine("\n\nPrime numbers:\n");
             foreach (int i in primes)
                 Console.Write($"{i}  ");
-            Console.WriteLine();
+            Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
         }
 
         public void Verify()
@@ -127,6 +133,7 @@ namespace PrimeNumbers
                     rangeEnd = verificationPrimes.Count;
                 }
 
+                timer = Stopwatch.StartNew();
 
                 // compare the nums between two lists, one to one
                 for (int i = 0; i < rangeEnd; i++)
@@ -142,13 +149,15 @@ namespace PrimeNumbers
                     lastCorrect = verificationPrimes[i];
                 }
 
+                timer.Stop();
+
 
                 Console.WriteLine();
                 // outcome of all checks
                 if ((numsChecked == 1) && (!isCorrect))
                     Console.WriteLine("\nThe very first calculated prime num is already wrong, so all the sequence.");
                 else
-                    Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}");
+                    Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}\nVerification took: {timer.ElapsedMilliseconds}ms");
 
                 if (isCorrect)
                     Console.WriteLine("\nAll calculations were done right.");
