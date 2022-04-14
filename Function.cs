@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 
 namespace PrimeNumbers
@@ -128,8 +129,15 @@ namespace PrimeNumbers
                 return;
             }
 
+
             // parse primes into a new list
             input = input.Replace('\n', '\t');
+
+            if (!Regex.IsMatch(input, "^[0-9]+(\\s+[0-9]+)+$"))
+            {
+                Console.WriteLine("Formatting of verifications primes' file doesn't match with the specified template, so it wasn't used.");
+                return;
+            }
             verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
 
@@ -145,7 +153,7 @@ namespace PrimeNumbers
                 // if there are more calculated primes other than verification ones
                 if (b > verificationPrimes.Last())
                 {
-                    Console.WriteLine($"\nUnable to check all the numbers calculated as the biggest prime in verification list is {verificationPrimes.Last()}.\n");
+                    Console.WriteLine($"\nUnable to check all the numbers calculated as the last prime in verification list is {verificationPrimes.Last()}.\n");
                     rangeEnd = verificationPrimes.Count;
                 }
 
