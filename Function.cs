@@ -122,8 +122,13 @@ namespace PrimeNumbers
                 return;
             }
 
+            if (input == "")
+            {
+                Console.WriteLine("File with verification primes is empty.");
+                return;
+            }
 
-            // parse them into a new list
+            // parse primes into a new list
             input = input.Replace('\n', '\t');
             verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
