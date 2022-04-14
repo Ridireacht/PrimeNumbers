@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -76,7 +75,7 @@ namespace PrimeNumbers
 
             for (int i = a; i <= b; i++)
             {
-                // all the numbers corresponding to the statements below aren't prime,
+                // all the numbers matching the statements below aren't prime,
                 // so we skip them immediately
                 if (((i % 2 == 0) && (i != 2)) || ((i % 3 == 0) && (i != 3)))
                     continue;
