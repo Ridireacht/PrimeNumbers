@@ -111,15 +111,26 @@ namespace PrimeNumbers
             int numsChecked = 0;
 
 
-            // getting file numbers and parse them into a new list
-            input = System.IO.File.ReadAllText("../../../verification_primes.txt");
+            // getting file numbers
+            try
+            {
+                input = System.IO.File.ReadAllText("../../../verification_primes.txt");
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("File with verification primes doesn't exist in current folder.");
+                return;
+            }
+
+
+            // parse them into a new list
             input = input.Replace('\n', '\t');
             verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
 
             // if no primes calculated (their list is empty)
             if (!primes.Any())
-                Console.WriteLine("There is nothing to check as no primes were calculated.");
+                Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
 
             else
             {
