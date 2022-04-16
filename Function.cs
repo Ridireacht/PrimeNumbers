@@ -127,6 +127,10 @@ namespace PrimeNumbers
 
             Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
 
+
+            timer = Stopwatch.StartNew();
+
+
             // getting file numbers
             try
             {
@@ -172,7 +176,6 @@ namespace PrimeNumbers
                     rangeEnd = verificationPrimes.Count;
                 }
 
-                timer = Stopwatch.StartNew();
 
                 // compare the nums between two lists, one to one
                 for (int i = 0; i < rangeEnd; i++)
