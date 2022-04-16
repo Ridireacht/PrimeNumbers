@@ -104,7 +104,7 @@ namespace PrimeNumbers
 
             // that's where we choose to use mono-threading or multi-threading
             // algorithm - it depends on the complexity of our calculations
-            if ((b - a) < 215000)
+            if ((b - a) < 150000)
             {
                 for (int i = a; i <= b; i++)
                     if (isPrime(i))
@@ -113,7 +113,7 @@ namespace PrimeNumbers
 
             else
             {
-                var thing =  from n in (Enumerable.Range(a, b).ToList()).AsParallel().AsOrdered()
+                var thing =  from n in (Enumerable.Range(a, b)).AsParallel().AsOrdered()
                              where isPrime(n)
                              select n;
 
