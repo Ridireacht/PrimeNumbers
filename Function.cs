@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
-using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -12,8 +11,7 @@ namespace PrimeNumbers
     class Function
     {
         private List<int> verificationPrimes = new List<int>();
-        private ConcurrentQueue<int> primesQueue = new ConcurrentQueue<int>();
-        private List<int> primesList = new List<int>();
+        private List<int> primes = new List<int>();
         Stopwatch timer = new Stopwatch();
         private bool isOutput = false;
         private string input;
@@ -103,11 +101,30 @@ namespace PrimeNumbers
         {
             timer = Stopwatch.StartNew();
 
-            for (int i = a; i <= b; i++)
-                if (isPrime(i))
-                    primesQueue.Enqueue(i);
 
-            primesList = primesQueue.ToList();
+            // that's where we choose to use mono-threading or multi-threading
+            // algorithm - it depends on the complexity of our calculations
+            if ((b - a) < 215000)
+            {
+                for (int i = a; i <= b; i++)
+                    if (isPrime(i))
+                        primes.Add(i);
+            }
+
+            else
+            {
+                var numbers = Enumerable.Range(a, b).ToList();
+
+                ConcurrentQueue<int> nums = new ConcurrentQueue<int>(numbers);
+
+                var thing =  from n in nums.AsParallel().AsOrdered()
+                             where isPrime(n)
+                             select n;
+
+                foreach (var i in thing)
+                    primes.Add(i);
+            }
+
 
             timer.Stop();
         }
@@ -115,14 +132,14 @@ namespace PrimeNumbers
         public void Output()
         {
             Console.WriteLine("\n\nPrime numbers:\n");
-            foreach (int i in primesList)
+            foreach (int i in primes)
                 Console.Write($"{i}  ");
         }
 
         public void Verify()
         {
             bool isCorrect = true;
-            int rangeEnd = primesList.Count;
+            int rangeEnd = primes.Count;
             int lastCorrect = 0;
             int numsChecked = 0;
 
@@ -161,13 +178,13 @@ namespace PrimeNumbers
 
 
             // if no primes calculated (their list is empty)
-            if (!primesList.Any())
+            if (!primes.Any())
                 Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
 
             else
             {
                 // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
-                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primesList[0]));
+                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
 
                 // if there are more calculated primes other than verification ones
                 if (b > verificationPrimes.Last())
@@ -182,7 +199,7 @@ namespace PrimeNumbers
                 {
                     numsChecked += 1;
 
-                    if (verificationPrimes[i] != primesList[i])
+                    if (verificationPrimes[i] != primes[i])
                     {
                         isCorrect = false;
                         break;
@@ -217,10 +234,8 @@ namespace PrimeNumbers
                 return false;
 
             for (int i = 2; i <= Math.Sqrt(num); i++)
-            {
                 if (num % i == 0)
                     return false;
-            }
 
             return true;
         }
