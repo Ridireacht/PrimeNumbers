@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
 using System.Diagnostics;
@@ -11,7 +12,8 @@ namespace PrimeNumbers
     class Function
     {
         private List<int> verificationPrimes = new List<int>();
-        private List<int> primes = new List<int>();
+        private ConcurrentQueue<int> primesQueue = new ConcurrentQueue<int>();
+        private List<int> primesList = new List<int>();
         Stopwatch timer = new Stopwatch();
         private bool isOutput = false;
         private string input;
@@ -103,7 +105,9 @@ namespace PrimeNumbers
 
             for (int i = a; i <= b; i++)
                 if (isPrime(i))
-                    primes.Add(i);
+                    primesQueue.Enqueue(i);
+
+            primesList = primesQueue.ToList();
 
             timer.Stop();
         }
@@ -111,14 +115,14 @@ namespace PrimeNumbers
         public void Output()
         {
             Console.WriteLine("\n\nPrime numbers:\n");
-            foreach (int i in primes)
+            foreach (int i in primesList)
                 Console.Write($"{i}  ");
         }
 
         public void Verify()
         {
             bool isCorrect = true;
-            int rangeEnd = primes.Count;
+            int rangeEnd = primesList.Count;
             int lastCorrect = 0;
             int numsChecked = 0;
 
@@ -157,13 +161,13 @@ namespace PrimeNumbers
 
 
             // if no primes calculated (their list is empty)
-            if (!primes.Any())
+            if (!primesList.Any())
                 Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
 
             else
             {
                 // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
-                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
+                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primesList[0]));
 
                 // if there are more calculated primes other than verification ones
                 if (b > verificationPrimes.Last())
@@ -178,7 +182,7 @@ namespace PrimeNumbers
                 {
                     numsChecked += 1;
 
-                    if (verificationPrimes[i] != primes[i])
+                    if (verificationPrimes[i] != primesList[i])
                     {
                         isCorrect = false;
                         break;
