@@ -13,7 +13,7 @@ namespace PrimeNumbers
         private List<int> verificationPrimes = new List<int>();
         private List<int> primes = new List<int>();
         Stopwatch timer = new Stopwatch();
-        private bool isPrime, isOutput = false;
+        private bool isOutput = false;
         private string input;
         private int a, b;
 
@@ -104,26 +104,8 @@ namespace PrimeNumbers
             timer = Stopwatch.StartNew();
 
             for (int i = a; i <= b; i++)
-            {
-                // all the numbers matching the statements below aren't prime,
-                // so we skip them immediately
-                if (((i % 2 == 0) && (i != 2)) || ((i % 3 == 0) && (i != 3)))
-                    continue;
-
-                isPrime = true;
-
-                for (int j = 2; j <= Math.Sqrt(i); j++)
-                {
-                    if (i % j == 0)
-                    {
-                        isPrime = false;
-                        break;
-                    }
-                }
-
-                if (isPrime)
+                if (isPrime(i))
                     primes.Add(i);
-            }
 
             timer.Stop();
         }
@@ -223,6 +205,22 @@ namespace PrimeNumbers
 
             }
             
+        }
+
+        public bool isPrime(int num)
+        {
+            // all the numbers matching the statements below aren't prime,
+            // so we skip them immediately
+            if (((num % 2 == 0) && (num != 2)) || ((num % 3 == 0) && (num != 3)))
+                return false;
+
+            for (int i = 2; i <= Math.Sqrt(num); i++)
+            {
+                if (num % i == 0)
+                    return false;
+            }
+
+            return true;
         }
 
     }
