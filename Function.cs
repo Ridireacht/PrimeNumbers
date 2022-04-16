@@ -13,19 +13,22 @@ namespace PrimeNumbers
         private List<int> verificationPrimes = new List<int>();
         private List<int> primes = new List<int>();
         Stopwatch timer = new Stopwatch();
-        private bool isPrime;
+        private bool isPrime, isOutput = false;
         private string input;
         private int a, b;
 
         public Function()
         {
-            InputRange();
+            Input();
             Calculate();
-            Output();
+
+            if (isOutput)
+                Output();
+
             Verify();
         }
 
-        public void InputRange()
+        public void Input()
         {
 
             Console.WriteLine("Your input has to be >= 2.\n");
@@ -46,7 +49,9 @@ namespace PrimeNumbers
                     Console.WriteLine("\nIncorrect input! Try again.");
             }
 
+
             Console.WriteLine();
+
 
             // inputting and checking second var
             while (true)
@@ -64,9 +69,34 @@ namespace PrimeNumbers
                     Console.WriteLine("\nIncorrect input! Try again.");
             }
 
+
             // swap order of vars if it's incorrect (using tuples)
             if (a > b)
                 (a, b) = (b, a);
+
+
+            Console.WriteLine();
+
+
+            // inputting and checking second var
+            while (true)
+            {
+                Console.Write("Should there be an output of calculated primes? (y/n): ");
+                input = Console.ReadLine();
+
+                if (Regex.IsMatch(input, "^y$"))
+                {
+                    isOutput = true;
+                    break;
+                }
+
+                else if (Regex.IsMatch(input, "^n$"))
+                    break;
+
+                else
+                    Console.WriteLine("\nIncorrect answer! Try again.");
+            }
+
         }
 
         public void Calculate()
@@ -103,7 +133,8 @@ namespace PrimeNumbers
             Console.WriteLine("\n\nPrime numbers:\n");
             foreach (int i in primes)
                 Console.Write($"{i}  ");
-            Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
+            if (isOutput)
+                Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
         }
 
         public void Verify()
@@ -113,6 +144,8 @@ namespace PrimeNumbers
             int lastCorrect = 0;
             int numsChecked = 0;
 
+            if (!isOutput)
+                Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
 
             // getting file numbers
             try
