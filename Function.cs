@@ -30,7 +30,6 @@ namespace PrimeNumbers
 
         public void Input()
         {
-
             Console.WriteLine("Your input has to be >= 2.\n");
 
             // inputting and checking first var
@@ -78,7 +77,7 @@ namespace PrimeNumbers
             Console.WriteLine();
 
 
-            // inputting and checking second var
+            // inputting if there will be output
             while (true)
             {
                 Console.Write("Should there be an output of calculated primes? (y/n): ");
@@ -96,7 +95,6 @@ namespace PrimeNumbers
                 else
                     Console.WriteLine("\nIncorrect answer! Try again.");
             }
-
         }
 
         public void Calculate()
@@ -126,8 +124,6 @@ namespace PrimeNumbers
 
 
             Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
-
-
             timer = Stopwatch.StartNew();
 
 
@@ -191,6 +187,7 @@ namespace PrimeNumbers
                     lastCorrect = verificationPrimes[i];
                 }
 
+
                 timer.Stop();
 
 
@@ -205,9 +202,7 @@ namespace PrimeNumbers
                     Console.WriteLine("\nAll calculations were done right.");
                 else
                     Console.WriteLine("\nCalculations done wrong.");
-
             }
-            
         }
 
         public bool isPrime(int num)
