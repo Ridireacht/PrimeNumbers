@@ -113,11 +113,7 @@ namespace PrimeNumbers
 
             else
             {
-                var numbers = Enumerable.Range(a, b).ToList();
-
-                ConcurrentQueue<int> nums = new ConcurrentQueue<int>(numbers);
-
-                var thing =  from n in nums.AsParallel().AsOrdered()
+                var thing =  from n in (Enumerable.Range(a, b).ToList()).AsParallel().AsOrdered()
                              where isPrime(n)
                              select n;
 
