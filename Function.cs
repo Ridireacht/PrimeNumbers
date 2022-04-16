@@ -133,8 +133,6 @@ namespace PrimeNumbers
             Console.WriteLine("\n\nPrime numbers:\n");
             foreach (int i in primes)
                 Console.Write($"{i}  ");
-            if (isOutput)
-                Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
         }
 
         public void Verify()
@@ -144,8 +142,8 @@ namespace PrimeNumbers
             int lastCorrect = 0;
             int numsChecked = 0;
 
-            if (!isOutput)
-                Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
+
+            Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
 
             // getting file numbers
             try
