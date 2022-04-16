@@ -11,7 +11,7 @@ A project whose sole purpose is to improve my basics of C# knowledge, which is d
   - [X] Optimize algorithm with more accurate range, even/uneven number handler and other stuff ***(done 13.04.2022 - 16.04.2022)***
   - [X] Embed a timer for algorithm and its results' verification function, so you could see their performance ***(done 13.04.2022)***
   - [X] Handle or fix existing exceptions, bugs and other problems, so your program could run stable ***(done 13.04.2022 - 14.04.2022)***
-- [ ] Optimize function with multi-threading
+- [X] Optimize function with multi-threading ***(done 17.04.2022)***
 - [ ] Make it save the result in a database, and if calculations were ever done once, make it use data from database instead of recalculating numbers already known
 - [ ] Make the DB calls asynchronous with async/await
 - [ ] Implement Repository / Unit of Work design pattern on a program
