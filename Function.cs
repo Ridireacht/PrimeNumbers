@@ -85,7 +85,10 @@ namespace PrimeNumbers
                 for (int j = 2; j <= Math.Sqrt(i); j++)
                 {
                     if (i % j == 0)
+                    {
                         isPrime = false;
+                        break;
+                    }
                 }
 
                 if (isPrime)
