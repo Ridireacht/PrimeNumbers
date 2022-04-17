@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.4" />
   </ItemGroup>
 
 </Project>
