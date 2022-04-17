@@ -10,9 +10,9 @@ namespace PrimeNumbers
 {
     class Function
     {
-        private List<int> verificationPrimes = new List<int>();
-        private List<int> primes = new List<int>();
-        Stopwatch timer = new Stopwatch();
+        private List<int> verificationPrimes = new();
+        private readonly List<int> primes = new();
+        Stopwatch timer = new();
         private bool isOutput = false;
         private string input;
         private int a, b;
@@ -222,7 +222,7 @@ namespace PrimeNumbers
             }
         }
 
-        public bool isPrime(int num)
+        public static bool isPrime(int num)
         {
             // all the numbers matching the statements below aren't prime,
             // so we skip them immediately
