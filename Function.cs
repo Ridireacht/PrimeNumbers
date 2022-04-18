@@ -14,15 +14,13 @@ namespace PrimeNumbers
         private List<int> verificationPrimes = new();
         private readonly List<int> primes = new();
         Stopwatch timer = new();
-        private bool isOutput = false;
+        private bool isOutput = false, isCorrect = true;
         private string input;
         private int a, b;
-        private SqliteConnection connection = new SqliteConnection("Data Source=../../../calculated_primes.db");
+
 
         public Function()
         {
-            connection.Open();
-
             Input();
             Calculate();
 
@@ -31,7 +29,8 @@ namespace PrimeNumbers
 
             Verify();
 
-            connection.Close();
+            if (isCorrect)
+                Database();
         }
 
         public void Input()
@@ -140,7 +139,6 @@ namespace PrimeNumbers
 
         public void Verify()
         {
-            bool isCorrect = true;
             int rangeEnd = primes.Count;
             int lastCorrect = 0;
             int numsChecked = 0;
@@ -225,6 +223,18 @@ namespace PrimeNumbers
                     Console.WriteLine("\nAll calculations were done right.");
                 else
                     Console.WriteLine("\nCalculations done wrong.");
+            }
+        }
+
+        public void Database()
+        {
+            using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
+            {
+                connection.Open();
+
+
+
+                connection.Close();
             }
         }
 
