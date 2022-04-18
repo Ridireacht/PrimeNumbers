@@ -228,23 +228,21 @@ namespace PrimeNumbers
 
         public void Database()
         {
-            string txt_query_1 = "CREATE TABLE IF NOT EXISTS Primes (prime INT);";
-            string txt_query_2 = "INSERT INTO Primes (prime) VALUES ";
+            string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime INT); " +
+                               "INSERT INTO Primes (prime) VALUES ";
 
             foreach (int i in primes)
-                txt_query_2 += $"({i}),";
+                txt_query += $"({i}),";
 
-            txt_query_2 = Regex.Replace(txt_query_2, ",$", ";");
-            Console.WriteLine(txt_query_2);
+            txt_query = Regex.Replace(txt_query, ",$", ";");
+
 
             using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
             {
                 connection.Open();
 
                 var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = txt_query_1;
-                SQL_command.ExecuteNonQuery();
-                SQL_command.CommandText = txt_query_2;
+                SQL_command.CommandText = txt_query;
                 SQL_command.ExecuteNonQuery();
 
                 connection.Close();
