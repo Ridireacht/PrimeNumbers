@@ -12,6 +12,13 @@ A project whose sole purpose is to improve my basics of C# knowledge, which is d
   - [X] Embed a timer for algorithm and its results' verification function, so you could see their performance ***(done 13.04.2022)***
   - [X] Handle or fix existing exceptions, bugs and other problems, so your program could run stable ***(done 13.04.2022 - 14.04.2022)***
 - [X] Optimize function with multi-threading ***(done 17.04.2022)***
-- [ ] Make it save the result in a database, and if calculations were ever done once, make it use data from database instead of recalculating numbers already known
+  - [X] Implement multi-threading calculations themselves
+  - [X] Make sure the right order of primes will be sustained during this
+  - [X] Allow program to choose fastest method (of those two) for current range
+- [ ] Add some database to your program
+  - [ ] Make it save the calculation results in a database
+  - [ ] If calculations were ever done once, make function use database instead of recalculating numbers already known
+  - [ ] Add an option to either use DB during your calculations, or turn it off
+  - [ ] Add an option to cleae the DB, so it can be filled once again
 - [ ] Make the DB calls asynchronous with async/await
 - [ ] Implement Repository / Unit of Work design pattern on a program
