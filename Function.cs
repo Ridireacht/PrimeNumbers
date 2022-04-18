@@ -228,8 +228,8 @@ namespace PrimeNumbers
 
         public void Database()
         {
-            string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime INT); " +
-                               "INSERT INTO Primes (prime) VALUES ";
+            string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime INT, UNIQUE(prime)); " +
+                               "INSERT OR IGNORE INTO Primes (prime) VALUES ";
 
             foreach (int i in primes)
                 txt_query += $"({i}),";
