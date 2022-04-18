@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Microsoft.Data.Sqlite;
 
 
 namespace PrimeNumbers
@@ -16,9 +17,12 @@ namespace PrimeNumbers
         private bool isOutput = false;
         private string input;
         private int a, b;
+        private SqliteConnection connection = new SqliteConnection("Data Source=../../../calculated_primes.db");
 
         public Function()
         {
+            connection.Open();
+
             Input();
             Calculate();
 
@@ -26,6 +30,8 @@ namespace PrimeNumbers
                 Output();
 
             Verify();
+
+            connection.Close();
         }
 
         public void Input()
