@@ -17,8 +17,8 @@ A project whose sole purpose is to improve my basics of C# knowledge, which is d
   - [X] Allow program to choose fastest method (of those two) for current range
 - [ ] Add some database to your program
   - [ ] Make it save the calculation results in a database
-  - [ ] If calculations were ever done once, make function use database instead of recalculating numbers already known
+  - [ ] If calculations were ever done once, use database's primes instead of recalculating numbers already known
   - [ ] Add an option to either use DB during your calculations, or turn it off
-  - [ ] Add an option to cleae the DB, so it can be filled once again
+  - [ ] Add an option to clean the DB, so it can be filled once again
 - [ ] Make the DB calls asynchronous with async/await
 - [ ] Implement Repository / Unit of Work design pattern on a program
