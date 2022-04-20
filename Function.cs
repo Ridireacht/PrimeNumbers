@@ -228,7 +228,11 @@ namespace PrimeNumbers
 
         public void Database()
         {
-            string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime INT, UNIQUE(prime)); " +
+            timer = Stopwatch.StartNew();
+
+
+            // creating query command for DB
+            string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime)); " +
                                "INSERT OR IGNORE INTO Primes (prime) VALUES ";
 
             foreach (int i in primes)
@@ -236,7 +240,8 @@ namespace PrimeNumbers
 
             txt_query = Regex.Replace(txt_query, ",$", ";");
 
-
+            
+            // working with DB itself
             using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
             {
                 connection.Open();
@@ -247,6 +252,12 @@ namespace PrimeNumbers
 
                 connection.Close();
             }
+
+
+            timer.Stop();
+
+            // info
+            Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms");
         }
 
         public static bool isPrime(int num)
