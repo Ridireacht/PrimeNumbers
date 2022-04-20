@@ -33,7 +33,7 @@ namespace PrimeNumbers
 
             Verify();
 
-            if (isCorrect && isDatabase)
+            if (isCorrect && isDatabase && primes.Any())
                 FillDatabase();
         }
 
