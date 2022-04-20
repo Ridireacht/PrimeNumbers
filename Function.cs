@@ -320,7 +320,26 @@ namespace PrimeNumbers
 
         public void GetFromDatabase()
         {
+            List<int> sample = new();
+            string txt_query = $"SELECT * FROM Primes WHERE prime >= {a} AND prime <= {b}";
 
+            // DB operations themselves
+            using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
+            {
+                connection.Open();
+
+                var SQL_command = connection.CreateCommand();
+                SQL_command.CommandText = txt_query;
+                SQL_command.ExecuteNonQuery();
+
+                SqliteDataReader reader = SQL_command.ExecuteReader();
+
+                while (reader.Read())
+                    sample.Add(Convert.ToInt32(reader["prime"]));
+
+
+                connection.Close();
+            }
         }
 
         public static bool isPrime(int num)
