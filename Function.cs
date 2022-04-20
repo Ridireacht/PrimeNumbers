@@ -22,6 +22,10 @@ namespace PrimeNumbers
         public Function()
         {
             Input();
+
+            if (isDatabase)
+                CreateDatabase();
+
             Calculate();
 
             if (isOutput)
@@ -30,7 +34,7 @@ namespace PrimeNumbers
             Verify();
 
             if (isCorrect && isDatabase)
-                Database();
+                FillDatabase();
         }
 
         public void Input()
@@ -249,22 +253,34 @@ namespace PrimeNumbers
             }
         }
 
-        public void Database()
+        public void CreateDatabase()
+        {
+            using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
+            {
+                connection.Open();
+
+                var SQL_command = connection.CreateCommand();
+                SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime));";
+                SQL_command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        public void FillDatabase()
         {
             timer = Stopwatch.StartNew();
 
 
             // creating an SQL command that will input all the new calculated primes into DB
-            string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime)); " +
-                               "INSERT OR IGNORE INTO Primes (prime) VALUES ";
-
+            string txt_query = "INSERT OR IGNORE INTO Primes (prime) VALUES ";
             foreach (int i in primes)
                 txt_query += $"({i}),";
 
             txt_query = Regex.Replace(txt_query, ",$", ";");
 
-            
-            // working with DB itself
+
+            // DB operations themselves
             using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
             {
                 connection.Open();
@@ -274,7 +290,7 @@ namespace PrimeNumbers
                 SQL_command.ExecuteNonQuery();
 
                 timer.Stop();
-                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n\n");
 
 
                 // choosing if it's necessary to clear our DB
@@ -300,6 +316,10 @@ namespace PrimeNumbers
 
                 connection.Close();
             }
+        }
+
+        public void GetFromDatabase()
+        {
 
         }
 
