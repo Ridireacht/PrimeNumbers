@@ -14,7 +14,7 @@ namespace PrimeNumbers
         private List<int> verificationPrimes = new();
         private readonly List<int> primes = new();
         Stopwatch timer = new();
-        private bool isOutput = false, isCorrect = true;
+        private bool isOutput = false, isCorrect = true, isDatabase = false;
         private string input;
         private int a, b;
 
@@ -29,7 +29,7 @@ namespace PrimeNumbers
 
             Verify();
 
-            if (isCorrect)
+            if (isCorrect && isDatabase)
                 Database();
         }
 
@@ -91,6 +91,29 @@ namespace PrimeNumbers
                 if (Regex.IsMatch(input, "^y$"))
                 {
                     isOutput = true;
+                    break;
+                }
+
+                else if (Regex.IsMatch(input, "^n$"))
+                    break;
+
+                else
+                    Console.WriteLine("\nIncorrect answer! Try again.");
+            }
+
+
+            Console.WriteLine();
+
+
+            // inputting if there will be used DB
+            while (true)
+            {
+                Console.Write("Should the program use DB? (y/n): ");
+                input = Console.ReadLine();
+
+                if (Regex.IsMatch(input, "^y$"))
+                {
+                    isDatabase = true;
                     break;
                 }
 
@@ -231,7 +254,7 @@ namespace PrimeNumbers
             timer = Stopwatch.StartNew();
 
 
-            // creating query command for DB
+            // creating an SQL command that will input all the new calculated primes into DB
             string txt_query = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime)); " +
                                "INSERT OR IGNORE INTO Primes (prime) VALUES ";
 
@@ -255,9 +278,34 @@ namespace PrimeNumbers
 
 
             timer.Stop();
+            Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
 
-            // info
-            Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms");
+
+            // inputting if it's necessary to clear our DB
+            while (true)
+            {
+                Console.Write("Should we fully clear DB? (y/n): ");
+                input = Console.ReadLine();
+
+                if (Regex.IsMatch(input, "^y$"))
+                {
+
+                    var connection = new SqliteConnection("Data Source=../../../calculated_primes.db");
+                    connection.Open();
+
+                    var SQL_command = connection.CreateCommand();
+                    SQL_command.CommandText = "DELETE FROM Primes;";
+                    SQL_command.ExecuteNonQuery();
+
+                    break;
+                }
+
+                else if (Regex.IsMatch(input, "^n$"))
+                    break;
+
+                else
+                    Console.WriteLine("\nIncorrect answer! Try again.");
+            }
         }
 
         public static bool isPrime(int num)
