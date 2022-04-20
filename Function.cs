@@ -133,26 +133,63 @@ namespace PrimeNumbers
         {
             timer = Stopwatch.StartNew();
 
+            // trying to get any primes from our DB
+            if (isDatabase)
+                GetFromDatabase();
 
-            // that's where we choose to use mono-threading or multi-threading
-            // algorithm - it depends on the complexity of our calculations
-            if ((b - a) < 150000)
+            // if there were some
+            if (primes.Any())
             {
-                for (int i = a; i <= b; i++)
-                    if (isPrime(i))
+                // that's where we choose to use mono-threading or multi-threading
+                // algorithm - it depends on the complexity of our calculations
+                if ((b - a) < 150000)
+                {
+                    int temp = primes[0];
+
+                    for (int i = a, j = 0; i < temp; i++, j++)
+                        if (isPrime(i))
+                            primes.Insert(j, i);
+
+                    temp = primes.Last() + 1;
+
+                    for (int i = temp; i < b; i++)
+                        if (isPrime(i))
+                            primes.Add(i);
+                }
+
+                else
+                {
+                    var thing = from n in (Enumerable.Range(a, b)).AsParallel().AsOrdered()
+                                where isPrime(n)
+                                select n;
+
+                    foreach (var i in thing)
                         primes.Add(i);
+                }
             }
 
             else
             {
-                var thing =  from n in (Enumerable.Range(a, b)).AsParallel().AsOrdered()
-                             where isPrime(n)
-                             select n;
+                // that's where we choose to use mono-threading or multi-threading
+                // algorithm - it depends on the complexity of our calculations
+                if ((b - a) < 150000)
+                {
+                    for (int i = a; i <= b; i++)
+                        if (isPrime(i))
+                            primes.Add(i);
+                }
 
-                foreach (var i in thing)
-                    primes.Add(i);
+                else
+                {
+                    var thing = from n in (Enumerable.Range(a, b)).AsParallel().AsOrdered()
+                                where isPrime(n)
+                                select n;
+
+                    foreach (var i in thing)
+                        primes.Add(i);
+                }
             }
-
+            
 
             timer.Stop();
         }
