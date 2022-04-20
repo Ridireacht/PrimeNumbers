@@ -273,39 +273,34 @@ namespace PrimeNumbers
                 SQL_command.CommandText = txt_query;
                 SQL_command.ExecuteNonQuery();
 
+                timer.Stop();
+                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+
+
+                // choosing if it's necessary to clear our DB
+                while (true)
+                {
+                    Console.Write("Should we fully clear DB? (y/n): ");
+                    input = Console.ReadLine();
+
+                    if (Regex.IsMatch(input, "^y$"))
+                    {
+                        SQL_command.CommandText = "DELETE FROM Primes;";
+                        SQL_command.ExecuteNonQuery();
+                        break;
+                    }
+
+                    else if (Regex.IsMatch(input, "^n$"))
+                        break;
+
+                    else
+                        Console.WriteLine("\nIncorrect answer! Try again.");
+                }
+
+
                 connection.Close();
             }
 
-
-            timer.Stop();
-            Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
-
-
-            // inputting if it's necessary to clear our DB
-            while (true)
-            {
-                Console.Write("Should we fully clear DB? (y/n): ");
-                input = Console.ReadLine();
-
-                if (Regex.IsMatch(input, "^y$"))
-                {
-
-                    var connection = new SqliteConnection("Data Source=../../../calculated_primes.db");
-                    connection.Open();
-
-                    var SQL_command = connection.CreateCommand();
-                    SQL_command.CommandText = "DELETE FROM Primes;";
-                    SQL_command.ExecuteNonQuery();
-
-                    break;
-                }
-
-                else if (Regex.IsMatch(input, "^n$"))
-                    break;
-
-                else
-                    Console.WriteLine("\nIncorrect answer! Try again.");
-            }
         }
 
         public static bool isPrime(int num)
