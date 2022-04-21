@@ -144,35 +144,35 @@ namespace PrimeNumbers
         {
             timer = Stopwatch.StartNew();
 
+
             // trying to get any primes from our DB
             if (isDatabase)
                 GetFromDatabase();
 
 
-            // if there were some (calculations w/ database)
+            // calculations w/ database
             if (primes.Any())
             {
-                // that's where we choose to use mono-threading or multi-threading
-                // algorithm - it depends on the complexity of our calculations
+                int temp;
+
+                // choosing between mono- and multi- threading depends on the complexity of calculations
                 if ((b - a) < 150000)
                 {
-                    int temp = primes[0];
-
+                    temp = primes[0];
                     for (int i = a, j = 0; i < temp; i++, j++)
                         if (isPrime(i))
                             primes.Insert(j, i);
 
                     temp = primes.Last() + 1;
-
                     for (int i = temp; i < b; i++)
                         if (isPrime(i))
                             primes.Add(i);
                 }
 
-                // THIS SECTION DOESN'T WORK FOR NOW!!!
+                // multi-threading calculations
                 else
                 {
-                    int temp = primes[0];
+                    temp = primes[0];
 
                     if (a != temp)
                     {
@@ -187,6 +187,7 @@ namespace PrimeNumbers
                             j++;
                         }
                     }
+
 
                     temp = primes.Last();
 
@@ -208,8 +209,7 @@ namespace PrimeNumbers
             // calculations w/o database
             else
             {
-                // that's where we choose to use mono-threading or multi-threading
-                // algorithm - it depends on the complexity of our calculations
+                // choosing between mono- and multi- threading depends on the complexity of calculations
                 if ((b - a) < 150000)
                 {
                     for (int i = a; i <= b; i++)
@@ -217,6 +217,7 @@ namespace PrimeNumbers
                             primes.Add(i);
                 }
 
+                // multi-threading calculations
                 else
                 {
                     var thing = from n in (Enumerable.Range(a, b - a)).AsParallel().AsOrdered()
