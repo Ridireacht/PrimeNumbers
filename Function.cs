@@ -19,6 +19,7 @@ namespace PrimeNumbers
         private bool isOutput;
         private bool isDatabase;
         private bool isCorrect;
+        private bool isToBeCleared;
 
         private string input;
         private int a, b;
@@ -44,100 +45,19 @@ namespace PrimeNumbers
 
         public void Input()
         {
-            Console.WriteLine("Your input has to be >= 2.\n");
+            Console.WriteLine("Both of your range ends have to be >= 2.\n");
 
-            // inputting and checking first var
-            while (true)
-            {
-                Console.Write("Input first value: ");
-                input = Console.ReadLine();
+            // getting range ends
+            SetByInput(ref a, "Input first value: ");
+            SetByInput(ref b, "Input second value: ");
 
-                if (int.TryParse(input, out int x) && (x > 1))
-                {
-                    a = x;
-                    break;
-                }
-
-                else
-                    Console.WriteLine("\nIncorrect input! Try again.");
-            }
-
-
-            Console.WriteLine();
-
-
-            // inputting and checking second var
-            while (true)
-            {
-                Console.Write("Input second value: ");
-                input = Console.ReadLine();
-
-                if (int.TryParse(input, out int x) && (x > 1))
-                {
-                    b = x;
-                    break;
-                }
-
-                else
-                    Console.WriteLine("\nIncorrect input! Try again.");
-            }
-
-
-            // swap order of vars if it's incorrect (using tuples)
+            // swap their if it's incorrect (using tuples)
             if (a > b)
                 (a, b) = (b, a);
-
-
-            Console.WriteLine();
-
-
-            // inputting if there will be output
-            while (true)
-            {
-                Console.Write("Should there be an output of calculated primes? (y/n): ");
-                input = Console.ReadLine();
-
-                if (Regex.IsMatch(input, "^y$"))
-                {
-                    isOutput = true;
-                    break;
-                }
-
-                else if (Regex.IsMatch(input, "^n$"))
-                {
-                    isOutput = false;
-                    break;
-                }
-
-                else
-                    Console.WriteLine("\nIncorrect answer! Try again.");
-            }
-
-
-            Console.WriteLine();
-
-
-            // inputting if there will be used DB
-            while (true)
-            {
-                Console.Write("Should the program use DB? (y/n): ");
-                input = Console.ReadLine();
-
-                if (Regex.IsMatch(input, "^y$"))
-                {
-                    isDatabase = true;
-                    break;
-                }
-
-                else if (Regex.IsMatch(input, "^n$"))
-                {
-                    isDatabase = false;
-                    break;
-                }
-
-                else
-                    Console.WriteLine("\nIncorrect answer! Try again.");
-            }
+            
+            // getting conditions
+            SetByInput(ref isOutput, "there be an output of calculated primes");
+            SetByInput(ref isDatabase, "the program use DB");
         }
 
         public void Calculate()
@@ -371,26 +291,13 @@ namespace PrimeNumbers
                 Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n\n");
 
 
-                // choosing if it's necessary to clear our DB
-                while (true)
+                SetByInput(ref isToBeCleared, "we fully clear DB");
+
+                if (isToBeCleared)
                 {
-                    Console.Write("Should we fully clear DB? (y/n): ");
-                    input = Console.ReadLine();
-
-                    if (Regex.IsMatch(input, "^y$"))
-                    {
-                        SQL_command.CommandText = "DELETE FROM Primes;";
-                        SQL_command.ExecuteNonQuery();
-                        break;
-                    }
-
-                    else if (Regex.IsMatch(input, "^n$"))
-                        break;
-
-                    else
-                        Console.WriteLine("\nIncorrect answer! Try again.");
+                    SQL_command.CommandText = "DELETE FROM Primes;";
+                    SQL_command.ExecuteNonQuery();
                 }
-
 
                 connection.Close();
             }
@@ -415,6 +322,52 @@ namespace PrimeNumbers
 
                 connection.Close();
             }
+        }
+
+        public void SetByInput(ref int num, string text)
+        {
+            while (true)
+            {
+                Console.Write(text);
+                input = Console.ReadLine();
+
+                if (int.TryParse(input, out int x) && (x > 1))
+                {
+                    num = x;
+                    break;
+                }
+
+                else
+                    Console.WriteLine("\nIncorrect input! Try again.");
+            }
+
+            Console.WriteLine();
+        }
+
+        public void SetByInput(ref bool flag, string text)
+        {
+            while (true)
+            {
+                Console.Write("Should " + text + "? (y/n): ");
+                input = Console.ReadLine();
+
+                if (Regex.IsMatch(input, "^y$"))
+                {
+                    flag = true;
+                    break;
+                }
+
+                else if (Regex.IsMatch(input, "^n$"))
+                {
+                    flag = false;
+                    break;
+                }
+
+                else
+                    Console.WriteLine("\nIncorrect answer! Try again.");
+            }
+
+            Console.WriteLine();
         }
 
         public static bool isPrime(int num)
