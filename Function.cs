@@ -137,12 +137,13 @@ namespace PrimeNumbers
             if (isDatabase)
                 GetFromDatabase();
 
-            // if there were some
+
+            // if there were some (calculations w/ database)
             if (primes.Any())
             {
                 // that's where we choose to use mono-threading or multi-threading
                 // algorithm - it depends on the complexity of our calculations
-                if ((b - a) < 150000)
+                if (false)
                 {
                     int temp = primes[0];
 
@@ -157,17 +158,41 @@ namespace PrimeNumbers
                             primes.Add(i);
                 }
 
+                // THIS SECTION DOESN'T WORK FOR NOW!!!
                 else
                 {
-                    var thing = from n in (Enumerable.Range(a, b)).AsParallel().AsOrdered()
-                                where isPrime(n)
-                                select n;
+                    int temp = primes[0] - 1;
 
-                    foreach (var i in thing)
-                        primes.Add(i);
+                    if (a != temp)
+                    {
+                        var thing = from n in (Enumerable.Range(a, temp)).AsParallel().AsOrdered()
+                                    where isPrime(n)
+                                    select n;
+
+                        int j = 0;
+                        foreach (var i in thing)
+                        {
+                            primes.Insert(j, i);
+                            j++;
+                        }
+                    }
+
+                    temp = primes.Last() + 1;
+
+                    if (b != temp)
+                    {
+                        var thing = from n in (Enumerable.Range(temp, b)).AsParallel().AsOrdered()
+                                    where isPrime(n)
+                                    select n;
+
+                        foreach (var i in thing)
+                            primes.Add(i);
+                    }
                 }
             }
 
+
+            // calculations w/o database
             else
             {
                 // that's where we choose to use mono-threading or multi-threading
