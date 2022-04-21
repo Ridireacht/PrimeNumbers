@@ -10,10 +10,16 @@ namespace PrimeNumbers
 {
     class Function
     {
+        // global vars and objs
         private List<int> verificationPrimes = new();
         private readonly List<int> primes = new();
+
         Stopwatch timer = new();
-        private bool isOutput = false, isCorrect = true, isDatabase = false;
+
+        private bool isOutput;
+        private bool isDatabase;
+        private bool isCorrect;
+
         private string input;
         private int a, b;
 
@@ -98,7 +104,10 @@ namespace PrimeNumbers
                 }
 
                 else if (Regex.IsMatch(input, "^n$"))
+                {
+                    isOutput = false;
                     break;
+                }
 
                 else
                     Console.WriteLine("\nIncorrect answer! Try again.");
@@ -121,7 +130,10 @@ namespace PrimeNumbers
                 }
 
                 else if (Regex.IsMatch(input, "^n$"))
+                {
+                    isDatabase = false;
                     break;
+                }
 
                 else
                     Console.WriteLine("\nIncorrect answer! Try again.");
@@ -284,6 +296,8 @@ namespace PrimeNumbers
                 }
 
 
+                isCorrect = true;
+
                 // compare the nums between two lists, one to one
                 for (int i = 0; i < rangeEnd; i++)
                 {
@@ -303,6 +317,7 @@ namespace PrimeNumbers
 
 
                 Console.WriteLine();
+
                 // outcome of all checks
                 if ((numsChecked == 1) && (!isCorrect))
                     Console.WriteLine("\nThe very first calculated prime num is already wrong, so all the sequence.");
