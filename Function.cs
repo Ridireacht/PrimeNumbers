@@ -79,14 +79,28 @@ namespace PrimeNumbers
                 if ((b - a) < 150000)
                 {
                     temp = primes[0];
-                    for (int i = a, j = 0; i < temp; i++, j++)
-                        if (isPrime(i))
-                            primes.Insert(j, i);
 
-                    temp = primes.Last() + 1;
-                    for (int i = temp; i < b; i++)
-                        if (isPrime(i))
-                            primes.Add(i);
+                    if (a != temp)
+                    {
+                        for (int i = a, j = 0; i < temp; i++)
+                            if (isPrime(i))
+                            {
+                                primes.Insert(j, i);
+                                j++;
+                            }
+                    }
+
+
+                    temp = primes.Last();
+
+                    if (b != temp)
+                    {
+                        temp += 1;
+
+                        for (int i = temp; i <= b; i++)
+                            if (isPrime(i))
+                                primes.Add(i);
+                    }
                 }
 
                 // multi-threading calculations
@@ -288,7 +302,7 @@ namespace PrimeNumbers
                 SQL_command.ExecuteNonQuery();
 
                 timer.Stop();
-                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n\n");
+                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
 
 
                 SetByInput(ref isToBeCleared, "we fully clear DB");
