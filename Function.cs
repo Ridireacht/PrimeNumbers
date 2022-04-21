@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using System.Linq;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -143,7 +142,7 @@ namespace PrimeNumbers
             {
                 // that's where we choose to use mono-threading or multi-threading
                 // algorithm - it depends on the complexity of our calculations
-                if (false)
+                if ((b - a) < 150000)
                 {
                     int temp = primes[0];
 
@@ -336,7 +335,7 @@ namespace PrimeNumbers
             timer = Stopwatch.StartNew();
 
 
-            // creating an SQL command that will input all the new calculated primes into DB
+            // assembling an SQL command that will input all the new calculated primes into DB
             string txt_query = "INSERT OR IGNORE INTO Primes (prime) VALUES ";
             foreach (int i in primes)
                 txt_query += $"({i}),";
@@ -344,7 +343,6 @@ namespace PrimeNumbers
             txt_query = Regex.Replace(txt_query, ",$", ";");
 
 
-            // DB operations themselves
             using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
             {
                 connection.Open();
@@ -384,21 +382,19 @@ namespace PrimeNumbers
 
         public void GetFromDatabase()
         {
-            string txt_query = $"SELECT * FROM Primes WHERE prime >= {a} AND prime <= {b}";
-
-            // DB operations themselves
+            // getting a bunch of primes within a range of 'a' and 'b'
             using (var connection = new SqliteConnection("Data Source=../../../calculated_primes.db"))
             {
                 connection.Open();
 
                 var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = txt_query;
+                SQL_command.CommandText = $"SELECT * FROM Primes WHERE prime >= {a} AND prime <= {b}";
                 SQL_command.ExecuteNonQuery();
 
-                SqliteDataReader reader = SQL_command.ExecuteReader();
+                SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
 
-                while (reader.Read())
-                    primes.Add(Convert.ToInt32(reader["prime"]));
+                while (SQL_reader.Read())
+                    primes.Add(Convert.ToInt32(SQL_reader["prime"]));
 
 
                 connection.Close();
