@@ -161,7 +161,7 @@ namespace PrimeNumbers
                 // THIS SECTION DOESN'T WORK FOR NOW!!!
                 else
                 {
-                    int temp = primes[0] - 1;
+                    int temp = primes[0];
 
                     if (a != temp)
                     {
@@ -177,11 +177,13 @@ namespace PrimeNumbers
                         }
                     }
 
-                    temp = primes.Last() + 1;
+                    temp = primes.Last();
 
                     if (b != temp)
                     {
-                        var thing = from n in (Enumerable.Range(temp - a, b - temp)).AsParallel().AsOrdered()
+                        temp += 1;
+
+                        var thing = from n in (Enumerable.Range(temp, b - temp - 1)).AsParallel().AsOrdered()
                                     where isPrime(n)
                                     select n;
 
