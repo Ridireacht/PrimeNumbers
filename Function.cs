@@ -165,7 +165,7 @@ namespace PrimeNumbers
 
                     if (a != temp)
                     {
-                        var thing = from n in (Enumerable.Range(a, temp)).AsParallel().AsOrdered()
+                        var thing = from n in (Enumerable.Range(a, temp - a)).AsParallel().AsOrdered()
                                     where isPrime(n)
                                     select n;
 
@@ -181,7 +181,7 @@ namespace PrimeNumbers
 
                     if (b != temp)
                     {
-                        var thing = from n in (Enumerable.Range(temp, b)).AsParallel().AsOrdered()
+                        var thing = from n in (Enumerable.Range(temp - a, b - temp)).AsParallel().AsOrdered()
                                     where isPrime(n)
                                     select n;
 
@@ -206,7 +206,7 @@ namespace PrimeNumbers
 
                 else
                 {
-                    var thing = from n in (Enumerable.Range(a, b)).AsParallel().AsOrdered()
+                    var thing = from n in (Enumerable.Range(a, b - a)).AsParallel().AsOrdered()
                                 where isPrime(n)
                                 select n;
 
