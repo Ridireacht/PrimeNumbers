@@ -1,6 +1,8 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 
@@ -74,7 +76,6 @@ namespace PrimeNumbers.Tests
             {
                 Assert.Fail($"Expected no exceptions, but got {ex.Message}");
             }
-
         }
 
 
@@ -99,6 +100,31 @@ namespace PrimeNumbers.Tests
 
             // assert
             Assert.AreEqual(true, (count_ints == 3 && count_yes_not == 3));
+        }
+
+
+        [TestMethod]
+        public void CreateDatabase_createAndDelete_noExceptionIsThrowns()
+        {
+            // arrange & act & assert
+            try
+            {
+                using SqliteConnection connection = new("Data Source=calculated_primes.db");
+                connection.Open();
+
+                var SQL_command = connection.CreateCommand();
+                SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime INT, UNIQUE(prime));";
+                SQL_command.ExecuteNonQuery();
+
+                connection.Close();
+                SqliteConnection.ClearPool(connection);
+                File.Delete("calculated_primes.db");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
         }
     }
 }
