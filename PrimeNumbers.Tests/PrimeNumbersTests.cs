@@ -109,15 +109,8 @@ namespace PrimeNumbers.Tests
             // arrange & act & assert
             try
             {
-                using SqliteConnection connection = new("Data Source=calculated_primes.db");
-                connection.Open();
-
-                var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime INT, UNIQUE(prime));";
-                SQL_command.ExecuteNonQuery();
-
-                connection.Close();
-                SqliteConnection.ClearPool(connection);
+                Function.CreateDatabase();
+                SqliteConnection.ClearAllPools();
                 File.Delete("calculated_primes.db");
             }
 
