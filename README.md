@@ -21,4 +21,4 @@ A project whose sole purpose is to improve my basics of C# knowledge. It is done
   - [X] Add an option to either use DB during your calculations, or turn it off ***(done 20.04.2022)***
   - [X] Add an option to clear the DB, so it can be filled once again ***(done 20.04.2022)***
   - [X] If calculations were ever done once, use database's primes instead of recalculating numbers already known ***(done 20.04.2022 - 21.04.2022)***
-- [ ] Make the DB calls asynchronous with async/await
+- [ ] Implement unit-tests for all the things added
