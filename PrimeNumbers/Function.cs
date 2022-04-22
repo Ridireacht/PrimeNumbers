@@ -271,11 +271,11 @@ namespace PrimeNumbers
 
         public static void CreateDatabase()
         {
-            using SqliteConnection connection = new("Data Source=../../../calculated_primes.db");
+            using SqliteConnection connection = new("Data Source=calculated_primes.db");
             connection.Open();
 
             var SQL_command = connection.CreateCommand();
-            SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime));";
+            SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime INT, UNIQUE(prime));";
             SQL_command.ExecuteNonQuery();
 
             connection.Close();
@@ -294,7 +294,7 @@ namespace PrimeNumbers
             txt_query = Regex.Replace(txt_query, ",$", ";");
 
 
-            using (SqliteConnection connection = new("Data Source=../../../calculated_primes.db"))
+            using (SqliteConnection connection = new("Data Source=calculated_primes.db"))
             {
                 connection.Open();
 
@@ -321,7 +321,7 @@ namespace PrimeNumbers
         public void GetFromDatabase()
         {
             // getting a bunch of primes within a range of 'a' and 'b'
-            using SqliteConnection connection = new("Data Source=../../../calculated_primes.db");
+            using SqliteConnection connection = new("Data Source=calculated_primes.db");
             connection.Open();
 
             var SQL_command = connection.CreateCommand();
