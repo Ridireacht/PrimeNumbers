@@ -4,11 +4,14 @@ using System.Linq;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Data.Sqlite;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 
 
 namespace PrimeNumbers
 {
-    public class Function
+    internal class Function
     {
         // global vars and objs
         private List<int> verificationPrimes = new();
