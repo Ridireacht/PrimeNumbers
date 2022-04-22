@@ -1,5 +1,5 @@
 # PrimeNumbers
-A project whose sole purpose is to improve my basics of C# knowledge. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. And down below is the list of stages I've planned:
+A project whose sole purpose is to improve my basics of C# knowledge. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. It isn't intended to be an ideal solution, but my solution. And down below is the list of stages I've planned:
 
 - [X] Write a method to find all prime numbers within the range of 2 given numbers ***(done 11.04.2022)***
   - [X] Implement input of range ends
@@ -22,4 +22,3 @@ A project whose sole purpose is to improve my basics of C# knowledge. It is done
   - [X] Add an option to clear the DB, so it can be filled once again ***(done 20.04.2022)***
   - [X] If calculations were ever done once, use database's primes instead of recalculating numbers already known ***(done 20.04.2022 - 21.04.2022)***
 - [ ] Make the DB calls asynchronous with async/await
-- [ ] Implement Repository / Unit of Work design pattern on a program
