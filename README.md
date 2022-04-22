@@ -1,6 +1,6 @@
 # PrimeNumbers
 A project whose sole purpose is to improve my basics of C# knowledge. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. It isn't intended to be an ideal solution, but my solution.
-
+<br/><br/>
 <details>
 <summary>PLAN OF STAGES</summary>
 
@@ -28,7 +28,7 @@ A project whose sole purpose is to improve my basics of C# knowledge. It is done
   - [X] If calculations were ever done once, use database's primes instead of recalculating numbers already known ***(done 20.04.2022 - 21.04.2022)***
 - [ ] Implement unit-tests for all the things added
   - [X] Tests for isPrime() ***(done 22.04.2022)***
-  - [ ] Tests for both SetByInput()
+  - [X] Tests for both SetByInput() ***(done 22.04.2022 - 23.04.2022)***
   - [ ] Tests for DB calls
   - [ ] Tests for Verify()
   - [ ] Tests for Calculate()
