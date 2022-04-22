@@ -8,7 +8,7 @@ namespace PrimeNumbers
         {
 
             Function f = new Function();
-
+            f.Start();
         }
     }
 }

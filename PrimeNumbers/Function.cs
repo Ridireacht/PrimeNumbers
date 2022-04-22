@@ -8,7 +8,7 @@ using Microsoft.Data.Sqlite;
 
 namespace PrimeNumbers
 {
-    class Function
+    public class Function
     {
         // global vars and objs
         private List<int> verificationPrimes = new();
@@ -25,7 +25,7 @@ namespace PrimeNumbers
         private int a, b;
 
 
-        public Function()
+        public void Start()
         {
             Input();
 
