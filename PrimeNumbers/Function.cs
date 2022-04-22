@@ -271,16 +271,14 @@ namespace PrimeNumbers
 
         public static void CreateDatabase()
         {
-            using (SqliteConnection connection = new("Data Source=../../../calculated_primes.db"))
-            {
-                connection.Open();
+            using SqliteConnection connection = new("Data Source=../../../calculated_primes.db");
+            connection.Open();
 
-                var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime));";
-                SQL_command.ExecuteNonQuery();
+            var SQL_command = connection.CreateCommand();
+            SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime BIGINT, UNIQUE(prime));";
+            SQL_command.ExecuteNonQuery();
 
-                connection.Close();
-            }
+            connection.Close();
         }
 
         public void FillDatabase()
@@ -323,22 +321,20 @@ namespace PrimeNumbers
         public void GetFromDatabase()
         {
             // getting a bunch of primes within a range of 'a' and 'b'
-            using (SqliteConnection connection = new("Data Source=../../../calculated_primes.db"))
-            {
-                connection.Open();
+            using SqliteConnection connection = new("Data Source=../../../calculated_primes.db");
+            connection.Open();
 
-                var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = $"SELECT * FROM Primes WHERE prime >= {a} AND prime <= {b}";
-                SQL_command.ExecuteNonQuery();
+            var SQL_command = connection.CreateCommand();
+            SQL_command.CommandText = $"SELECT * FROM Primes WHERE prime >= {a} AND prime <= {b}";
+            SQL_command.ExecuteNonQuery();
 
-                SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
+            SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
 
-                while (SQL_reader.Read())
-                    primes.Add(Convert.ToInt32(SQL_reader["prime"]));
+            while (SQL_reader.Read())
+                primes.Add(Convert.ToInt32(SQL_reader["prime"]));
 
 
-                connection.Close();
-            }
+            connection.Close();
         }
 
         public void SetByInput(ref int num, string text)
