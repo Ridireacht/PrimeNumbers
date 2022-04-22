@@ -10,7 +10,7 @@ namespace PrimeNumbers.Tests
     public class PrimeNumbersTests
     {
         [TestMethod]
-        public void isPrime_randomPrimes_returnsTrue()
+        public void IsPrime_randomPrimes_returnsTrue()
         {
             // arrange
             List<int> nums = new() { 32213, 85829, 91297, 50923, 92767, 70099, 51713, 84299, 74317, 52571 };
@@ -19,7 +19,7 @@ namespace PrimeNumbers.Tests
 
             // act
             foreach (int i in nums)
-                if (!Function.isPrime(i))
+                if (!Function.IsPrime(i))
                 {
                     flag = false;
                     break;
@@ -32,7 +32,7 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void isPrime__randomNonPrimes_returnsFalse()
+        public void IsPrime__randomNonPrimes_returnsFalse()
         {
             // arrange
             List<int> nums = new() { 14133, 51781, 12072, 77405, 41456, 11989, 74389, 21387, 67406, 92025 };
@@ -41,7 +41,7 @@ namespace PrimeNumbers.Tests
 
             // act
             foreach (int i in nums)
-                if (Function.isPrime(i))
+                if (Function.IsPrime(i))
                 {
                     flag = false;
                     break;

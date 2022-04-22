@@ -86,7 +86,7 @@ namespace PrimeNumbers
                     if (a != temp)
                     {
                         for (int i = a, j = 0; i < temp; i++)
-                            if (isPrime(i))
+                            if (IsPrime(i))
                             {
                                 primes.Insert(j, i);
                                 j++;
@@ -101,7 +101,7 @@ namespace PrimeNumbers
                         temp += 1;
 
                         for (int i = temp; i <= b; i++)
-                            if (isPrime(i))
+                            if (IsPrime(i))
                                 primes.Add(i);
                     }
                 }
@@ -114,7 +114,7 @@ namespace PrimeNumbers
                     if (a != temp)
                     {
                         var thing = from n in (Enumerable.Range(a, temp - a)).AsParallel().AsOrdered()
-                                    where isPrime(n)
+                                    where IsPrime(n)
                                     select n;
 
                         int j = 0;
@@ -133,7 +133,7 @@ namespace PrimeNumbers
                         temp += 1;
 
                         var thing = from n in (Enumerable.Range(temp, b - temp - 1)).AsParallel().AsOrdered()
-                                    where isPrime(n)
+                                    where IsPrime(n)
                                     select n;
 
                         foreach (var i in thing)
@@ -150,7 +150,7 @@ namespace PrimeNumbers
                 if ((b - a) < 150000)
                 {
                     for (int i = a; i <= b; i++)
-                        if (isPrime(i))
+                        if (IsPrime(i))
                             primes.Add(i);
                 }
 
@@ -158,7 +158,7 @@ namespace PrimeNumbers
                 else
                 {
                     var thing = from n in (Enumerable.Range(a, b - a)).AsParallel().AsOrdered()
-                                where isPrime(n)
+                                where IsPrime(n)
                                 select n;
 
                     foreach (var i in thing)
@@ -387,7 +387,7 @@ namespace PrimeNumbers
             Console.WriteLine();
         }
 
-        public static bool isPrime(int num)
+        public static bool IsPrime(int num)
         {
             // all the numbers matching the statements below aren't prime,
             // so we skip them immediately
