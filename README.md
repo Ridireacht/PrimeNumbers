@@ -29,8 +29,7 @@ A project whose sole purpose is to improve my basics of C# knowledge. It is done
 - [ ] Implement unit-tests for all the things added
   - [X] Tests for isPrime() ***(done 22.04.2022)***
   - [X] Tests for both SetByInput() ***(done 22.04.2022 - 23.04.2022)***
-  - [ ] Tests for DB calls
-  - [ ] Tests for Verify()
+  - [X] Tests for DB calls ***(done 23.04.2022)***
   - [ ] Tests for Calculate()
     - [ ] Mono-threading w/o DB
     - [ ] Multi-threading w/o DB
