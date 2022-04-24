@@ -106,12 +106,15 @@ namespace PrimeNumbers.Tests
         [TestMethod]
         public void CreateDatabase_createAndDelete_noExceptionIsThrown()
         {
-            // arrange & act & assert
+            // arrange
+            string path = "test.db";
+
+            // act & assert
             try
             {
-                Function.CreateDatabase();
+                Function.CreateDatabase(path);
                 SqliteConnection.ClearAllPools();
-                File.Delete("calculated_primes.db");
+                File.Delete(path);
             }
 
             catch (Exception ex)
