@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Microsoft.Data.Sqlite;
 using System.Runtime.CompilerServices;
+using Microsoft.Data.Sqlite;
 using PrimeNumbers.Properties;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
@@ -15,7 +15,7 @@ namespace PrimeNumbers
     internal class Function
     {
         // global vars and objs
-        private List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
+        private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
         private readonly List<int> primes = new();
 
         Stopwatch timer = new();
