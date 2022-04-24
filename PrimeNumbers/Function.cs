@@ -16,7 +16,7 @@ namespace PrimeNumbers
     {
         // global vars and objs
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
-        private readonly List<int> primes = new();
+        private List<int> primes = new();
 
         Stopwatch timer = new();
 
@@ -42,10 +42,10 @@ namespace PrimeNumbers
             if (isOutput)
                 Output(primes);
 
-            Verify(primes, b);
+            Verify(primes);
 
             if (isCorrect && isDatabase && primes.Any())
-                FillDatabase(pathDB);
+                FillDatabase(pathDB, primes);
         }
 
         public void Input()
@@ -71,7 +71,7 @@ namespace PrimeNumbers
 
 
             if (isDatabase)
-                GetFromDatabase(pathDB);
+                GetFromDatabase(pathDB, ref primes);
 
             if (primes.Any())
                 CalculateDB(a, b);
@@ -254,14 +254,14 @@ namespace PrimeNumbers
             connection.Close();
         }
 
-        public void FillDatabase(string path)
+        public void FillDatabase(string path, List<int> numList)
         {
             timer = Stopwatch.StartNew();
 
 
             // assembling an SQL command that will input all the new calculated primes into DB
             string txt_query = "INSERT OR IGNORE INTO Primes (prime) VALUES ";
-            foreach (int i in primes)
+            foreach (int i in numList)
                 txt_query += $"({i}),";
 
             txt_query = Regex.Replace(txt_query, ",$", ";");
@@ -291,7 +291,7 @@ namespace PrimeNumbers
             }
         }
 
-        public void GetFromDatabase(string path)
+        public void GetFromDatabase(string path, ref List<int> numList)
         {
             // getting a bunch of primes within a range of 'a' and 'b'
             using SqliteConnection connection = new("Data Source=" + path);
@@ -304,7 +304,7 @@ namespace PrimeNumbers
             SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
 
             while (SQL_reader.Read())
-                primes.Add(Convert.ToInt32(SQL_reader["prime"]));
+                numList.Add(Convert.ToInt32(SQL_reader["prime"]));
 
 
             connection.Close();
