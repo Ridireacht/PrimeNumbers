@@ -42,7 +42,7 @@ namespace PrimeNumbers
             if (isOutput)
                 Output(primes);
 
-            Verify();
+            Verify(primes, b);
 
             if (isCorrect && isDatabase && primes.Any())
                 FillDatabase(pathDB);
@@ -179,9 +179,9 @@ namespace PrimeNumbers
                 Console.Write($"{i}  ");
         }
 
-        public void Verify()
+        public void Verify(List<int> numList)
         {
-            int rangeEnd = primes.Count;
+            int range_end = numList.Count;
             int lastCorrect = 0;
             int numsChecked = 0;
 
@@ -191,30 +191,30 @@ namespace PrimeNumbers
 
 
             // if no primes calculated (their list is empty)
-            if (!primes.Any())
+            if (!numList.Any())
                 Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
 
             else
             {
                 // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
-                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(primes[0]));
+                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(numList[0]));
 
                 // if there are more calculated primes other than verification ones
-                if (b > verificationPrimes.Last())
+                if (numList.Last() > verificationPrimes.Last())
                 {
                     Console.WriteLine($"\nUnable to check all the numbers calculated as the last prime in verification list is {verificationPrimes.Last()}.\n");
-                    rangeEnd = verificationPrimes.Count;
+                    range_end = verificationPrimes.Count;
                 }
 
 
                 isCorrect = true;
 
                 // compare the nums between two lists, one to one
-                for (int i = 0; i < rangeEnd; i++)
+                for (int i = 0; i < range_end; i++)
                 {
                     numsChecked += 1;
 
-                    if (verificationPrimes[i] != primes[i])
+                    if (verificationPrimes[i] != numList[i])
                     {
                         isCorrect = false;
                         break;
