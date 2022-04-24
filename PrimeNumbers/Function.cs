@@ -26,6 +26,7 @@ namespace PrimeNumbers
         private bool isToBeCleared;
 
         private string input;
+        private string pathDB = "calculated_primes.db";
         private int a, b;
 
 
@@ -34,17 +35,17 @@ namespace PrimeNumbers
             Input();
 
             if (isDatabase)
-                CreateDatabase();
+                CreateDatabase(pathDB);
 
             GetPrimes();
 
             if (isOutput)
-                Output();
+                Output(primes);
 
             Verify();
 
             if (isCorrect && isDatabase && primes.Any())
-                FillDatabase();
+                FillDatabase(pathDB);
         }
 
         public void Input()
@@ -70,7 +71,7 @@ namespace PrimeNumbers
 
 
             if (isDatabase)
-                GetFromDatabase();
+                GetFromDatabase(pathDB);
 
             if (primes.Any())
                 CalculateDB(a, b);
@@ -171,10 +172,10 @@ namespace PrimeNumbers
             }
         }
 
-        public void Output()
+        public void Output(List<int> numList)
         {
             Console.WriteLine("\n\nPrime numbers:\n");
-            foreach (int i in primes)
+            foreach (int i in numList)
                 Console.Write($"{i}  ");
         }
 
@@ -241,9 +242,9 @@ namespace PrimeNumbers
             }
         }
 
-        public static void CreateDatabase()
+        public static void CreateDatabase(string path)
         {
-            using SqliteConnection connection = new("Data Source=calculated_primes.db");
+            using SqliteConnection connection = new("Data Source=" + path);
             connection.Open();
 
             var SQL_command = connection.CreateCommand();
@@ -253,7 +254,7 @@ namespace PrimeNumbers
             connection.Close();
         }
 
-        public void FillDatabase()
+        public void FillDatabase(string path)
         {
             timer = Stopwatch.StartNew();
 
@@ -266,7 +267,7 @@ namespace PrimeNumbers
             txt_query = Regex.Replace(txt_query, ",$", ";");
 
 
-            using (SqliteConnection connection = new("Data Source=calculated_primes.db"))
+            using (SqliteConnection connection = new("Data Source=" + path))
             {
                 connection.Open();
 
@@ -290,10 +291,10 @@ namespace PrimeNumbers
             }
         }
 
-        public void GetFromDatabase()
+        public void GetFromDatabase(string path)
         {
             // getting a bunch of primes within a range of 'a' and 'b'
-            using SqliteConnection connection = new("Data Source=calculated_primes.db");
+            using SqliteConnection connection = new("Data Source=" + path);
             connection.Open();
 
             var SQL_command = connection.CreateCommand();
