@@ -104,7 +104,7 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void CreateDatabase_createAndDelete_noExceptionIsThrowns()
+        public void CreateDatabase_createAndDelete_noExceptionIsThrown()
         {
             // arrange & act & assert
             try
