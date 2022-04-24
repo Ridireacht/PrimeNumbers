@@ -15,7 +15,7 @@ namespace PrimeNumbers
     internal class Function
     {
         // global vars and objs
-        private List<int> verificationPrimes = new();
+        private List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
         private readonly List<int> primes = new();
 
         Stopwatch timer = new();
@@ -187,9 +187,6 @@ namespace PrimeNumbers
 
             Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
             timer = Stopwatch.StartNew();
-
-
-            verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
 
             // if no primes calculated (their list is empty)
