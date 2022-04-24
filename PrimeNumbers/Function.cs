@@ -26,7 +26,7 @@ namespace PrimeNumbers
         private bool isToBeCleared;
 
         private string input;
-        private string pathDB = "calculated_primes.db";
+        private readonly string pathDB = "calculated_primes.db";
         private int a, b;
 
 
@@ -172,7 +172,7 @@ namespace PrimeNumbers
             }
         }
 
-        public void Output(List<int> numList)
+        public static void Output(List<int> numList)
         {
             Console.WriteLine("\n\nPrime numbers:\n");
             foreach (int i in numList)
