@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.Data.Sqlite;
 using System.Runtime.CompilerServices;
+using PrimeNumbers.Properties;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 
@@ -188,33 +189,7 @@ namespace PrimeNumbers
             timer = Stopwatch.StartNew();
 
 
-            // getting file numbers
-            try
-            {
-                input = System.IO.File.ReadAllText("../../../verification_primes.txt");
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                Console.WriteLine("File with verification primes doesn't exist in current folder.");
-                return;
-            }
-
-            if (input == "")
-            {
-                Console.WriteLine("File with verification primes is empty.");
-                return;
-            }
-
-
-            // parse primes into a new list
-            input = input.Replace('\n', '\t');
-
-            if (!Regex.IsMatch(input, "^[0-9]+(\\s+[0-9]+)+$"))
-            {
-                Console.WriteLine("Formatting of verifications primes' file doesn't match with the specified template, so it wasn't used.");
-                return;
-            }
-            verificationPrimes = input.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
+            verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
 
 
             // if no primes calculated (their list is empty)
