@@ -73,26 +73,26 @@ namespace PrimeNumbers
                 GetFromDatabase();
 
             if (primes.Any())
-                CalculateDB();
+                CalculateDB(a, b);
             else
-                CalculateNoDB();
+                CalculateNoDB(a, b);
 
 
             timer.Stop();
         }
 
-        public void CalculateDB()
+        public void CalculateDB(int range_start, int range_end)
         {
             int temp;
 
             // choosing between mono- and multi- threading depends on the complexity of calculations
-            if ((b - a) < 150000)
+            if ((range_end - range_start) < 150000)
             {
                 temp = primes[0];
 
-                if (a != temp)
+                if (range_start != temp)
                 {
-                    for (int i = a, j = 0; i < temp; i++)
+                    for (int i = range_start, j = 0; i < temp; i++)
                         if (IsPrime(i))
                         {
                             primes.Insert(j, i);
@@ -103,11 +103,11 @@ namespace PrimeNumbers
 
                 temp = primes.Last();
 
-                if (b != temp)
+                if (range_end != temp)
                 {
                     temp += 1;
 
-                    for (int i = temp; i <= b; i++)
+                    for (int i = temp; i <= range_end; i++)
                         if (IsPrime(i))
                             primes.Add(i);
                 }
@@ -118,9 +118,9 @@ namespace PrimeNumbers
             {
                 temp = primes[0];
 
-                if (a != temp)
+                if (range_start != temp)
                 {
-                    var thing = from n in (Enumerable.Range(a, temp - a)).AsParallel().AsOrdered()
+                    var thing = from n in (Enumerable.Range(range_start, temp - range_start)).AsParallel().AsOrdered()
                                 where IsPrime(n)
                                 select n;
 
@@ -135,11 +135,11 @@ namespace PrimeNumbers
 
                 temp = primes.Last();
 
-                if (b != temp)
+                if (range_end != temp)
                 {
                     temp += 1;
 
-                    var thing = from n in (Enumerable.Range(temp, b - temp - 1)).AsParallel().AsOrdered()
+                    var thing = from n in (Enumerable.Range(temp, range_end - temp - 1)).AsParallel().AsOrdered()
                                 where IsPrime(n)
                                 select n;
 
@@ -149,12 +149,12 @@ namespace PrimeNumbers
             }
         }
 
-        public void CalculateNoDB()
+        public void CalculateNoDB(int range_start, int range_end)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
-            if ((b - a) < 150000)
+            if ((range_end - range_start) < 150000)
             {
-                for (int i = a; i <= b; i++)
+                for (int i = range_start; i <= range_end; i++)
                     if (IsPrime(i))
                         primes.Add(i);
             }
@@ -162,7 +162,7 @@ namespace PrimeNumbers
             // multi-threading calculations
             else
             {
-                var thing = from n in (Enumerable.Range(a, b - a)).AsParallel().AsOrdered()
+                var thing = from n in (Enumerable.Range(range_start, range_end - range_start)).AsParallel().AsOrdered()
                             where IsPrime(n)
                             select n;
 
