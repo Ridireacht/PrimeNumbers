@@ -1,5 +1,5 @@
 # PrimeNumbers
-A project whose sole purpose is to improve my basics of C# knowledge. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. It isn't intended to be an ideal solution, but my solution.
+A project whose sole purpose is to improve my basics of C#. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. Not intended to be an ideal solution, but my solution.
 <br/><br/>
 <details>
 <summary>PLAN OF STAGES</summary>
