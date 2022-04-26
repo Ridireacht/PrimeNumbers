@@ -1,5 +1,5 @@
 # PrimeNumbers
-A project whose sole purpose is to improve my basics of C#. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. Not intended to be an ideal solution, but my solution.
+A project whose sole purpose is to improve my basics of C#. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. Not really intended to be an ideal solution, but I'm trying.
 <br/><br/>
 <details>
 <summary>PLAN OF STAGES</summary>
@@ -9,7 +9,7 @@ A project whose sole purpose is to improve my basics of C#. It is done via solvi
 - [X] Write a method to find all prime numbers within the range of 2 given numbers ***(done 11.04.2022)***
   - [X] Implement input of range ends
   - [X] Add checks to those inputs
-  - [X] Make calculation method itself (simple trial division)
+  - [X] Make calculation method itself (trial division)
   - [X] Add output of values calculated
 - [X] Prove calculations to be valid, optimize the algorithm itself, fix security issues and simply enchance your program
   - [X] Prepare a function that compares calculated primes with the actual list of primes from an external file, while also counting number of primes checked and saves the last correct one ***(done 12.04.2022)***
