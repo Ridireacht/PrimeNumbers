@@ -46,6 +46,11 @@ namespace PrimeNumbers
 
             if (isCorrect && isDatabase && primes.Any())
                 FillDatabase(pathDB, primes);
+
+
+            #if !DEBUG
+                Console.ReadKey();
+            #endif
         }
 
         public void Input()
