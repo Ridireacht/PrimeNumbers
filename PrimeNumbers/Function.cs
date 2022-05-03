@@ -42,8 +42,16 @@ namespace PrimeNumbers
 
             Verify(primes);
 
+
             if (isCorrect && isDatabase && primes.Any())
+            {
+                timer = Stopwatch.StartNew();
+
                 FillDatabase(pathDB, primes);
+
+                timer.Stop();
+                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+            }
 
 
             #if !DEBUG
@@ -257,11 +265,8 @@ namespace PrimeNumbers
             connection.Close();
         }
 
-        public void FillDatabase(string path, List<int> numList)
+        public static void FillDatabase(string path, List<int> numList)
         {
-            timer = Stopwatch.StartNew();
-
-
             // assembling an SQL command that will input all the new calculated primes into DB
             string txt_query = "INSERT OR IGNORE INTO Primes (prime) VALUES ";
             foreach (int i in numList)
@@ -277,9 +282,6 @@ namespace PrimeNumbers
                 var SQL_command = connection.CreateCommand();
                 SQL_command.CommandText = txt_query;
                 SQL_command.ExecuteNonQuery();
-
-                timer.Stop();
-                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
 
                 connection.Close();
             }
