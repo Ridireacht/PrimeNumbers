@@ -134,7 +134,7 @@ namespace PrimeNumbers.Tests
             try
             {
                 Function f = new();
-                f.CalculateNoDB(2, 100000, ref primes);
+                Function.CalculateNoDB(2, 100000, ref primes);
 
                 foreach (int i in primes)
                     if (!Function.IsPrime(i))
@@ -158,7 +158,7 @@ namespace PrimeNumbers.Tests
             try
             {
                 Function f = new();
-                f.CalculateNoDB(2, 200000, ref primes);
+                Function.CalculateNoDB(2, 200000, ref primes);
 
                 foreach (int i in primes)
                     if (!Function.IsPrime(i))
@@ -185,7 +185,7 @@ namespace PrimeNumbers.Tests
                 Function.CreateDatabase(path);
 
                 Function f = new();
-                f.CalculateNoDB(2, 100000, ref primes);
+                Function.CalculateNoDB(2, 100000, ref primes);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete(path);
@@ -216,7 +216,7 @@ namespace PrimeNumbers.Tests
                 Function.CreateDatabase(path);
 
                 Function f = new();
-                f.CalculateNoDB(2, 200000, ref primes);
+                Function.CalculateNoDB(2, 200000, ref primes);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete(path);

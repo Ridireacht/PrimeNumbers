@@ -87,7 +87,7 @@ namespace PrimeNumbers
             timer.Stop();
         }
 
-        public void CalculateDB(int range_start, int range_end, ref List<int> numList)
+        public static void CalculateDB(int range_start, int range_end, ref List<int> numList)
         {
             int temp;
 
@@ -155,7 +155,7 @@ namespace PrimeNumbers
             }
         }
 
-        public void CalculateNoDB(int range_start, int range_end, ref List<int> numList)
+        public static void CalculateNoDB(int range_start, int range_end, ref List<int> numList)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
             if ((range_end - range_start) < 150000)
