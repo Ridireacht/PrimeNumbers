@@ -1,8 +1,10 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PrimeNumbers.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 
@@ -217,6 +219,27 @@ namespace PrimeNumbers.Tests
                 File.Delete(path);
 
                 foreach (int i in primes)
+                    if (!Function.IsPrime(i))
+                        Assert.Fail($"Wrong calculations - {i} is not a prime number!");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
+
+
+        [TestMethod]
+        public void Verify_checkVerificationList_correctList()
+        {
+            // arrange
+            List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
+
+            // act & assert
+            try
+            {
+                foreach (int i in verificationPrimes)
                     if (!Function.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
