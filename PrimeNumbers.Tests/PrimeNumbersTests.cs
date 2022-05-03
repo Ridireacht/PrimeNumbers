@@ -200,5 +200,36 @@ namespace PrimeNumbers.Tests
                 Assert.Fail($"Expected no exceptions, but got {ex.Message}");
             }
         }
+
+
+
+        [TestMethod]
+        public void CalculateDB_multiThreading_correctCalculations()
+        {
+            // arrange
+            List<int> primes = new();
+            string path = "test.db";
+
+            // act & assert
+            try
+            {
+                Function.CreateDatabase(path);
+
+                Function f = new();
+                f.CalculateNoDB(2, 200000, ref primes);
+
+                SqliteConnection.ClearAllPools();
+                File.Delete(path);
+
+                foreach (int i in primes)
+                    if (!Function.IsPrime(i))
+                        Assert.Fail($"Wrong calculations - {i} is not a prime number!");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
     }
 }
