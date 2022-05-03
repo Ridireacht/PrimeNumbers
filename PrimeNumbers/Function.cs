@@ -79,7 +79,7 @@ namespace PrimeNumbers
                 GetFromDatabase(pathDB, ref primes);
 
             if (primes.Any())
-                CalculateDB(a, b);
+                CalculateDB(a, b, ref primes);
             else
                 CalculateNoDB(a, b);
 
@@ -87,27 +87,27 @@ namespace PrimeNumbers
             timer.Stop();
         }
 
-        public void CalculateDB(int range_start, int range_end)
+        public void CalculateDB(int range_start, int range_end, ref List<int> numList)
         {
             int temp;
 
             // choosing between mono- and multi- threading depends on the complexity of calculations
             if ((range_end - range_start) < 150000)
             {
-                temp = primes[0];
+                temp = numList[0];
 
                 if (range_start != temp)
                 {
                     for (int i = range_start, j = 0; i < temp; i++)
                         if (IsPrime(i))
                         {
-                            primes.Insert(j, i);
+                            numList.Insert(j, i);
                             j++;
                         }
                 }
 
 
-                temp = primes.Last();
+                temp = numList.Last();
 
                 if (range_end != temp)
                 {
@@ -115,14 +115,14 @@ namespace PrimeNumbers
 
                     for (int i = temp; i <= range_end; i++)
                         if (IsPrime(i))
-                            primes.Add(i);
+                            numList.Add(i);
                 }
             }
 
             // multi-threading calculations
             else
             {
-                temp = primes[0];
+                temp = numList[0];
 
                 if (range_start != temp)
                 {
@@ -133,13 +133,13 @@ namespace PrimeNumbers
                     int j = 0;
                     foreach (var i in thing)
                     {
-                        primes.Insert(j, i);
+                        numList.Insert(j, i);
                         j++;
                     }
                 }
 
 
-                temp = primes.Last();
+                temp = numList.Last();
 
                 if (range_end != temp)
                 {
@@ -150,19 +150,19 @@ namespace PrimeNumbers
                                 select n;
 
                     foreach (var i in thing)
-                        primes.Add(i);
+                        numList.Add(i);
                 }
             }
         }
 
-        public void CalculateNoDB(int range_start, int range_end)
+        public void CalculateNoDB(int range_start, int range_end, ref List<int> numList)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
             if ((range_end - range_start) < 150000)
             {
                 for (int i = range_start; i <= range_end; i++)
                     if (IsPrime(i))
-                        primes.Add(i);
+                        numList.Add(i);
             }
 
             // multi-threading calculations
@@ -173,7 +173,7 @@ namespace PrimeNumbers
                             select n;
 
                 foreach (var i in thing)
-                    primes.Add(i);
+                    numList.Add(i);
             }
         }
 
