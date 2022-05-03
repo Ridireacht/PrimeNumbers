@@ -1,5 +1,5 @@
 # PrimeNumbers
-A project whose sole purpose is to improve my basics of C#. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die was cast for calculating prime numbers within given range. Not really intended to be an ideal solution, but I'm trying.
+A project whose sole purpose is to improve my basics of C#. It is done via solving some simple task with technologies more and more advanced (thus naturally being an 'overkill', nonetheless helping my code skill and also being an original project idea). The die has been cast for calculating prime numbers within given range. Not really intended to be an ideal solution, but I'm trying.
 <br/><br/>
 <details>
 <summary>PLAN OF STAGES</summary>
@@ -26,7 +26,7 @@ A project whose sole purpose is to improve my basics of C#. It is done via solvi
   - [X] Add an option to either use DB during your calculations, or turn it off ***(done 20.04.2022)***
   - [X] Add an option to clear the DB, so it can be filled once again ***(done 20.04.2022)***
   - [X] If calculations were ever done once, use database's primes instead of recalculating numbers already known ***(done 20.04.2022 - 21.04.2022)***
-- [ ] Implement unit-tests for all the things added
+- [X] Implement unit-tests for all the things added
   - [X] Tests for isPrime() ***(done 22.04.2022)***
   - [X] Tests for both SetByInput() ***(done 22.04.2022 - 23.04.2022)***
   - [X] Tests for DB calls ***(done 23.04.2022)***
