@@ -133,7 +133,6 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function f = new();
                 Function.CalculateNoDB(2, 100000, ref primes);
 
                 foreach (int i in primes)
@@ -157,7 +156,6 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function f = new();
                 Function.CalculateNoDB(2, 200000, ref primes);
 
                 foreach (int i in primes)
@@ -184,7 +182,6 @@ namespace PrimeNumbers.Tests
             {
                 Function.CreateDatabase(path);
 
-                Function f = new();
                 Function.CalculateNoDB(2, 100000, ref primes);
 
                 SqliteConnection.ClearAllPools();
@@ -202,7 +199,6 @@ namespace PrimeNumbers.Tests
         }
 
 
-
         [TestMethod]
         public void CalculateDB_multiThreading_correctCalculations()
         {
@@ -215,7 +211,6 @@ namespace PrimeNumbers.Tests
             {
                 Function.CreateDatabase(path);
 
-                Function f = new();
                 Function.CalculateNoDB(2, 200000, ref primes);
 
                 SqliteConnection.ClearAllPools();
