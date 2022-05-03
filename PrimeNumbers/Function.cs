@@ -82,7 +82,7 @@ namespace PrimeNumbers
 
 
             if (isDatabase)
-                GetFromDatabase(pathDB, ref primes);
+                GetFromDatabase(pathDB, ref primes, a, b);
 
             if (primes.Any())
                 CalculateDB(a, b, ref primes);
@@ -305,14 +305,14 @@ namespace PrimeNumbers
             }
         }
 
-        public void GetFromDatabase(string path, ref List<int> numList)
+        public static void GetFromDatabase(string path, ref List<int> numList, int range_start, int range_end)
         {
             // getting a bunch of primes within a range of 'a' and 'b'
             using SqliteConnection connection = new("Data Source=" + path);
             connection.Open();
 
             var SQL_command = connection.CreateCommand();
-            SQL_command.CommandText = $"SELECT * FROM Primes WHERE prime >= {a} AND prime <= {b}";
+            SQL_command.CommandText = $"SELECT * FROM Primes WHERE prime >= {range_start} AND prime <= {range_end}";
             SQL_command.ExecuteNonQuery();
 
             SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
