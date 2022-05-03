@@ -122,5 +122,20 @@ namespace PrimeNumbers.Tests
                 Assert.Fail($"Expected no exceptions, but got {ex.Message}");
             }
         }
+
+        [TestMethod]
+        public void CalculateNoDB_monoThreading_correctCalculations()
+        {
+            // arrange
+            List<int> primes = new();
+
+            // act & assert
+            Function f = new();
+            f.CalculateNoDB(2, 100000, ref primes);
+
+            foreach (int i in primes)
+                if (!Function.IsPrime(i))
+                    Assert.Fail($"Wrong calculations - {i} is not a prime number!");
+        }
     }
 }
