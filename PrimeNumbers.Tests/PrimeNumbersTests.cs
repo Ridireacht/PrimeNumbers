@@ -130,12 +130,20 @@ namespace PrimeNumbers.Tests
             List<int> primes = new();
 
             // act & assert
-            Function f = new();
-            f.CalculateNoDB(2, 100000, ref primes);
+            try
+            {
+                Function f = new();
+                f.CalculateNoDB(2, 100000, ref primes);
 
-            foreach (int i in primes)
-                if (!Function.IsPrime(i))
-                    Assert.Fail($"Wrong calculations - {i} is not a prime number!");
+                foreach (int i in primes)
+                    if (Function.IsPrime(i))
+                        Assert.Fail($"Wrong calculations - {i} is not a prime number!");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
         }
     }
 }
