@@ -123,6 +123,7 @@ namespace PrimeNumbers.Tests
             }
         }
 
+
         [TestMethod]
         public void CalculateNoDB_monoThreading_correctCalculations()
         {
@@ -136,7 +137,31 @@ namespace PrimeNumbers.Tests
                 f.CalculateNoDB(2, 100000, ref primes);
 
                 foreach (int i in primes)
-                    if (Function.IsPrime(i))
+                    if (!Function.IsPrime(i))
+                        Assert.Fail($"Wrong calculations - {i} is not a prime number!");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
+
+
+        [TestMethod]
+        public void CalculateNoDB_multiThreading_correctCalculations()
+        {
+            // arrange
+            List<int> primes = new();
+
+            // act & assert
+            try
+            {
+                Function f = new();
+                f.CalculateNoDB(2, 200000, ref primes);
+
+                foreach (int i in primes)
+                    if (!Function.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
