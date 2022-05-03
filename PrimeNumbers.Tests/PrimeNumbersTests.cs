@@ -58,30 +58,6 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void SetByInput_noExceptionIsThrown()
-        {
-            // arrange
-            List<string> inputs = new() { "7", "12", "-5", "100000", "-121212", "sample_text", "8xybr8y3b1x8br8", "#!@#%*&$^)**!&?¹;%:+", "12 31 42", "yyy"};
-
-
-            // act & assert
-            try
-            {
-                foreach (string input in inputs)
-                    int.TryParse(input, out int x);
-
-                foreach (string input in inputs)
-                    Regex.IsMatch(input, "^y$");
-            }
-
-            catch (Exception ex)
-            {
-                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
-            }
-        }
-
-
-        [TestMethod]
         public void SetByInput_randomInput_correctChecks()
         {
             // arrange
@@ -91,13 +67,21 @@ namespace PrimeNumbers.Tests
 
 
             // act
-            foreach (string input in inputs)
+            try
+            {
+                foreach (string input in inputs)
                 if (int.TryParse(input, out int x) && (x > 1))
                     count_ints++;
 
-            foreach (string input in inputs)
-                if (Regex.IsMatch(input, "^y$") || Regex.IsMatch(input, "^n$"))
-                    count_yes_not++;
+                foreach (string input in inputs)
+                    if (Regex.IsMatch(input, "^y$") || Regex.IsMatch(input, "^n$"))
+                        count_yes_not++;
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
 
 
             // assert
