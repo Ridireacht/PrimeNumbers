@@ -315,8 +315,10 @@ namespace PrimeNumbers
             connection.Close();
         }
 
-        public void SetByInput(ref int num, string text)
+        public static void SetByInput(ref int num, string text)
         {
+            string input;
+
             while (true)
             {
                 Console.Write(text);
@@ -335,8 +337,10 @@ namespace PrimeNumbers
             Console.WriteLine();
         }
 
-        public void SetByInput(ref bool flag, string text)
+        public static void SetByInput(ref bool flag, string text)
         {
+            string input;
+
             while (true)
             {
                 Console.Write("Should " + text + "? (y/n): ");
