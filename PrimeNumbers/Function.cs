@@ -23,9 +23,7 @@ namespace PrimeNumbers
         private bool isOutput;
         private bool isDatabase;
         private bool isCorrect;
-        private bool isToBeCleared;
 
-        private string input;
         private readonly string pathDB = "calculated_primes.db";
         private int a, b;
 
@@ -283,14 +281,23 @@ namespace PrimeNumbers
                 timer.Stop();
                 Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
 
+                connection.Close();
+            }
+        }
 
-                SetByInput(ref isToBeCleared, "we fully clear DB");
+        public static void ClearDatabase(string path)
+        {
+            bool isToBeCleared = false;
+            SetByInput(ref isToBeCleared, "we fully clear DB");
 
-                if (isToBeCleared)
-                {
-                    SQL_command.CommandText = "DELETE FROM Primes;";
-                    SQL_command.ExecuteNonQuery();
-                }
+            if (isToBeCleared)
+            {
+                using SqliteConnection connection = new("Data Source=" + path);
+                connection.Open();
+
+                var SQL_command = connection.CreateCommand();
+                SQL_command.CommandText = "DELETE FROM Primes;";
+                SQL_command.ExecuteNonQuery();
 
                 connection.Close();
             }
