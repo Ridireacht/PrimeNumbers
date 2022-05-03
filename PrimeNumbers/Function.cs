@@ -81,7 +81,7 @@ namespace PrimeNumbers
             if (primes.Any())
                 CalculateDB(a, b, ref primes);
             else
-                CalculateNoDB(a, b);
+                CalculateNoDB(a, b, ref primes);
 
 
             timer.Stop();
