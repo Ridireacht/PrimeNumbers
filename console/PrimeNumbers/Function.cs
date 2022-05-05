@@ -53,6 +53,8 @@ namespace PrimeNumbers
 
                 timer.Stop();
                 Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+
+                ClearDatabase(pathDB);
             }
 
 
