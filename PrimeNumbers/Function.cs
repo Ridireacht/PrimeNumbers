@@ -253,6 +253,11 @@ namespace PrimeNumbers
             }
         }
 
+        public static bool areCalculationsCorrect()
+        {
+            return true;
+        }
+
         public static void CreateDatabase(string path)
         {
             using SqliteConnection connection = new("Data Source=" + path);
