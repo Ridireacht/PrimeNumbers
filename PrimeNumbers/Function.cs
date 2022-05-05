@@ -40,6 +40,8 @@ namespace PrimeNumbers
             if (isOutput)
                 Output(primes);
 
+
+
             Verify(primes);
 
 
@@ -251,11 +253,6 @@ namespace PrimeNumbers
                 else
                     Console.WriteLine("\nCalculations done wrong.");
             }
-        }
-
-        public static bool areCalculationsCorrect()
-        {
-            return true;
         }
 
         public static void CreateDatabase(string path)
