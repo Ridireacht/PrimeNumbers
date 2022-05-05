@@ -36,7 +36,7 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void IsPrime__randomNonPrimes_returnsFalse()
+        public void IsPrime_randomNonPrimes_returnsFalse()
         {
             // arrange
             List<int> nums = new() { 14133, 51781, 12072, 77405, 41456, 11989, 74389, 21387, 67406, 92025 };
