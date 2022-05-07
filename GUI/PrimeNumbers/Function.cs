@@ -33,7 +33,7 @@ namespace PrimeNumbers
             GetPrimes();
 
             if (isOutput)
-                Output();
+                Output(primes);
 
             Verify(primes);
 
@@ -51,9 +51,11 @@ namespace PrimeNumbers
             }
         }
 
-        public void Output()
+        public void Output(List<int> numList)
         {
-
+            output += "\r\n\nPrime numbers:\n";
+            foreach (int i in numList)
+                output += $"{i}  ";
         }
 
         public void GetPrimes()
@@ -79,6 +81,20 @@ namespace PrimeNumbers
         public void ClearDatabase(string path)
         {
 
+        }
+
+        public static bool IsPrime(int num)
+        {
+            // all the numbers matching the statements below aren't prime,
+            // so we skip them immediately
+            if (((num % 2 == 0) && (num != 2)) || ((num % 3 == 0) && (num != 3)))
+                return false;
+
+            for (int i = 2; i <= Math.Sqrt(num); i++)
+                if (num % i == 0)
+                    return false;
+
+            return true;
         }
     }
 }
