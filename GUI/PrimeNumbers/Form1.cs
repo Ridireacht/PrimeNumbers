@@ -23,9 +23,18 @@ namespace PrimeNumbers
         {
             if (checkBox1.Checked)
                 f.isOutput = true;
+            else
+                f.isOutput = false;
 
             if (checkBox2.Checked)
                 f.isDatabase = true;
+            else
+                f.isDatabase = false;
+
+            if (checkBox3.Checked)
+                f.isToClear = true;
+            else
+                f.isToClear = false;
 
             f.Start();
         }
