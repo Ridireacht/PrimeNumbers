@@ -21,6 +21,7 @@ namespace PrimeNumbers
         private bool isCorrect;
 
         public readonly string pathDB = "calculated_primes.db";
+        string output = "";
         public int a, b;
 
 
@@ -43,7 +44,7 @@ namespace PrimeNumbers
                 FillDatabase(pathDB, primes);
 
                 timer.Stop();
-                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+                output += $"\r\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n";
 
                 if (isToClear)
                     ClearDatabase(pathDB);
