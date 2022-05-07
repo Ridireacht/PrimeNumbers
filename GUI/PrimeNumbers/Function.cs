@@ -21,7 +21,7 @@ namespace PrimeNumbers
         private bool isCorrect;
 
         private readonly string pathDB = "calculated_primes.db";
-        private int a, b;
+        public int a, b;
 
 
         public void Start()

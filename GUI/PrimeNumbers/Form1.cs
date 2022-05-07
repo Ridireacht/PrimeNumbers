@@ -21,6 +21,30 @@ namespace PrimeNumbers
 
         private void button1_Click(object sender, EventArgs e)
         {
+            while (true)
+            {
+                if (int.TryParse(textBox2.Text, out int x) && (x > 1))
+                {
+                    f.a = x;
+                    break;
+                }
+
+                else
+                    textBox1.Text += "Incorrect input! Try again.\r\n\n";
+            }
+
+            while (true)
+            {
+                if (int.TryParse(textBox3.Text, out int x) && (x > 1))
+                {
+                    f.b = x;
+                    break;
+                }
+
+                else
+                    textBox1.Text += "Incorrect input! Try again.\r\n\n";
+            }
+
             if (checkBox1.Checked)
                 f.isOutput = true;
             else
