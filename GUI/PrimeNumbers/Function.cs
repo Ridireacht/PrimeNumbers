@@ -44,7 +44,7 @@ namespace PrimeNumbers
                 FillDatabase(pathDB, primes);
 
                 timer.Stop();
-                output += $"\r\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n";
+                output += $"\r\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\r\n";
 
                 if (isToClear)
                     ClearDatabase(pathDB);
@@ -54,7 +54,7 @@ namespace PrimeNumbers
 
         public void Output(List<int> numList)
         {
-            output += "\r\n\nPrime numbers:\n";
+            output += "\r\n\nPrime numbers:\r\n";
             foreach (int i in numList)
                 output += $"{i}  ";
         }
