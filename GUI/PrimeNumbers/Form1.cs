@@ -24,6 +24,9 @@ namespace PrimeNumbers
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
+
+
             // checking both range ends to be correct
             while (true)
             {
@@ -80,6 +83,14 @@ namespace PrimeNumbers
 
             // calculations themselves
             f.Start();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (f.isDatabase)
+                f.ClearDatabase(f.pathDB);
+            else
+                textBox1.Text += "There is no any DB at the moment!\r\n\n";
         }
     }
 }

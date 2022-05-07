@@ -20,7 +20,7 @@ namespace PrimeNumbers
         public bool isToClear;
         private bool isCorrect;
 
-        private readonly string pathDB = "calculated_primes.db";
+        public readonly string pathDB = "calculated_primes.db";
         public int a, b;
 
 
