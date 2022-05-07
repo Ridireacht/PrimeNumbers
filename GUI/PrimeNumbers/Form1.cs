@@ -34,7 +34,10 @@ namespace PrimeNumbers
                 }
 
                 else
+                {
                     textBox1.Text += "Incorrect input! Try again.\r\n\n";
+                    return;
+                }
             }
 
             while (true)
@@ -46,7 +49,10 @@ namespace PrimeNumbers
                 }
 
                 else
+                {
                     textBox1.Text += "Incorrect input! Try again.\r\n\n";
+                    return;
+                }
             }
 
 
