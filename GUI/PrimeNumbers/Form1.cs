@@ -45,6 +45,9 @@ namespace PrimeNumbers
                     textBox1.Text += "Incorrect input! Try again.\r\n\n";
             }
 
+            if (f.a > f.b)
+                (f.a, f.b) = (f.b, f.a);
+
             if (checkBox1.Checked)
                 f.isOutput = true;
             else
