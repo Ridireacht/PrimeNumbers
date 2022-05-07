@@ -32,6 +32,7 @@ namespace PrimeNumbers
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -44,14 +45,14 @@ namespace PrimeNumbers
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(688, 47);
+            this.textBox2.Location = new System.Drawing.Point(685, 66);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
             this.textBox2.TabIndex = 1;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(688, 100);
+            this.textBox3.Location = new System.Drawing.Point(685, 119);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
             this.textBox3.TabIndex = 2;
@@ -68,7 +69,7 @@ namespace PrimeNumbers
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(683, 28);
+            this.label2.Location = new System.Drawing.Point(680, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 16);
             this.label2.TabIndex = 4;
@@ -77,7 +78,7 @@ namespace PrimeNumbers
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(683, 81);
+            this.label3.Location = new System.Drawing.Point(680, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 16);
             this.label3.TabIndex = 5;
@@ -85,7 +86,7 @@ namespace PrimeNumbers
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(475, 412);
+            this.button1.Location = new System.Drawing.Point(475, 392);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 26);
             this.button1.TabIndex = 6;
@@ -95,7 +96,7 @@ namespace PrimeNumbers
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(441, 49);
+            this.checkBox1.Location = new System.Drawing.Point(420, 47);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(183, 20);
             this.checkBox1.TabIndex = 7;
@@ -105,7 +106,7 @@ namespace PrimeNumbers
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(441, 77);
+            this.checkBox2.Location = new System.Drawing.Point(420, 73);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(208, 20);
             this.checkBox2.TabIndex = 8;
@@ -114,18 +115,29 @@ namespace PrimeNumbers
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(593, 412);
+            this.button2.Location = new System.Drawing.Point(593, 392);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(147, 26);
             this.button2.TabIndex = 9;
             this.button2.Text = "Clear the database";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(420, 99);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(226, 20);
+            this.checkBox3.TabIndex = 10;
+            this.checkBox3.Text = "Clear database after calculations";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
@@ -155,6 +167,7 @@ namespace PrimeNumbers
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }
 
