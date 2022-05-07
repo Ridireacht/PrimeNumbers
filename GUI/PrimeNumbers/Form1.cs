@@ -14,13 +14,17 @@ namespace PrimeNumbers
     {
         Function f = new Function();
 
+
         public Form1()
         {
             InitializeComponent();
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
+            // checking both range ends to be correct
             while (true)
             {
                 if (int.TryParse(textBox2.Text, out int x) && (x > 1))
@@ -45,9 +49,13 @@ namespace PrimeNumbers
                     textBox1.Text += "Incorrect input! Try again.\r\n\n";
             }
 
+
+            // swap their if it's incorrect (using tuples)
             if (f.a > f.b)
                 (f.a, f.b) = (f.b, f.a);
 
+
+            // checkboxes checks
             if (checkBox1.Checked)
                 f.isOutput = true;
             else
@@ -63,6 +71,8 @@ namespace PrimeNumbers
             else
                 f.isToClear = false;
 
+
+            // calculations themselves
             f.Start();
         }
     }
