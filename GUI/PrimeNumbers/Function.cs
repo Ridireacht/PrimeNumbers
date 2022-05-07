@@ -51,6 +51,7 @@ namespace PrimeNumbers
             }
         }
 
+
         public void Output(List<int> numList)
         {
             output += "\r\n\nPrime numbers:\n";
@@ -58,30 +59,138 @@ namespace PrimeNumbers
                 output += $"{i}  ";
         }
 
+
         public void GetPrimes()
         {
+            timer = Stopwatch.StartNew();
 
+
+            if (isDatabase)
+                GetFromDatabase(pathDB, ref primes, a, b);
+
+            if (primes.Any())
+                CalculateDB(a, b, ref primes);
+            else
+                CalculateNoDB(a, b, ref primes);
+
+
+            timer.Stop();
         }
+
+        public static void CalculateDB(int range_start, int range_end, ref List<int> numList)
+        {
+            int temp;
+
+            // choosing between mono- and multi- threading depends on the complexity of calculations
+            if ((range_end - range_start) < 150000)
+            {
+                temp = numList[0];
+
+                if (range_start != temp)
+                {
+                    for (int i = range_start, j = 0; i < temp; i++)
+                        if (IsPrime(i))
+                        {
+                            numList.Insert(j, i);
+                            j++;
+                        }
+                }
+
+
+                temp = numList.Last();
+
+                if (range_end != temp)
+                {
+                    temp += 1;
+
+                    for (int i = temp; i <= range_end; i++)
+                        if (IsPrime(i))
+                            numList.Add(i);
+                }
+            }
+
+            // multi-threading calculations
+            else
+            {
+                temp = numList[0];
+
+                if (range_start != temp)
+                {
+                    var thing = from n in (Enumerable.Range(range_start, temp - range_start)).AsParallel().AsOrdered()
+                                where IsPrime(n)
+                                select n;
+
+                    int j = 0;
+                    foreach (var i in thing)
+                    {
+                        numList.Insert(j, i);
+                        j++;
+                    }
+                }
+
+
+                temp = numList.Last();
+
+                if (range_end != temp)
+                {
+                    temp += 1;
+
+                    var thing = from n in (Enumerable.Range(temp, range_end - temp - 1)).AsParallel().AsOrdered()
+                                where IsPrime(n)
+                                select n;
+
+                    foreach (var i in thing)
+                        numList.Add(i);
+                }
+            }
+        }
+
+        public static void CalculateNoDB(int range_start, int range_end, ref List<int> numList)
+        {
+            // choosing between mono- and multi- threading depends on the complexity of calculations
+            if ((range_end - range_start) < 150000)
+            {
+                for (int i = range_start; i <= range_end; i++)
+                    if (IsPrime(i))
+                        numList.Add(i);
+            }
+
+            // multi-threading calculations
+            else
+            {
+                var thing = from n in (Enumerable.Range(range_start, range_end - range_start)).AsParallel().AsOrdered()
+                            where IsPrime(n)
+                            select n;
+
+                foreach (var i in thing)
+                    numList.Add(i);
+            }
+        }
+
 
         public void Verify(List<int> numList)
         {
 
         }
 
+
         public void CreateDatabase(string path)
         {
         
         }
+
 
         public void FillDatabase(string path, List<int> numList)
         {
 
         }
 
+
         public void ClearDatabase(string path)
         {
 
         }
+
 
         public static bool IsPrime(int num)
         {
