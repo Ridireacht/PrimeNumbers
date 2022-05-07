@@ -191,6 +191,12 @@ namespace PrimeNumbers
 
         }
 
+        
+        public void GetFromDatabase(string path, ref List<int> numList, int range_start, int range_end)
+        {
+
+        }
+
 
         public static bool IsPrime(int num)
         {
