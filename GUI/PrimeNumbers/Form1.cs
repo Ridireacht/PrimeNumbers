@@ -83,6 +83,8 @@ namespace PrimeNumbers
 
             // calculations themselves
             f.Start();
+
+            textBox1.Text += f.output;
         }
 
         private void button2_Click(object sender, EventArgs e)
