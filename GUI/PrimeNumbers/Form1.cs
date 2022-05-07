@@ -21,10 +21,10 @@ namespace PrimeNumbers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (checkBox1)
+            if (checkBox1.Checked)
                 f.isOutput = true;
 
-            if (checkBox2)
+            if (checkBox2.Checked)
                 f.isDatabase = true;
 
             f.Start();

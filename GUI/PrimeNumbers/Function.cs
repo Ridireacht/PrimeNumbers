@@ -15,8 +15,8 @@ namespace PrimeNumbers
 
         Stopwatch timer = new Stopwatch();
 
-        private bool isOutput;
-        private bool isDatabase;
+        public bool isOutput = false;
+        public bool isDatabase = false;
         private bool isCorrect;
 
         private readonly string pathDB = "calculated_primes.db";
