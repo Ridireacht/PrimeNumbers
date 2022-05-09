@@ -330,7 +330,7 @@ namespace PrimeNumbers
 
         public static void SetByInput(ref int num, string text)
         {
-            string input;
+            string? input;
 
             while (true)
             {
@@ -352,7 +352,7 @@ namespace PrimeNumbers
 
         public static void SetByInput(ref bool flag, string text)
         {
-            string input;
+            string? input;
 
             while (true)
             {
