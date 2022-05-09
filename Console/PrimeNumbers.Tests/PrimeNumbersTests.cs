@@ -70,8 +70,8 @@ namespace PrimeNumbers.Tests
             try
             {
                 foreach (string input in inputs)
-                if (int.TryParse(input, out int x) && (x > 1))
-                    count_ints++;
+                    if (int.TryParse(input, out int x) && (x > 1))
+                        count_ints++;
 
                 foreach (string input in inputs)
                     if (Regex.IsMatch(input, "^y$") || Regex.IsMatch(input, "^n$"))

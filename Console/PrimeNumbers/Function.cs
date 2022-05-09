@@ -74,7 +74,7 @@ namespace PrimeNumbers
             // swap their if it's incorrect (using tuples)
             if (a > b)
                 (a, b) = (b, a);
-            
+
             // getting conditions
             SetByInput(ref isOutput, "there be an output of calculated primes");
             SetByInput(ref isDatabase, "the program use DB");
