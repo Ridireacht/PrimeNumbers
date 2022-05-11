@@ -49,20 +49,14 @@ namespace PrimeNumbers
 
         public static void ClearDatabase()
         {
-            bool isToBeCleared = false;
-            IO.SetByInput(ref isToBeCleared, "we fully clear DB");
+            using SqliteConnection connection = new("Data Source=" + path);
+            connection.Open();
 
-            if (isToBeCleared)
-            {
-                using SqliteConnection connection = new("Data Source=" + path);
-                connection.Open();
+            var SQL_command = connection.CreateCommand();
+            SQL_command.CommandText = "DELETE FROM Primes;";
+            SQL_command.ExecuteNonQuery();
 
-                var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = "DELETE FROM Primes;";
-                SQL_command.ExecuteNonQuery();
-
-                connection.Close();
-            }
+            connection.Close();
         }
 
         public static void GetFromDatabase(ref List<int> numList, int range_start, int range_end)
