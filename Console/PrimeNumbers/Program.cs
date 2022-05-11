@@ -14,6 +14,8 @@ DB db = new DB();
 Calculation c = new Calculation();
 Stopwatch timer = new();
 
+List<int> primes = new();
+
 
 
 Console.WriteLine("Both of your range ends have to be >= 2.\n");
@@ -35,26 +37,30 @@ IO.SetByInput(ref isDatabase, "the program use DB");
 if (isDatabase)
 {
     DB.CreateDatabase();
-    DB.GetFromDatabase(ref c.primes, a, b);
+    DB.GetFromDatabase(ref primes, a, b);
 }
 
-c.Set(a, b);
+c.SetEnds(a, b);
 
 
 timer = Stopwatch.StartNew();
-c.GetPrimes(ref c.primes);
+c.GetPrimes(ref primes);
 timer.Stop();
 
 
 if (isOutput)
-    IO.Output(c.primes);
-c.Verify(c.primes);
+    IO.Output(primes);
 
-if (isCorrect && isDatabase && c.primes.Any())
+Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
+timer = Stopwatch.StartNew();
+c.Verify(primes);
+timer.Stop();
+
+if (isCorrect && isDatabase && primes.Any())
 {
     timer = Stopwatch.StartNew();
 
-    DB.FillDatabase(c.primes);
+    DB.FillDatabase(primes);
 
     timer.Stop();
     Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
