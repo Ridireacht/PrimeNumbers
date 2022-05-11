@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 
