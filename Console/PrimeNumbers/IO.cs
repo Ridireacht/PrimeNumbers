@@ -9,8 +9,8 @@ namespace PrimeNumbers
 {
     internal class IO
     {
-        int a, b;
-        bool isOutput, isDatabase;
+        public int a, b;
+        public bool isOutput, isDatabase;
 
 
         public void Input()
