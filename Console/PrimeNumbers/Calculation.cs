@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Microsoft.Data.Sqlite;
 using PrimeNumbers.Properties;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
@@ -16,77 +11,25 @@ namespace PrimeNumbers
     {
         // global vars and objs
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
-        private List<int> primes = new();
+        public List<int> primes = new();
 
         Stopwatch timer = new();
 
-        private bool isOutput;
-        private bool isDatabase;
         private bool isCorrect;
 
-        private readonly string pathDB = "calculated_primes.db";
         private int a, b;
 
 
-        public void Start()
+        public void Set(int a, int b)
         {
-            Input();
-
-            if (isDatabase)
-                CreateDatabase(pathDB);
-
-            GetPrimes();
-
-            if (isOutput)
-                Output(primes);
-
-
-
-            Verify(primes);
-
-
-            if (isCorrect && isDatabase && primes.Any())
-            {
-                timer = Stopwatch.StartNew();
-
-                FillDatabase(pathDB, primes);
-
-                timer.Stop();
-                Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
-
-                ClearDatabase(pathDB);
-            }
-
-
-            #if !DEBUG
-                Console.ReadKey();
-            #endif
-        }
-
-        public void Input()
-        {
-            Console.WriteLine("Both of your range ends have to be >= 2.\n");
-
-            // getting range ends
-            SetByInput(ref a, "Input first value: ");
-            SetByInput(ref b, "Input second value: ");
-
-            // swap their if it's incorrect (using tuples)
-            if (a > b)
-                (a, b) = (b, a);
-
-            // getting conditions
-            SetByInput(ref isOutput, "there be an output of calculated primes");
-            SetByInput(ref isDatabase, "the program use DB");
+            this.a = a;
+            this.b = b;
         }
 
         public void GetPrimes()
         {
             timer = Stopwatch.StartNew();
 
-
-            if (isDatabase)
-                GetFromDatabase(pathDB, ref primes, a, b);
 
             if (primes.Any())
                 CalculateDB(a, b, ref primes);
@@ -187,13 +130,6 @@ namespace PrimeNumbers
             }
         }
 
-        public static void Output(List<int> numList)
-        {
-            Console.WriteLine("\n\nPrime numbers:\n");
-            foreach (int i in numList)
-                Console.Write($"{i}  ");
-        }
-
         public void Verify(List<int> numList)
         {
             int range_end = numList.Count;
@@ -255,127 +191,6 @@ namespace PrimeNumbers
                 else
                     Console.WriteLine("\nCalculations done wrong.");
             }
-        }
-
-        public static void CreateDatabase(string path)
-        {
-            using SqliteConnection connection = new("Data Source=" + path);
-            connection.Open();
-
-            var SQL_command = connection.CreateCommand();
-            SQL_command.CommandText = "CREATE TABLE IF NOT EXISTS Primes (prime INT, UNIQUE(prime));";
-            SQL_command.ExecuteNonQuery();
-
-            connection.Close();
-        }
-
-        public static void FillDatabase(string path, List<int> numList)
-        {
-            // assembling an SQL command that will input all the new calculated primes into DB
-            string txt_query = "INSERT OR IGNORE INTO Primes (prime) VALUES ";
-            foreach (int i in numList)
-                txt_query += $"({i}),";
-
-            txt_query = Regex.Replace(txt_query, ",$", ";");
-
-
-            using (SqliteConnection connection = new("Data Source=" + path))
-            {
-                connection.Open();
-
-                var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = txt_query;
-                SQL_command.ExecuteNonQuery();
-
-                connection.Close();
-            }
-        }
-
-        public static void ClearDatabase(string path)
-        {
-            bool isToBeCleared = false;
-            SetByInput(ref isToBeCleared, "we fully clear DB");
-
-            if (isToBeCleared)
-            {
-                using SqliteConnection connection = new("Data Source=" + path);
-                connection.Open();
-
-                var SQL_command = connection.CreateCommand();
-                SQL_command.CommandText = "DELETE FROM Primes;";
-                SQL_command.ExecuteNonQuery();
-
-                connection.Close();
-            }
-        }
-
-        public static void GetFromDatabase(string path, ref List<int> numList, int range_start, int range_end)
-        {
-            // getting a bunch of primes within a range of 'a' and 'b'
-            using SqliteConnection connection = new("Data Source=" + path);
-            connection.Open();
-
-            var SQL_command = connection.CreateCommand();
-            SQL_command.CommandText = $"SELECT * FROM Primes WHERE prime >= {range_start} AND prime <= {range_end}";
-            SQL_command.ExecuteNonQuery();
-
-            SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
-
-            while (SQL_reader.Read())
-                numList.Add(Convert.ToInt32(SQL_reader["prime"]));
-
-
-            connection.Close();
-        }
-
-        public static void SetByInput(ref int num, string text)
-        {
-            string? input;
-
-            while (true)
-            {
-                Console.Write(text);
-                input = Console.ReadLine();
-
-                if (int.TryParse(input, out int x) && (x > 1))
-                {
-                    num = x;
-                    break;
-                }
-
-                else
-                    Console.WriteLine("\nIncorrect input! Try again.");
-            }
-
-            Console.WriteLine();
-        }
-
-        public static void SetByInput(ref bool flag, string text)
-        {
-            string? input;
-
-            while (true)
-            {
-                Console.Write("Should " + text + "? (y/n): ");
-                input = Console.ReadLine();
-
-                if (Regex.IsMatch(input, "^y$"))
-                {
-                    flag = true;
-                    break;
-                }
-
-                else if (Regex.IsMatch(input, "^n$"))
-                {
-                    flag = false;
-                    break;
-                }
-
-                else
-                    Console.WriteLine("\nIncorrect answer! Try again.");
-            }
-
-            Console.WriteLine();
         }
 
         public static bool IsPrime(int num)
