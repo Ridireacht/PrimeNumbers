@@ -13,7 +13,7 @@ namespace PrimeNumbers
         private string path = "calculated_primes.db";
 
 
-        DB(string path)
+        DB()
         {
             using SqliteConnection connection = new("Data Source=" + path);
             connection.Open();
