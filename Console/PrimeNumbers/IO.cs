@@ -9,27 +9,6 @@ namespace PrimeNumbers
 {
     internal class IO
     {
-        public int a, b;
-        public bool isOutput, isDatabase;
-
-
-        public void Input()
-        {
-            Console.WriteLine("Both of your range ends have to be >= 2.\n");
-
-            // getting range ends
-            SetByInput(ref a, "Input first value: ");
-            SetByInput(ref b, "Input second value: ");
-
-            // swap their if it's incorrect (using tuples)
-            if (a > b)
-                (a, b) = (b, a);
-
-            // getting conditions
-            SetByInput(ref isOutput, "there be an output of calculated primes");
-            SetByInput(ref isDatabase, "the program use DB");
-        }
-
         public static void Output(List<int> numList)
         {
             Console.WriteLine("\n\nPrime numbers:\n");
