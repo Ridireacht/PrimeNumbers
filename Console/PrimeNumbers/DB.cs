@@ -10,10 +10,10 @@ namespace PrimeNumbers
 {
     internal class DB
     {
-        private string path = "calculated_primes.db";
+        private const string path = "calculated_primes.db";
 
 
-        public DB()
+        public static void CreateDatabase()
         {
             using SqliteConnection connection = new("Data Source=" + path);
             connection.Open();
