@@ -12,7 +12,7 @@ using PrimeNumbers.Properties;
 
 namespace PrimeNumbers
 {
-    internal class Function
+    internal class Calculation
     {
         // global vars and objs
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();

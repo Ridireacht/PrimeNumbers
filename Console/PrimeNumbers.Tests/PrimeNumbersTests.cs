@@ -23,7 +23,7 @@ namespace PrimeNumbers.Tests
 
             // act
             foreach (int i in nums)
-                if (!Function.IsPrime(i))
+                if (!Calculation.IsPrime(i))
                 {
                     flag = false;
                     break;
@@ -45,7 +45,7 @@ namespace PrimeNumbers.Tests
 
             // act
             foreach (int i in nums)
-                if (Function.IsPrime(i))
+                if (Calculation.IsPrime(i))
                 {
                     flag = false;
                     break;
@@ -98,7 +98,7 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function.CreateDatabase(path);
+                Calculation.CreateDatabase(path);
                 SqliteConnection.ClearAllPools();
                 File.Delete(path);
             }
@@ -119,10 +119,10 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function.CalculateNoDB(2, 100000, ref primes);
+                Calculation.CalculateNoDB(2, 100000, ref primes);
 
                 foreach (int i in primes)
-                    if (!Function.IsPrime(i))
+                    if (!Calculation.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -142,10 +142,10 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function.CalculateNoDB(2, 200000, ref primes);
+                Calculation.CalculateNoDB(2, 200000, ref primes);
 
                 foreach (int i in primes)
-                    if (!Function.IsPrime(i))
+                    if (!Calculation.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -166,15 +166,15 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function.CreateDatabase(path);
+                Calculation.CreateDatabase(path);
 
-                Function.CalculateNoDB(2, 100000, ref primes);
+                Calculation.CalculateNoDB(2, 100000, ref primes);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete(path);
 
                 foreach (int i in primes)
-                    if (!Function.IsPrime(i))
+                    if (!Calculation.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -195,15 +195,15 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Function.CreateDatabase(path);
+                Calculation.CreateDatabase(path);
 
-                Function.CalculateNoDB(2, 200000, ref primes);
+                Calculation.CalculateNoDB(2, 200000, ref primes);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete(path);
 
                 foreach (int i in primes)
-                    if (!Function.IsPrime(i))
+                    if (!Calculation.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -224,7 +224,7 @@ namespace PrimeNumbers.Tests
             try
             {
                 foreach (int i in verificationPrimes)
-                    if (!Function.IsPrime(i))
+                    if (!Calculation.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 

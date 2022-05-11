@@ -1,4 +1,4 @@
 ﻿using PrimeNumbers;
 
-Function f = new Function();
+Calculation f = new Calculation();
 f.Start();
