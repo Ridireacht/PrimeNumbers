@@ -1,10 +1,18 @@
 ﻿using PrimeNumbers;
+using System.Diagnostics;
 
-int a = 0, b = 0;
-bool isOutput = false, isDatabase = false, isCorrect = false;
+int a = 0, 
+    b = 0;
+
+bool isOutput = false, 
+    isDatabase = false, 
+    isCorrect = false,
+    isToBeCleared = false;
+
 
 DB db = new DB();
 Calculation c = new Calculation();
+Stopwatch timer = new();
 
 
 
@@ -24,11 +32,40 @@ IO.SetByInput(ref isDatabase, "the program use DB");
 
 
 
-c.Set(a, b, isOutput, isDatabase);
-c.Start();
+if (isDatabase)
+{
+    DB.CreateDatabase();
+    DB.GetFromDatabase(ref c.primes, a, b);
+}
+
+c.Set(a, b);
+
+
+timer = Stopwatch.StartNew();
+c.GetPrimes(ref c.primes);
+timer.Stop();
+
 
 if (isOutput)
     IO.Output(c.primes);
 c.Verify(c.primes);
 
-DB.ClearDatabase();
+if (isCorrect && isDatabase && c.primes.Any())
+{
+    timer = Stopwatch.StartNew();
+
+    DB.FillDatabase(c.primes);
+
+    timer.Stop();
+    Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+
+    DB.ClearDatabase();
+}
+
+IO.SetByInput(ref isToBeCleared, "we fully clear DB");
+if (isToBeCleared)
+    DB.ClearDatabase();
+
+#if !DEBUG
+    Console.ReadKey();
+#endif

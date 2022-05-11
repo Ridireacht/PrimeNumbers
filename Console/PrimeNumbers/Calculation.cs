@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using PrimeNumbers.Properties;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
@@ -13,8 +12,6 @@ namespace PrimeNumbers
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
         public List<int> primes = new();
 
-        Stopwatch timer = new();
-
         private bool isCorrect;
 
         private int a, b;
@@ -26,18 +23,12 @@ namespace PrimeNumbers
             this.b = b;
         }
 
-        public void GetPrimes()
+        public void GetPrimes(ref List<int> numList)
         {
-            timer = Stopwatch.StartNew();
-
-
-            if (primes.Any())
-                CalculateDB(a, b, ref primes);
+            if (numList.Any())
+                CalculateDB(a, b, ref numList);
             else
-                CalculateNoDB(a, b, ref primes);
-
-
-            timer.Stop();
+                CalculateNoDB(a, b, ref numList);
         }
 
         public static void CalculateDB(int range_start, int range_end, ref List<int> numList)
