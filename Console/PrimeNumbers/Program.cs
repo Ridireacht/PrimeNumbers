@@ -9,69 +9,75 @@ bool isOutput = false,
     isCorrect = false,
     isToBeCleared = false;
 
-
 DB db = new DB();
 Calculation c = new Calculation();
-Stopwatch timer = new();
 
+Stopwatch timer = new();
 List<int> primes = new();
 
 
 
-Console.WriteLine("Both of your range ends have to be >= 2.\n");
-
-// getting range ends
-IO.SetByInput(ref a, "Input first value: ");
-IO.SetByInput(ref b, "Input second value: ");
-
-// swap their if it's incorrect (using tuples)
-if (a > b)
-    (a, b) = (b, a);
-
-// getting conditions
-IO.SetByInput(ref isOutput, "there be an output of calculated primes");
-IO.SetByInput(ref isDatabase, "the program use DB");
-
-
-
-if (isDatabase)
 {
-    DB.CreateDatabase();
-    DB.GetFromDatabase(ref primes, a, b);
-}
+    Console.WriteLine("Both of your range ends have to be >= 2.\n");
 
-c.SetEnds(a, b);
+    // getting range ends
+    IO.SetByInput(ref a, "Input first value: ");
+    IO.SetByInput(ref b, "Input second value: ");
+
+    // swap their if it's incorrect (using tuples)
+    if (a > b)
+        (a, b) = (b, a);
+
+    // getting conditions
+    IO.SetByInput(ref isOutput, "there be an output of calculated primes");
+    IO.SetByInput(ref isDatabase, "the program use DB");
 
 
-timer = Stopwatch.StartNew();
-c.GetPrimes(ref primes);
-timer.Stop();
+
+    if (isDatabase)
+    {
+        DB.CreateDatabase();
+        DB.GetFromDatabase(ref primes, a, b);
+    }
 
 
-if (isOutput)
-    IO.Output(primes);
+    c.SetEnds(a, b);
 
-Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
-timer = Stopwatch.StartNew();
-c.Verify(primes);
-timer.Stop();
 
-if (isCorrect && isDatabase && primes.Any())
-{
     timer = Stopwatch.StartNew();
-
-    DB.FillDatabase(primes);
-
+    c.GetPrimes(ref primes);
     timer.Stop();
-    Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
 
-    DB.ClearDatabase();
+
+    if (isOutput)
+        IO.Output(primes);
+
+
+    Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
+    timer = Stopwatch.StartNew();
+    c.Verify(primes);
+    timer.Stop();
+
+
+    if (isCorrect && isDatabase && primes.Any())
+    {
+        timer = Stopwatch.StartNew();
+
+        DB.FillDatabase(primes);
+
+        timer.Stop();
+        Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+
+        DB.ClearDatabase();
+    }
+
+
+    IO.SetByInput(ref isToBeCleared, "we fully clear DB");
+    if (isToBeCleared)
+        DB.ClearDatabase();
+
+
+    #if !DEBUG
+        Console.ReadKey();
+    #endif
 }
-
-IO.SetByInput(ref isToBeCleared, "we fully clear DB");
-if (isToBeCleared)
-    DB.ClearDatabase();
-
-#if !DEBUG
-    Console.ReadKey();
-#endif
