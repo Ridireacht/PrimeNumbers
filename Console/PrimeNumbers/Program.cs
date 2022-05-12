@@ -7,9 +7,9 @@ int a = 0,
     b = 0;
 
 bool isOutput = false, 
-    isDatabase = false, 
-    isCorrect = false,
-    isToBeCleared = false;
+     isDatabase = false, 
+     isCorrect = false,
+     isToBeCleared = false;
 
 // global objs
 DB db = new DB();
@@ -23,49 +23,16 @@ List<int> primes = new();
 {
     Input();
     Set();
-
-
-
-    timer = Stopwatch.StartNew();
-    c.GetPrimes(ref primes);
-    timer.Stop();
-    if (isOutput)
-        IO.Output(primes);
-
-
-
-    Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
-    timer = Stopwatch.StartNew();
-    isCorrect = c.IsCorrect(primes);
-    timer.Stop();
-    Console.WriteLine($"\nVerification took {timer.ElapsedMilliseconds}ms");
-
-
-
-    if (isCorrect && isDatabase && primes.Any())
-    {
-        timer = Stopwatch.StartNew();
-
-        DB.FillDatabase(primes);
-
-        timer.Stop();
-        Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
-
-        DB.ClearDatabase();
-    }
-
-
-
-    IO.SetByInput(ref isToBeCleared, "we fully clear DB");
-    if (isToBeCleared)
-        DB.ClearDatabase();
-
-
+    Calculate();
+    Output();
+    Check();
+    ManageDB();
 
     #if !DEBUG
         Console.ReadKey();
     #endif
 }
+
 
 
 void Input()
@@ -94,4 +61,47 @@ void Set()
     }
 
     c.SetEnds(a, b);
+}
+
+void Calculate()
+{
+    timer = Stopwatch.StartNew();
+    c.GetPrimes(ref primes);
+    timer.Stop();
+}
+
+void Output()
+{
+    if (isOutput)
+        IO.Output(primes);
+    Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
+}
+
+void Check()
+{
+    timer = Stopwatch.StartNew();
+    isCorrect = c.IsCorrect(primes);
+    timer.Stop();
+    Console.WriteLine($"\nVerification took {timer.ElapsedMilliseconds}ms");
+}
+
+void ManageDB()
+{
+    if (isCorrect && isDatabase && primes.Any())
+    {
+        timer = Stopwatch.StartNew();
+
+        DB.FillDatabase(primes);
+
+        timer.Stop();
+        Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
+
+        DB.ClearDatabase();
+    }
+
+
+
+    IO.SetByInput(ref isToBeCleared, "we fully clear DB");
+    if (isToBeCleared)
+        DB.ClearDatabase();
 }
