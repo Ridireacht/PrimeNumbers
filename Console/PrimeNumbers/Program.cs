@@ -55,7 +55,7 @@ List<int> primes = new();
 
     Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
     timer = Stopwatch.StartNew();
-    c.IsCorrect(primes);
+    isCorrect = c.IsCorrect(primes);
     timer.Stop();
 
 
