@@ -176,6 +176,11 @@ namespace PrimeNumbers
             }
         }
 
+        public void IsCorrect()
+        {
+
+        }
+
         public static bool IsPrime(int num)
         {
             // all the numbers matching the statements below aren't prime,
