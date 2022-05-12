@@ -10,14 +10,13 @@ namespace PrimeNumbers
     {
         // global vars and objs
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
-        public List<int> primes = new();
 
         private bool isCorrect;
 
         private int a, b;
 
 
-        public void Set(int a, int b)
+        public void SetEnds(int a, int b)
         {
             this.a = a;
             this.b = b;
@@ -128,10 +127,6 @@ namespace PrimeNumbers
             int numsChecked = 0;
 
 
-            Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
-            timer = Stopwatch.StartNew();
-
-
             // if no primes calculated (their list is empty)
             if (!numList.Any())
                 Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
@@ -164,9 +159,6 @@ namespace PrimeNumbers
 
                     lastCorrect = verificationPrimes[i];
                 }
-
-
-                timer.Stop();
 
 
                 Console.WriteLine();
