@@ -12,8 +12,8 @@ bool isOutput = false,
      isToBeCleared = false;
 
 // global objs
-DB db = new DB();
-Calculation c = new Calculation();
+DB db = new();
+Calculation c = new();
 
 Stopwatch timer = new();
 List<int> primes = new();
@@ -28,6 +28,7 @@ List<int> primes = new();
     Check();
     ManageDB();
 
+    // save window from closing after the very end
     #if !DEBUG
         Console.ReadKey();
     #endif
