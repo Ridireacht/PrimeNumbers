@@ -92,15 +92,12 @@ namespace PrimeNumbers.Tests
         [TestMethod]
         public void CreateDatabase_createAndDelete_noExceptionIsThrown()
         {
-            // arrange
-            string path = "test.db";
-
-            // act & assert
+            // arrange & act & assert
             try
             {
-                Calculation.CreateDatabase(path);
+                DB.CreateDatabase();
                 SqliteConnection.ClearAllPools();
-                File.Delete(path);
+                File.Delete("calculated_primes.db");
             }
 
             catch (Exception ex)
@@ -161,17 +158,16 @@ namespace PrimeNumbers.Tests
         {
             // arrange
             List<int> primes = new();
-            string path = "test.db";
 
             // act & assert
             try
             {
-                Calculation.CreateDatabase(path);
+                DB.CreateDatabase();
 
                 Calculation.CalculateNoDB(2, 100000, ref primes);
 
                 SqliteConnection.ClearAllPools();
-                File.Delete(path);
+                File.Delete("calculated_primes.db");
 
                 foreach (int i in primes)
                     if (!Calculation.IsPrime(i))
@@ -190,17 +186,16 @@ namespace PrimeNumbers.Tests
         {
             // arrange
             List<int> primes = new();
-            string path = "test.db";
 
             // act & assert
             try
             {
-                Calculation.CreateDatabase(path);
+                DB.CreateDatabase();
 
                 Calculation.CalculateNoDB(2, 200000, ref primes);
 
                 SqliteConnection.ClearAllPools();
-                File.Delete(path);
+                File.Delete("calculated_primes.db");
 
                 foreach (int i in primes)
                     if (!Calculation.IsPrime(i))
