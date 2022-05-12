@@ -1,6 +1,8 @@
 ﻿using PrimeNumbers;
 using System.Diagnostics;
 
+
+// global vars
 int a = 0, 
     b = 0;
 
@@ -9,6 +11,7 @@ bool isOutput = false,
     isCorrect = false,
     isToBeCleared = false;
 
+// global objs
 DB db = new DB();
 Calculation c = new Calculation();
 
@@ -40,17 +43,16 @@ List<int> primes = new();
         DB.GetFromDatabase(ref primes, a, b);
     }
 
-
     c.SetEnds(a, b);
+
 
 
     timer = Stopwatch.StartNew();
     c.GetPrimes(ref primes);
     timer.Stop();
-
-
     if (isOutput)
         IO.Output(primes);
+
 
 
     Console.WriteLine($"\n\nCalculations took {timer.ElapsedMilliseconds}ms");
@@ -58,6 +60,7 @@ List<int> primes = new();
     isCorrect = c.IsCorrect(primes);
     timer.Stop();
     Console.WriteLine($"\nVerification took {timer.ElapsedMilliseconds}ms");
+
 
 
     if (isCorrect && isDatabase && primes.Any())
@@ -73,9 +76,11 @@ List<int> primes = new();
     }
 
 
+
     IO.SetByInput(ref isToBeCleared, "we fully clear DB");
     if (isToBeCleared)
         DB.ClearDatabase();
+
 
 
     #if !DEBUG
