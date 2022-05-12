@@ -57,6 +57,7 @@ List<int> primes = new();
     timer = Stopwatch.StartNew();
     isCorrect = c.IsCorrect(primes);
     timer.Stop();
+    Console.WriteLine($"\nVerification took {timer.ElapsedMilliseconds}ms");
 
 
     if (isCorrect && isDatabase && primes.Any())
