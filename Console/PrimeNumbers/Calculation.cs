@@ -120,7 +120,7 @@ namespace PrimeNumbers
             }
         }
 
-        public void Verify(List<int> numList)
+        public bool IsCorrect(List<int> numList)
         {
             int range_end = numList.Count;
             int lastCorrect = 0;
@@ -129,7 +129,10 @@ namespace PrimeNumbers
 
             // if no primes calculated (their list is empty)
             if (!numList.Any())
+            {
                 Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
+                return false;
+            }
 
             else
             {
@@ -167,18 +170,16 @@ namespace PrimeNumbers
                 if ((numsChecked == 1) && (!isCorrect))
                     Console.WriteLine("\nThe very first calculated prime num is already wrong, so all the sequence.");
                 else
-                    Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}\nVerification took: {timer.ElapsedMilliseconds}ms");
+                    Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}");
 
                 if (isCorrect)
                     Console.WriteLine("\nAll calculations were done right.");
                 else
                     Console.WriteLine("\nCalculations done wrong.");
+
+
+                return isCorrect;
             }
-        }
-
-        public void IsCorrect()
-        {
-
         }
 
         public static bool IsPrime(int num)
