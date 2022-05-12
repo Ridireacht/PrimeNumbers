@@ -8,11 +8,7 @@ namespace PrimeNumbers
 {
     internal class Calculation
     {
-        // global vars and objs
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
-
-        private bool isCorrect;
-
         private int a, b;
 
 
@@ -134,6 +130,7 @@ namespace PrimeNumbers
                 return false;
             }
 
+
             else
             {
                 // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
@@ -147,7 +144,7 @@ namespace PrimeNumbers
                 }
 
 
-                isCorrect = true;
+                bool isCorrect = true;
 
                 // compare the nums between two lists, one to one
                 for (int i = 0; i < range_end; i++)
