@@ -23,7 +23,7 @@ namespace PrimeNumbers.Tests
 
             // act
             foreach (int i in nums)
-                if (!Calculation.IsPrime(i))
+                if (!Calculator.IsPrime(i))
                 {
                     flag = false;
                     break;
@@ -45,7 +45,7 @@ namespace PrimeNumbers.Tests
 
             // act
             foreach (int i in nums)
-                if (Calculation.IsPrime(i))
+                if (Calculator.IsPrime(i))
                 {
                     flag = false;
                     break;
@@ -112,7 +112,7 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void CreateDatabase_createAndDelete_noExceptionIsThrown()
+        public void CreateDatabase_createDB_noExceptionIsThrown()
         {
             // arrange & act & assert
             try
@@ -120,6 +120,47 @@ namespace PrimeNumbers.Tests
                 DB.CreateDatabase();
                 SqliteConnection.ClearAllPools();
                 File.Delete("calculated_primes.db");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
+
+
+        [TestMethod]
+        public void FillDatabase_fillWithNums_noExceptionIsThrown()
+        {
+            List<int> numList = new();
+            Calculator.CalculateNoDB(13, 200000, ref numList);
+
+            // arrange & act & assert
+            try
+            {
+                DB.FillDatabase(numList);
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
+
+
+        [TestMethod]
+        public void GetFromDatabase_getPreviousNums_correctValues()
+        {
+            List<int> numList = new();
+            List<int> checkList = new();
+            Calculator.CalculateNoDB(13, 20000, ref numList);
+
+            // arrange & act & assert
+            try
+            {
+                DB.GetFromDatabase(ref numList, 13, 200000);
+                Calculator.CalculateNoDB(13, 20000, ref checkList);
+                Assert.AreEqual(true, checkList.Equals(numList));
             }
 
             catch (Exception ex)
@@ -138,10 +179,10 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Calculation.CalculateNoDB(2, 100000, ref primes);
+                Calculator.CalculateNoDB(2, 100000, ref primes);
 
                 foreach (int i in primes)
-                    if (!Calculation.IsPrime(i))
+                    if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -161,10 +202,10 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
-                Calculation.CalculateNoDB(2, 200000, ref primes);
+                Calculator.CalculateNoDB(2, 200000, ref primes);
 
                 foreach (int i in primes)
-                    if (!Calculation.IsPrime(i))
+                    if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -186,13 +227,13 @@ namespace PrimeNumbers.Tests
             {
                 DB.CreateDatabase();
 
-                Calculation.CalculateNoDB(2, 100000, ref primes);
+                Calculator.CalculateNoDB(2, 100000, ref primes);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete("calculated_primes.db");
 
                 foreach (int i in primes)
-                    if (!Calculation.IsPrime(i))
+                    if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -214,13 +255,13 @@ namespace PrimeNumbers.Tests
             {
                 DB.CreateDatabase();
 
-                Calculation.CalculateNoDB(2, 200000, ref primes);
+                Calculator.CalculateNoDB(2, 200000, ref primes);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete("calculated_primes.db");
 
                 foreach (int i in primes)
-                    if (!Calculation.IsPrime(i))
+                    if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
@@ -241,7 +282,7 @@ namespace PrimeNumbers.Tests
             try
             {
                 foreach (int i in verificationPrimes)
-                    if (!Calculation.IsPrime(i))
+                    if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
 
