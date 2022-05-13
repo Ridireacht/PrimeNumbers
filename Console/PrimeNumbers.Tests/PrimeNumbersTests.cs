@@ -173,6 +173,51 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
+        public void ClearDatabase_clearDB_emptyDB()
+        {
+            // arrange
+            string content = "";
+
+
+            // act & assert
+            try
+            {
+                DB.ClearDatabase();
+                
+
+                // checking if DB is empty
+                using SqliteConnection connection = new("calculated_primes.db");
+                connection.Open();
+
+                var SQL_command = connection.CreateCommand();
+                SQL_command.CommandText = "SELECT * FROM Primes";
+                SQL_command.ExecuteNonQuery();
+
+                SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
+
+                while (SQL_reader.Read())
+                    content += SQL_reader["prime"];
+
+                connection.Close();
+
+
+                // actual check
+                Assert.AreEqual(true, content = "");
+
+
+                // delete DB previously created and used
+                SqliteConnection.ClearAllPools();
+                File.Delete("calculated_primes.db");
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
+
+
+        [TestMethod]
         public void CalculateNoDB_monoThreading_correctCalculations()
         {
             // arrange
