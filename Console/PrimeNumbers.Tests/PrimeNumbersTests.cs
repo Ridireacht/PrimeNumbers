@@ -221,14 +221,15 @@ namespace PrimeNumbers.Tests
         public void CalculateNoDB_monoThreading_correctCalculations()
         {
             // arrange
-            List<int> primes = new();
+            List<int> numList = new();
+
 
             // act & assert
             try
             {
-                Calculator.CalculateNoDB(2, 100000, ref primes);
+                Calculator.CalculateNoDB(ref numList, 2, 100000);
 
-                foreach (int i in primes)
+                foreach (int i in numList)
                     if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
@@ -244,14 +245,15 @@ namespace PrimeNumbers.Tests
         public void CalculateNoDB_multiThreading_correctCalculations()
         {
             // arrange
-            List<int> primes = new();
+            List<int> numList = new();
+
 
             // act & assert
             try
             {
-                Calculator.CalculateNoDB(2, 200000, ref primes);
+                Calculator.CalculateNoDB(ref numList, 2, 200000);
 
-                foreach (int i in primes)
+                foreach (int i in numList)
                     if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
@@ -267,19 +269,20 @@ namespace PrimeNumbers.Tests
         public void CalculateDB_monoThreading_correctCalculations()
         {
             // arrange
-            List<int> primes = new();
+            List<int> numList = new();
+
 
             // act & assert
             try
             {
                 DB.CreateDatabase();
 
-                Calculator.CalculateNoDB(2, 100000, ref primes);
+                Calculator.CalculateNoDB(ref numList, 2, 100000);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete("calculated_primes.db");
 
-                foreach (int i in primes)
+                foreach (int i in numList)
                     if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
@@ -295,19 +298,20 @@ namespace PrimeNumbers.Tests
         public void CalculateDB_multiThreading_correctCalculations()
         {
             // arrange
-            List<int> primes = new();
+            List<int> numList = new();
+
 
             // act & assert
             try
             {
                 DB.CreateDatabase();
 
-                Calculator.CalculateNoDB(2, 200000, ref primes);
+                Calculator.CalculateNoDB(ref numList, 2, 200000);
 
                 SqliteConnection.ClearAllPools();
                 File.Delete("calculated_primes.db");
 
-                foreach (int i in primes)
+                foreach (int i in numList)
                     if (!Calculator.IsPrime(i))
                         Assert.Fail($"Wrong calculations - {i} is not a prime number!");
             }
@@ -324,6 +328,7 @@ namespace PrimeNumbers.Tests
         {
             // arrange
             List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
+
 
             // act & assert
             try
