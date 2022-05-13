@@ -58,12 +58,11 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void SetByInput_randomInput_correctChecks()
+        public void SetByInputNum_randomInput_correctChecks()
         {
             // arrange
             List<string> inputs = new() { "7", "12", "y", "-5", "1.1", "4.6", "100000", "-121212", "y", "sample_text", "8xybr8y3b1x8br8", "nn", "#!@#%*&$^)**!&?¹;%:+", "n", "12 31 42", "yyy" };
             int count_ints = 0;
-            int count_yes_not = 0;
 
 
             // act
@@ -72,7 +71,30 @@ namespace PrimeNumbers.Tests
                 foreach (string input in inputs)
                     if (int.TryParse(input, out int x) && (x > 1))
                         count_ints++;
+            }
 
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+
+
+            // assert
+            Assert.AreEqual(true, count_ints == 3);
+        }
+
+
+        [TestMethod]
+        public void SetByInputFlag_randomInput_correctChecks()
+        {
+            // arrange
+            List<string> inputs = new() { "7", "12", "y", "-5", "1.1", "4.6", "100000", "-121212", "y", "sample_text", "8xybr8y3b1x8br8", "nn", "#!@#%*&$^)**!&?¹;%:+", "n", "12 31 42", "yyy" };
+            int count_yes_not = 0;
+
+
+            // act
+            try
+            {
                 foreach (string input in inputs)
                     if (Regex.IsMatch(input, "^y$") || Regex.IsMatch(input, "^n$"))
                         count_yes_not++;
@@ -85,7 +107,7 @@ namespace PrimeNumbers.Tests
 
 
             // assert
-            Assert.AreEqual(true, (count_ints == 3 && count_yes_not == 3));
+            Assert.AreEqual(true, count_yes_not == 3);
         }
 
 
