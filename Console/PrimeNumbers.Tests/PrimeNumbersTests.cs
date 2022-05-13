@@ -17,12 +17,12 @@ namespace PrimeNumbers.Tests
         public void IsPrime_randomPrimes_returnsTrue()
         {
             // arrange
-            List<int> nums = new() { 32213, 85829, 91297, 50923, 92767, 70099, 51713, 84299, 74317, 52571 };
+            List<int> numList = new() { 32213, 85829, 91297, 50923, 92767, 70099, 51713, 84299, 74317, 52571 };
             bool flag = true;
 
 
             // act
-            foreach (int i in nums)
+            foreach (int i in numList)
                 if (!Calculator.IsPrime(i))
                 {
                     flag = false;
@@ -39,12 +39,12 @@ namespace PrimeNumbers.Tests
         public void IsPrime_randomNonPrimes_returnsFalse()
         {
             // arrange
-            List<int> nums = new() { 14133, 51781, 12072, 77405, 41456, 11989, 74389, 21387, 67406, 92025 };
+            List<int> numList = new() { 14133, 51781, 12072, 77405, 41456, 11989, 74389, 21387, 67406, 92025 };
             bool flag = true;
 
 
             // act
-            foreach (int i in nums)
+            foreach (int i in numList)
                 if (Calculator.IsPrime(i))
                 {
                     flag = false;
@@ -61,16 +61,16 @@ namespace PrimeNumbers.Tests
         public void SetByInputNum_randomInput_correctChecks()
         {
             // arrange
-            List<string> inputs = new() { "7", "12", "y", "-5", "1.1", "4.6", "100000", "-121212", "y", "sample_text", "8xybr8y3b1x8br8", "nn", "#!@#%*&$^)**!&?¹;%:+", "n", "12 31 42", "yyy" };
-            int count_ints = 0;
+            List<string> inputList = new() { "7", "12", "y", "-5", "1.1", "4.6", "100000", "-121212", "y", "sample_text", "8xybr8y3b1x8br8", "nn", "#!@#%*&$^)**!&?¹;%:+", "n", "12 31 42", "yyy" };
+            int ints = 0;
 
 
             // act
             try
             {
-                foreach (string input in inputs)
+                foreach (string input in inputList)
                     if (int.TryParse(input, out int x) && (x > 1))
-                        count_ints++;
+                        ints++;
             }
 
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace PrimeNumbers.Tests
 
 
             // assert
-            Assert.AreEqual(true, count_ints == 3);
+            Assert.AreEqual(true, ints == 3);
         }
 
 
@@ -88,16 +88,16 @@ namespace PrimeNumbers.Tests
         public void SetByInputFlag_randomInput_correctChecks()
         {
             // arrange
-            List<string> inputs = new() { "7", "12", "y", "-5", "1.1", "4.6", "100000", "-121212", "y", "sample_text", "8xybr8y3b1x8br8", "nn", "#!@#%*&$^)**!&?¹;%:+", "n", "12 31 42", "yyy" };
-            int count_yes_not = 0;
+            List<string> inputList = new() { "7", "12", "y", "-5", "1.1", "4.6", "100000", "-121212", "y", "sample_text", "8xybr8y3b1x8br8", "nn", "#!@#%*&$^)**!&?¹;%:+", "n", "12 31 42", "yyy" };
+            int yes_nots = 0;
 
 
             // act
             try
             {
-                foreach (string input in inputs)
+                foreach (string input in inputList)
                     if (Regex.IsMatch(input, "^y$") || Regex.IsMatch(input, "^n$"))
-                        count_yes_not++;
+                        yes_nots++;
             }
 
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace PrimeNumbers.Tests
 
 
             // assert
-            Assert.AreEqual(true, count_yes_not == 3);
+            Assert.AreEqual(true, yes_nots == 3);
         }
 
 
