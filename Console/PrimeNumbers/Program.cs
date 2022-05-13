@@ -13,7 +13,7 @@ bool isOutput = false,
 
 // global objs
 DB db = new();
-Calculation c = new();
+Calculator c = new();
 
 Stopwatch timer = new();
 List<int> primes = new();

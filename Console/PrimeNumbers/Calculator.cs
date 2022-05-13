@@ -6,7 +6,7 @@ using PrimeNumbers.Properties;
 
 namespace PrimeNumbers
 {
-    internal class Calculation
+    internal class Calculator
     {
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
         private int a, b;
