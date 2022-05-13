@@ -21,12 +21,12 @@ namespace PrimeNumbers
         public void GetPrimes(ref List<int> numList)
         {
             if (numList.Any())
-                CalculateDB(a, b, ref numList);
+                CalculateDB(ref numList, a, b);
             else
-                CalculateNoDB(a, b, ref numList);
+                CalculateNoDB(ref numList, a, b);
         }
 
-        public static void CalculateDB(int range_start, int range_end, ref List<int> numList)
+        public static void CalculateDB(ref List<int> numList, int range_start, int range_end)
         {
             int temp;
 
@@ -94,7 +94,7 @@ namespace PrimeNumbers
             }
         }
 
-        public static void CalculateNoDB(int range_start, int range_end, ref List<int> numList)
+        public static void CalculateNoDB(ref List<int> numList, int range_start, int range_end)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
             if ((range_end - range_start) < 150000)
