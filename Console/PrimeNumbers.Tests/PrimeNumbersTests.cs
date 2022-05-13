@@ -130,10 +130,12 @@ namespace PrimeNumbers.Tests
         [TestMethod]
         public void FillDatabase_fillWithNums_noExceptionIsThrown()
         {
+            // arrange
             List<int> numList = new();
             Calculator.CalculateNoDB(ref numList, 13, 200000);
 
-            // arrange & act & assert
+
+            // act & assert
             try
             {
                 DB.FillDatabase(numList);
