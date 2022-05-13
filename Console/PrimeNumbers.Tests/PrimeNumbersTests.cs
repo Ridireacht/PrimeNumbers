@@ -154,14 +154,13 @@ namespace PrimeNumbers.Tests
             // arrange
             List<int> DBList = new();
             List<int> numList = new();
-            Calculator.CalculateNoDB(ref DBList, 13, 200000);
+            Calculator.CalculateNoDB(ref numList, 13, 200000);
 
 
             // act & assert
             try
             {
                 DB.GetFromDatabase(ref DBList, 13, 200000);
-                Calculator.CalculateNoDB(ref numList, 13, 200000);
                 Assert.AreEqual(true, DBList.Equals(numList));
             }
 
@@ -176,7 +175,7 @@ namespace PrimeNumbers.Tests
         public void ClearDatabase_clearDB_emptyDB()
         {
             // arrange
-            string content = "";
+            List<int> numList = new();
 
 
             // act & assert
@@ -196,13 +195,13 @@ namespace PrimeNumbers.Tests
                 SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
 
                 while (SQL_reader.Read())
-                    content += SQL_reader["prime"];
+                    numList.Add(Convert.ToInt32(SQL_reader["prime"]));
 
                 connection.Close();
 
 
                 // actual check
-                Assert.AreEqual(true, content = "");
+                Assert.AreEqual(true, !numList.Any());
 
 
                 // delete DB previously created and used
