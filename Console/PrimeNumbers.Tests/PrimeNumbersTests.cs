@@ -118,8 +118,6 @@ namespace PrimeNumbers.Tests
             try
             {
                 DB.CreateDatabase();
-                SqliteConnection.ClearAllPools();
-                File.Delete("calculated_primes.db");
             }
 
             catch (Exception ex)
@@ -133,7 +131,7 @@ namespace PrimeNumbers.Tests
         public void FillDatabase_fillWithNums_noExceptionIsThrown()
         {
             List<int> numList = new();
-            Calculator.CalculateNoDB(13, 200000, ref numList);
+            Calculator.CalculateNoDB(ref numList, 13, 200000);
 
             // arrange & act & assert
             try
@@ -153,13 +151,13 @@ namespace PrimeNumbers.Tests
         {
             List<int> numList = new();
             List<int> checkList = new();
-            Calculator.CalculateNoDB(13, 20000, ref numList);
+            Calculator.CalculateNoDB(ref numList, 13, 20000);
 
             // arrange & act & assert
             try
             {
                 DB.GetFromDatabase(ref numList, 13, 200000);
-                Calculator.CalculateNoDB(13, 20000, ref checkList);
+                Calculator.CalculateNoDB(ref checkList, 13, 20000);
                 Assert.AreEqual(true, checkList.Equals(numList));
             }
 
