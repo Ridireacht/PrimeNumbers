@@ -138,6 +138,7 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
+                DB.CreateDatabase();
                 DB.FillDatabase(numList);
             }
 
@@ -159,6 +160,7 @@ namespace PrimeNumbers.Tests
             // act & assert
             try
             {
+                DB.CreateDatabase();
                 DB.GetFromDatabase(ref numList, 13, 200000);
                 Calculator.CalculateNoDB(ref checkList, 13, 200000);
 
