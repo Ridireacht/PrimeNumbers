@@ -172,7 +172,6 @@ namespace PrimeNumbers.Tests
         }
 
 
-
         [TestMethod]
         public void CalculateNoDB_monoThreading_correctCalculations()
         {
@@ -278,7 +277,7 @@ namespace PrimeNumbers.Tests
             }
         }
 
-        /*
+
         [TestMethod]
         public void Verify_checkVerificationList_correctList()
         {
@@ -299,6 +298,5 @@ namespace PrimeNumbers.Tests
                 Assert.Fail($"Expected no exceptions, but got {ex.Message}");
             }
         }
-        */
     }
 }
