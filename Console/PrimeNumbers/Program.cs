@@ -97,12 +97,8 @@ void ManageDB()
         timer.Stop();
         Console.WriteLine($"\n\nDatabase operations took {timer.ElapsedMilliseconds}ms\n");
 
-        DB.ClearDatabase();
+        IO.SetByInput(ref isToBeCleared, "we fully clear DB");
+        if (isToBeCleared)
+            DB.ClearDatabase();
     }
-
-
-
-    IO.SetByInput(ref isToBeCleared, "we fully clear DB");
-    if (isToBeCleared)
-        DB.ClearDatabase();
 }
