@@ -175,6 +175,23 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
+        public void I_ClearDatabase_clearDB_noExceptionIsThrown()
+        {
+            // act & assert
+            try
+            {
+                DB.CreateDatabase();
+                DB.ClearDatabase();
+            }
+
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exceptions, but got {ex.Message}");
+            }
+        }
+
+
+        [TestMethod]
         public void CalculateNoDB_monoThreading_correctCalculations()
         {
             // arrange
