@@ -149,16 +149,20 @@ namespace PrimeNumbers.Tests
 
 
         [TestMethod]
-        public void GetFromDatabase_getNums_noExceptionIsThrown()
+        public void GetFromDatabase_getNums_correctLists()
         {
             // arrange
             List<int> numList = new();
+            List<int> checkList = new();
 
 
             // act & assert
             try
             {
                 DB.GetFromDatabase(ref numList, 13, 200000);
+                Calculator.CalculateNoDB(ref checkList, 13, 200000);
+
+                Assert.AreEqual(true, numList.SequenceEqual(checkList));
             }
 
             catch (Exception ex)
