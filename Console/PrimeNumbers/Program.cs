@@ -28,7 +28,9 @@ List<int> primes = new();
     Check();
     ManageDB();
 
-    // save window from closing after the very end
+    Console.WriteLine("\nPress any button to close the program...");
+
+    // save window from pre-closing
     #if !DEBUG
         Console.ReadKey();
     #endif
