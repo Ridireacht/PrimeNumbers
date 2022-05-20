@@ -1,6 +1,6 @@
 ﻿namespace PrimeNumbers
 {
-    partial class Form1
+    partial class Window
     {
 
         private System.ComponentModel.IContainer components = null;
