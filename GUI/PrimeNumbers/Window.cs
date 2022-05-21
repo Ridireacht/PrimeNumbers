@@ -41,15 +41,33 @@ namespace PrimeNumbers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-                isOutput = true;
-            else
-                isOutput = false;
+            if (IO.TryRangeEnd(textBox2.Text) != null)
+            {
+                if (IO.TryRangeEnd(textBox3.Text) != null)
+                {
+                    a = Int32.Parse(textBox2.Text);
+                    b = Int32.Parse(textBox3.Text);
 
-            if (checkBox2.Checked)
-                isDatabase = true;
+                    if (a > b)
+                        (a, b) = (b, a);
+
+                    if (checkBox1.Checked)
+                        isOutput = true;
+                    else
+                        isOutput = false;
+
+                    if (checkBox2.Checked)
+                        isDatabase = true;
+                    else
+                        isDatabase = false;
+                }
+
+                else
+                    textBox1.Text = "First range end is incorrect! Make use the format is right and range itself is >= 2.";
+            }
+
             else
-                isDatabase = false;
+                textBox1.Text = "Second range end is incorrect! Make use the format is right and range itself is >= 2.";
         }
 
     }
