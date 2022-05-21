@@ -1,5 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using PrimeNumbers.Properties;
+using System.Linq;
+using System;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 
