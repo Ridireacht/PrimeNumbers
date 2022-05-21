@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 
@@ -21,14 +20,12 @@ namespace PrimeNumbers
             return output;
         }
 
-        public static bool isCorrectRange(string input)
+        public static int? TryRangeEnd(string input)
         {
             if (int.TryParse(input, out int x) && (x > 1))
-                return true;
-
+                return x;
             else
-                return false;
+                return null;
         }
-
     }
 }
