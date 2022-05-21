@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
@@ -72,7 +73,7 @@ namespace PrimeNumbers
             SqliteDataReader SQL_reader = SQL_command.ExecuteReader();
 
             while (SQL_reader.Read())
-                numList.Add(Convert.ToInt32(SQL_reader["prime"]));
+                numList.Add(System.Convert.ToInt32(SQL_reader["prime"]));
 
 
             connection.Close();
