@@ -88,8 +88,15 @@ namespace PrimeNumbers
 
                     // output (if needed)
                     if (isOutput)
-                        textBox1.Text = IO.Output(primes);
-                    textBox1.Text += $"\r\n\r\nCalculations took {timer.ElapsedMilliseconds}ms";
+                        textBox1.Text = IO.Output(primes) + "\r\n\r\n";
+                    textBox1.Text += $"Calculations took {timer.ElapsedMilliseconds}ms";
+
+
+                    // verification
+                    timer = Stopwatch.StartNew();
+                    textBox1.Text += c.VerifyCalculations(primes);
+                    timer.Stop();
+                    Console.WriteLine($"\r\nVerification took {timer.ElapsedMilliseconds}ms");
                 }
 
                 else
