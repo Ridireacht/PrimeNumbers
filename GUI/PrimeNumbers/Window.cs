@@ -42,6 +42,8 @@ namespace PrimeNumbers
         // 'Calculate!' button
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
+
             // if both range textboxes are correctfully filled, proceed;
             // otherwise return error text
             if (IO.TryRangeEnd(textBox2.Text) != null)
@@ -78,6 +80,16 @@ namespace PrimeNumbers
                     c.SetEnds(a, b);
 
 
+                    // calculation phase
+                    timer = Stopwatch.StartNew();
+                    c.GetPrimes(ref primes);
+                    timer.Stop();
+
+
+                    // output (if needed)
+                    if (isOutput)
+                        textBox1.Text = IO.Output(primes);
+                    textBox1.Text += $"\r\n\r\nCalculations took {timer.ElapsedMilliseconds}ms";
                 }
 
                 else
