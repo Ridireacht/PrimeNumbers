@@ -119,8 +119,9 @@ namespace PrimeNumbers
             }
         }
 
-        public bool IsCorrect(List<int> numList)
+        public string VerifyCalculations(List<int> numList)
         {
+            string output = "";
             int range_end = numList.Count;
             int lastCorrect = 0;
             int numsChecked = 0;
@@ -128,10 +129,7 @@ namespace PrimeNumbers
 
             // if no primes calculated (their list is empty)
             if (!numList.Any())
-            {
-                Console.WriteLine("\nThere is nothing to check as no primes were calculated.");
-                return false;
-            }
+                return "\r\nThere is nothing to check as no primes were calculated.";
 
 
             else
@@ -142,7 +140,7 @@ namespace PrimeNumbers
                 // if there are more calculated primes other than verification ones
                 if (numList.Last() > verificationPrimes.Last())
                 {
-                    Console.WriteLine($"\nUnable to check all the numbers calculated as the last prime in verification list is {verificationPrimes.Last()}.\n");
+                    output += $"\r\nUnable to check all the numbers calculated as the last prime in verification list is {verificationPrimes.Last()}.\r\n";
                     range_end = verificationPrimes.Count;
                 }
 
@@ -164,21 +162,21 @@ namespace PrimeNumbers
                 }
 
 
-                Console.WriteLine();
+                output += "\r\n";
 
                 // outcome of all checks
                 if ((numsChecked == 1) && (!isCorrect))
-                    Console.WriteLine("\nThe very first calculated prime num is already wrong, so all the sequence.");
+                    output += "\r\nThe very first calculated prime num is already wrong, so all the sequence.";
                 else
-                    Console.WriteLine($"\nChecked nums: {numsChecked}\nLast correct one: {lastCorrect}");
+                    output += $"\r\nChecked nums: {numsChecked}\r\nLast correct one: {lastCorrect}";
 
                 if (isCorrect)
-                    Console.WriteLine("\nAll calculations were done right.");
+                    output += "\r\nAll calculations were done right.";
                 else
-                    Console.WriteLine("\nCalculations done wrong.");
+                    output += "\nCalculations done wrong.";
 
 
-                return isCorrect;
+                return output;
             }
         }
 
