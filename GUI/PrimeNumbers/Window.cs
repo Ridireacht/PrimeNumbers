@@ -21,8 +21,7 @@ namespace PrimeNumbers
 
         bool isOutput,
              isDatabase,
-             isCorrect,
-             isToBeCleared;
+             isCorrect;
 
         // global objs
         DB db = new();
@@ -95,6 +94,13 @@ namespace PrimeNumbers
                     // verification
                     timer = Stopwatch.StartNew();
                     textBox1.Text += c.VerifyCalculations(primes);
+
+                        // if response ends with "... correcT."
+                        if (textBox1.Text[-2] == 't')
+                            isCorrect = true;
+                        else
+                            isCorrect = false;
+
                     timer.Stop();
                     Console.WriteLine($"\r\nVerification took {timer.ElapsedMilliseconds}ms");
 
