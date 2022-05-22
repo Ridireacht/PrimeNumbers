@@ -118,11 +118,11 @@ namespace PrimeNumbers
                 }
 
                 else
-                    textBox1.Text = "First range end is incorrect! Make use the format is right and range itself is >= 2.";
+                    textBox1.Text = "Second range end is incorrect! Make sure the format is right and range itself is >= 2.";
             }
 
             else
-                textBox1.Text = "Second range end is incorrect! Make use the format is right and range itself is >= 2.";
+                textBox1.Text = "First range end is incorrect! Make sure the format is right and range itself is >= 2.";
         }
 
 
