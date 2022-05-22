@@ -39,18 +39,24 @@ namespace PrimeNumbers
         }
 
 
+        // 'Calculate!' button
         private void button1_Click(object sender, EventArgs e)
         {
+            // if both range textboxes are correctfully filled, proceed;
+            // otherwise return error text
             if (IO.TryRangeEnd(textBox2.Text) != null)
             {
                 if (IO.TryRangeEnd(textBox3.Text) != null)
                 {
+                    // in case everything alright
                     a = Int32.Parse(textBox2.Text);
                     b = Int32.Parse(textBox3.Text);
 
+                    // swap order of ends if incorrect
                     if (a > b)
                         (a, b) = (b, a);
 
+                    // set flags
                     if (checkBox1.Checked)
                         isOutput = true;
                     else
@@ -60,6 +66,8 @@ namespace PrimeNumbers
                         isDatabase = true;
                     else
                         isDatabase = false;
+
+
                 }
 
                 else
