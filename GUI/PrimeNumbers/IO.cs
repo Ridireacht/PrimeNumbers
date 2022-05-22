@@ -12,7 +12,7 @@ namespace PrimeNumbers
         public static string Output(List<int> numList)
         {
             string output = "";
-            output += "\r\n\r\nPrime numbers:\r\n";
+            output += "Prime numbers:\r\n";
 
             foreach (int i in numList)
                 output += $"{i}  ";
