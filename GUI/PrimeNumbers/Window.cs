@@ -52,11 +52,13 @@ namespace PrimeNumbers
                     a = Int32.Parse(textBox2.Text);
                     b = Int32.Parse(textBox3.Text);
 
+
                     // swap order of ends if incorrect
                     if (a > b)
                         (a, b) = (b, a);
 
-                    // set flags
+
+                    // set flags and options
                     if (checkBox1.Checked)
                         isOutput = true;
                     else
@@ -66,6 +68,14 @@ namespace PrimeNumbers
                         isDatabase = true;
                     else
                         isDatabase = false;
+
+                    if (isDatabase)
+                    {
+                        DB.CreateDatabase();
+                        DB.GetFromDatabase(ref primes, a, b);
+                    }
+
+                    c.SetEnds(a, b);
 
 
                 }
@@ -77,6 +87,9 @@ namespace PrimeNumbers
             else
                 textBox1.Text = "Second range end is incorrect! Make use the format is right and range itself is >= 2.";
         }
+
+
+
 
     }
 }
