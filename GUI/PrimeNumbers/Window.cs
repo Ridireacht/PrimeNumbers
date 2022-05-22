@@ -97,6 +97,18 @@ namespace PrimeNumbers
                     textBox1.Text += c.VerifyCalculations(primes);
                     timer.Stop();
                     Console.WriteLine($"\r\nVerification took {timer.ElapsedMilliseconds}ms");
+
+
+                    // manage DB
+                    if (isCorrect && isDatabase && primes.Any())
+                    {
+                        timer = Stopwatch.StartNew();
+
+                        DB.FillDatabase(primes);
+
+                        timer.Stop();
+                        textBox1.Text += $"\r\n\r\nDatabase operations took {timer.ElapsedMilliseconds}ms\r\n";
+                    }
                 }
 
                 else
