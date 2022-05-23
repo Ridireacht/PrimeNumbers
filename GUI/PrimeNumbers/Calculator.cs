@@ -21,20 +21,20 @@ namespace PrimeNumbers
             this.b = b;
         }
 
-        public void GetPrimes(ref List<int> numList)
+        public void GetPrimes(ref List<int> numList, string mode)
         {
             if (numList.Any())
-                CalculateDB(ref numList, a, b);
+                CalculateDB(ref numList, a, b, mode);
             else
-                CalculateNoDB(ref numList, a, b);
+                CalculateNoDB(ref numList, a, b, mode);
         }
 
-        public static void CalculateDB(ref List<int> numList, int range_start, int range_end)
+        public static void CalculateDB(ref List<int> numList, int range_start, int range_end, string mode)
         {
             int temp;
 
             // choosing between mono- and multi- threading depends on the complexity of calculations
-            if ((range_end - range_start) < 150000)
+            if ( ((range_end - range_start) < 150000 || mode == "mono") && mode != "multi")
             {
                 temp = numList[0];
 
@@ -97,10 +97,10 @@ namespace PrimeNumbers
             }
         }
 
-        public static void CalculateNoDB(ref List<int> numList, int range_start, int range_end)
+        public static void CalculateNoDB(ref List<int> numList, int range_start, int range_end, string mode)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
-            if ((range_end - range_start) < 150000)
+            if ( ((range_end - range_start) < 150000 || mode == "mono") && mode != "multi")
             {
                 for (int i = range_start; i <= range_end; i++)
                     if (IsPrime(i))
