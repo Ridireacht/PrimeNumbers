@@ -21,7 +21,7 @@ namespace PrimeNumbers
             this.b = b;
         }
 
-        public void GetPrimes(ref List<int> numList, string mode)
+        public void GetPrimes(ref List<int> numList, string mode = "auto")
         {
             if (numList.Any())
                 CalculateDB(ref numList, a, b, mode);
