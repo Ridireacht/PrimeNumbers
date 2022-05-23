@@ -42,6 +42,7 @@ namespace PrimeNumbers
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
+            primes.RemoveRange(0, primes.Count);
 
             // if both range textboxes are correctfully filled, proceed;
             // otherwise return error text
