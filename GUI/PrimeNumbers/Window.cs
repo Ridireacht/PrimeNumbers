@@ -41,8 +41,10 @@ namespace PrimeNumbers
         // 'Calculate!' button
         private void button1_Click(object sender, EventArgs e)
         {
+            // nullify status of multiple-times-used vars
             textBox1.Text = "";
             primes.RemoveRange(0, primes.Count);
+
 
             // if both range textboxes are correctfully filled, proceed;
             // otherwise return error text
@@ -116,6 +118,7 @@ namespace PrimeNumbers
                         timer.Stop();
                         textBox1.Text += $"\r\n\r\nDatabase operations took {timer.ElapsedMilliseconds}ms\r\n";
                     }
+
                 }
 
                 else
