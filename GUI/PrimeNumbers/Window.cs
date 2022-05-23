@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
-
+using System.IO;
 
 namespace PrimeNumbers
 {
@@ -30,6 +30,7 @@ namespace PrimeNumbers
         {
             InitializeComponent();
         }
+
 
 
         // 'Calculate!' button
@@ -138,13 +139,21 @@ namespace PrimeNumbers
         }
 
 
-        // 'Save to file'
+        // 'Save to file' button
         private void button3_Click(object sender, EventArgs e)
         {
             if (!primes.Any())
                 textBox1.Text = "There is nothing to write in the file, as there are no calculated primes yet!";
             else
                 saveFileDialog1.ShowDialog();
+        }
+
+
+        // saving a file
+        private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string name = saveFileDialog1.FileName;
+            File.WriteAllText(name, String.Join("\t", primes));
         }
 
     }
