@@ -52,7 +52,7 @@ namespace PrimeNumbers
             {
                 if (IO.TryRangeEnd(textBox3.Text) != null)
                 {
-                    // in case everything alright
+                    // in case everything is alright
                     a = Int32.Parse(textBox2.Text);
                     b = Int32.Parse(textBox3.Text);
 
@@ -82,9 +82,16 @@ namespace PrimeNumbers
                     c.SetEnds(a, b);
 
 
-                    // calculation phase
+                    // calculation
                     timer = Stopwatch.StartNew();
-                    c.GetPrimes(ref primes);
+
+                    if (radioButton1.Checked)
+                        c.GetPrimes(ref primes, "mono");
+                    else if (radioButton2.Checked)
+                        c.GetPrimes(ref primes, "multi");
+                    else
+                        c.GetPrimes(ref primes);
+
                     timer.Stop();
 
 
