@@ -96,7 +96,7 @@ namespace PrimeNumbers
                     textBox1.Text += c.VerifyCalculations(primes);
 
                         // if response ends with "... correcT."
-                        if (textBox1.Text[-2] == 't')
+                        if (textBox1.Text[textBox1.Text.Length - 2] == 't')
                             isCorrect = true;
                         else
                             isCorrect = false;
