@@ -137,5 +137,15 @@ namespace PrimeNumbers
             DB.ClearDatabase();
         }
 
+
+        // 'Save to file'
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!primes.Any())
+                textBox1.Text = "There is nothing to write in the file, as there are no calculated primes yet!";
+            else
+                saveFileDialog1.ShowDialog();
+        }
+
     }
 }
