@@ -135,7 +135,10 @@ namespace PrimeNumbers
         // 'Clear DB' button
         private void button2_Click(object sender, EventArgs e)
         {
-            DB.ClearDatabase();
+            if (isDatabase == true)
+                DB.ClearDatabase();
+            else
+                textBox1.Text = "There is no database to be cleared!";
         }
 
 
