@@ -145,7 +145,21 @@ namespace PrimeNumbers
             if (!primes.Any())
                 textBox1.Text = "There is nothing to write in the file, as there are no calculated primes yet!";
             else
+            {
+                // default name
+                saveFileDialog1.FileName = "primes";
+                
+                // file extensions
+                saveFileDialog1.DefaultExt = "txt";
+                saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+                // initial dir = desktop
+                saveFileDialog1.InitialDirectory =
+                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                // run dialog
                 saveFileDialog1.ShowDialog();
+            }
         }
 
 
