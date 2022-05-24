@@ -1,7 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Data.Sqlite;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PrimeNumbers.Properties;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,13 +12,14 @@ namespace PrimeNumbers.Tests
     [TestClass]
     public class PrimeNumbersTests
     {
+
         [TestMethod]
         public void IsPrime_randomPrimes_returnsTrue()
         {
             // arrange
             List<int> numList = new() { 32213, 85829, 91297, 50923, 92767, 70099, 51713, 84299, 74317, 52571 };
             bool flag = true;
-
+            
 
             // act
             foreach (int i in numList)
