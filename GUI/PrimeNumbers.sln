@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumbers", "PrimeNumbers.csproj", "{BE4CA833-2FE1-4CA8-AE47-E2C6D0F5624B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumbers", "PrimeNumbers\PrimeNumbers.csproj", "{BE4CA833-2FE1-4CA8-AE47-E2C6D0F5624B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumbers.Tests", "..\PrimeNumbers.Tests\PrimeNumbers.Tests.csproj", "{77008694-0692-4640-B4CF-5E86057F2109}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumbers.Tests", "PrimeNumbers.Tests\PrimeNumbers.Tests.csproj", "{77008694-0692-4640-B4CF-5E86057F2109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
