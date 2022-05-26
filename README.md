@@ -36,8 +36,11 @@ ____
   - [X] Tests for both SetByInput() ***(done 22.04.2022 - 23.04.2022)***
   - [X] Tests for DB calls ***(done 23.04.2022)***
 
+  <br/>
 
-<<<***some hiatus taken***>>>
+___***some hiatus taken***___
+
+  <br/>
 
 - [X] Finish creating your tests ***(done 03.05.2022)***
     - [X] Mono-threading w/o DB
