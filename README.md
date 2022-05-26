@@ -3,7 +3,9 @@ A learning project whose sole purpose is to improve my basics of C#. It is done 
 
 Project contains two folders: one for the console version of the program, and the other for the GUI one. Both are fully functioning, and instead of compiling the code you can just download the latest release with binaries for both included.
 
-<br/><br/>
+____
+
+<br/>
 <details>
 <summary>PLAN OF STAGES</summary>
 
@@ -39,6 +41,6 @@ Project contains two folders: one for the console version of the program, and th
     - [X] Mono-threading w/ DB
     - [X] Multi-threading w/ DB
 
-<<***some hiatus taken***>>
+<<<***some hiatus taken***>>>
   
 </details>
