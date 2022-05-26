@@ -57,4 +57,17 @@ ___***some hiatus taken***___
   - [X] Overhaul the main file structure to suit the changes and simplify the readability ***(done 13.05.2022)***
   - [X] Make according changes in the tests ***(done 14.05.2022-15.05.2022)***
 
+  <br/>
+
+___***another hiatus taken***___
+
+  <br/>  
+  
+- [X] Start a new GUI version, working on the .NET 5.0 now
+  - [X] Create new project's base ***(done 20.05.2022)***
+  - [X] Add the UI ***(done 21.05.2022)***
+  - [X] Import all the classes from console version and adapt them to GUI one ***(done 22.05.2022)***
+  - [X] Clean the code ***(done 23.05.2022)***
+  - [X] Add support for the new features ***(done 23.05.2022-24.05.2022)***
+
 </details>
