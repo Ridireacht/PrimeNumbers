@@ -37,20 +37,21 @@ ____
   - [X] Tests for DB calls ***(done 23.04.2022)***
 
 
-<br/>
-  
-___***some hiatus taken***___
-  
-<br/>
+<<<***some hiatus taken***>>>
 
 - [X] Finish creating your tests ***(done 03.05.2022)***
     - [X] Mono-threading w/o DB
     - [X] Multi-threading w/o DB
     - [X] Mono-threading w/ DB
     - [X] Multi-threading w/ DB
-- [X] Polish the console version and start developing the GUI one
+- [X] Improve the console version and start developing the GUI one
   - [X] Split class methods where necessary (overwhelmed structure) ***(done 03.05.2022-04.05.2022)***
   - [X] Clean and optimize the code ***(done 03.05.2022)***
   - [X] Start work on the GUI version ***(done 05.05.2022-08.05.2022)***
+- [X] Polish the console version, once again and finally
+  - [X] Migrate project from .NET Framework 4.8 to .NET 6.0 ***(done 09.05.2022)***
+  - [X] Split Function class into few separate ones ***(done 11.05.2022-13.05.2022)***
+  - [X] Overhaul the main file structure to suit the changes and simplify the readability ***(done 13.05.2022)***
+  - [X] Make according changes in the tests ***(done 14.05.2022-15.05.2022)***
 
 </details>
