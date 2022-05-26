@@ -63,7 +63,7 @@ ___***another hiatus taken***___
 
   <br/>  
   
-- [X] Start a new GUI version, working on the .NET 5.0 now
+- [X] Start a new GUI version using .NET 5.0
   - [X] Create new project's base ***(done 20.05.2022)***
   - [X] Add the UI ***(done 21.05.2022)***
   - [X] Import all the classes from console version and adapt them to GUI one ***(done 22.05.2022)***
