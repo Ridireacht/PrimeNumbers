@@ -35,12 +35,18 @@ ____
   - [X] Tests for isPrime() ***(done 22.04.2022)***
   - [X] Tests for both SetByInput() ***(done 22.04.2022 - 23.04.2022)***
   - [X] Tests for DB calls ***(done 23.04.2022)***
-  - [X] Tests for Calculate() ***(done 03.05.2022)***
+
+
+<<<***some hiatus taken***>>>
+
+- [X] Finish creating your tests ***(done 03.05.2022)***
     - [X] Mono-threading w/o DB
     - [X] Multi-threading w/o DB
     - [X] Mono-threading w/ DB
     - [X] Multi-threading w/ DB
+- [X] Polish the console version and start developing the GUI one
+  - [X] Split class methods where necessary (overwhelmed structure) ***(done 03.05.2022-04.05.2022)***
+  - [X] Clean and optimize the code ***(done 03.05.2022)***
+  - [X] Start work on the GUI version ***(done 05.05.2022-08.05.2022)***
 
-<<<***some hiatus taken***>>>
-  
 </details>
