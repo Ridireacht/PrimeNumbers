@@ -18,6 +18,10 @@ namespace PrimeNumbers
              isDatabase,
              isCorrect;
 
+        bool isFirstPlaceholderOn = true,
+             isSecondPlaceholderOn = true;
+
+
         // global objs
         readonly Calculator c = new();
 
@@ -129,6 +133,26 @@ namespace PrimeNumbers
 
             else
                 textBox1.Text = "First range end is incorrect! Make sure the format is right and range itself is >= 2.";
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            if (isFirstPlaceholderOn)
+            {
+                textBox2.Text = "";
+                textBox2.ForeColor = System.Drawing.Color.Black;
+                isFirstPlaceholderOn = false;
+            }
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (!isFirstPlaceholderOn && textBox2.Text == "")
+            {
+                textBox2.Text = "2";
+                textBox2.ForeColor = System.Drawing.Color.LightGray;
+                isFirstPlaceholderOn = true;
+            }
         }
 
 

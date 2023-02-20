@@ -172,10 +172,14 @@
             // 
             // textBox2
             // 
+            this.textBox2.ForeColor = System.Drawing.Color.LightGray;
             this.textBox2.Location = new System.Drawing.Point(412, 274);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(125, 27);
             this.textBox2.TabIndex = 13;
+            this.textBox2.Text = "2";
+            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
+            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // textBox3
             // 
