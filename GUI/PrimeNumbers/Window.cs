@@ -155,6 +155,26 @@ namespace PrimeNumbers
             }
         }
 
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            if (isSecondPlaceholderOn)
+            {
+                textBox3.Text = "";
+                textBox3.ForeColor = System.Drawing.Color.Black;
+                isSecondPlaceholderOn = false;
+            }
+
+        }
+
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            if (!isSecondPlaceholderOn && textBox3.Text == "")
+            {
+                textBox3.Text = "100000";
+                textBox3.ForeColor = System.Drawing.Color.LightGray;
+                isSecondPlaceholderOn = true;
+            }
+        }
 
         // 'Clear DB' button
         private void button2_Click(object sender, EventArgs e)
