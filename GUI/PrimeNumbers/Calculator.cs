@@ -87,7 +87,7 @@ namespace PrimeNumbers
                 {
                     temp += 1;
 
-                    var thing = from n in (Enumerable.Range(temp, range_end - temp - 1)).AsParallel().AsOrdered()
+                    var thing = from n in (Enumerable.Range(temp, range_end - temp)).AsParallel().AsOrdered()
                                 where IsPrime(n)
                                 select n;
 
