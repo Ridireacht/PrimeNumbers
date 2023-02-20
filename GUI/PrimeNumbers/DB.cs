@@ -28,24 +28,26 @@ namespace PrimeNumbers
 
         public static void FillDatabase(List<int> numList)
         {
-            // assembling an SQL command that will input all the new calculated primes into DB
-            string txt_query = "INSERT OR IGNORE INTO Primes (prime) VALUES ";
+            using SqliteConnection connection = new("Data Source=" + path);
+            connection.Open();
+
+            var Transaction = connection.BeginTransaction();
+            var SQL_command = connection.CreateCommand();
+            SQL_command.Transaction = Transaction;
+
+            string txt_query;
+
             foreach (int i in numList)
-                txt_query += $"({i}),";
-
-            txt_query = Regex.Replace(txt_query, ",$", ";");
-
-
-            using (SqliteConnection connection = new("Data Source=" + path))
             {
-                connection.Open();
+                txt_query = $"INSERT OR IGNORE INTO Primes (prime) VALUES ({i});";
 
-                var SQL_command = connection.CreateCommand();
                 SQL_command.CommandText = txt_query;
                 SQL_command.ExecuteNonQuery();
-
-                connection.Close();
             }
+
+            Transaction.Commit();
+
+            connection.Close();
         }
 
         public static void ClearDatabase()
