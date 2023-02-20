@@ -71,3 +71,6 @@ ___***another hiatus taken***___
   - [X] Add support for the new features ***(done 23.05.2022-24.05.2022)***
 
 </details>
+<details>
+<summary>HOW-TO-USE</summary>
+</details>
