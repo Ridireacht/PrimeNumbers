@@ -127,7 +127,6 @@
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(167, 24);
             this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Use mono-threading";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -138,13 +137,13 @@
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(162, 24);
             this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Use multi-threading";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(412, 186);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(186, 24);
