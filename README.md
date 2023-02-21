@@ -18,3 +18,5 @@ The app also comes out with the "verification list" - a list of prime numbers al
 * DB.cs - class responsible for interactions with database
 * IO.cs - class responsible for handling input (of range ends) and output (of primes calculated)
 * Window.cs - class responsible for handling all GUI stuff
+
+Based on .NET 6, GUI made on WinForms, SQLite used as database
