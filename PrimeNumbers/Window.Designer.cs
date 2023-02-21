@@ -85,9 +85,9 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(412, 87);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(225, 24);
+            this.checkBox2.Size = new System.Drawing.Size(120, 24);
             this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "Use database for calculations";
+            this.checkBox2.Text = "Use database";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // button1
