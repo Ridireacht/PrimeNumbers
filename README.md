@@ -5,5 +5,5 @@ Project contains two folders: one for the console version of the program, and th
 
 ____
 
-### How to use
-
+## How to use
+The application calculates all prime numbers in a given range. The range limits are any natural numbers greater than two. Calculation can be done using three methods: mono-threaded, multi-threaded, and the automatic (selected by default, it chooses between the first and second mode depending on the range). All prime numbers calculated can be displayed in the "output" window on the left (first checkbox option), and/or saved to a separate text file ("Save results to the file" button).
