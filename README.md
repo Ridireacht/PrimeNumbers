@@ -11,3 +11,11 @@ The application calculates all prime numbers in a given range. The range limits 
 The program also offers to use a database for calculations (second checkbox option). When checked, the app will will create a database and save the results of calculations there. These database records will be used in the further calculations, as app won't need to recalculate values already known and saved (thus speeding up the calculations). Unchecking this option will prevent any operations with a database, be it saving results or using its content during calculations. And "Clear database" button might be used to wipe all the data stored in a database.
 
 The app also comes out with the "verification list" - a list of prime numbers already pre-calculated. It contains all the prime numbers in range from 2 to 15485863. So you could prove your calculations to be right. Any prime numbers calculated above the end range will still be calculated, yet not checked.
+
+</br>
+
+## Project structure
+* Calculator.cs - class responsible for all sort of calculations
+* DB.cs - class responsible for interactions with database
+* IO.cs - class responsible for handling input (of range ends) and output (of primes calculated)
+* Window.cs - class responsible for handling all GUI stuff
