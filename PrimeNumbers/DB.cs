@@ -26,6 +26,8 @@ namespace PrimeNumbers
             connection.Close();
         }
 
+
+        // inserts prime numbers into database
         public static void FillDatabase(List<int> numList)
         {
             using SqliteConnection connection = new("Data Source=" + path);
@@ -50,6 +52,8 @@ namespace PrimeNumbers
             connection.Close();
         }
 
+
+        // wipes all records from database
         public static void ClearDatabase()
         {
             using SqliteConnection connection = new("Data Source=" + path);
@@ -62,9 +66,10 @@ namespace PrimeNumbers
             connection.Close();
         }
 
+
+        // fills external list with prime numbers of given range
         public static void GetFromDatabase(ref List<int> numList, int range_start, int range_end)
         {
-            // getting a bunch of primes within a range of 'a' and 'b'
             using SqliteConnection connection = new("Data Source=" + path);
             connection.Open();
 

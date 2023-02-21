@@ -9,6 +9,7 @@ namespace PrimeNumbers
 {
     internal class IO
     {
+        // creates string with all prime numbers calculated
         public static string Output(List<int> numList)
         {
             string output = "";
@@ -20,6 +21,8 @@ namespace PrimeNumbers
             return output;
         }
 
+
+        // checks if range for calculation is correct
         public static int? TryRangeEnd(string input)
         {
             if (int.TryParse(input, out int x) && (x > 1))

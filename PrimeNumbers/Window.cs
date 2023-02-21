@@ -135,6 +135,8 @@ namespace PrimeNumbers
                 textBox1.Text = "First range end is incorrect! Make sure the format is right and range itself is >= 2.";
         }
 
+
+        // placeholder handling (first range end)
         private void textBox2_Enter(object sender, EventArgs e)
         {
             if (isFirstPlaceholderOn)
@@ -155,6 +157,8 @@ namespace PrimeNumbers
             }
         }
 
+
+        // placeholder handling (second range end)
         private void textBox3_Enter(object sender, EventArgs e)
         {
             if (isSecondPlaceholderOn)
@@ -175,6 +179,7 @@ namespace PrimeNumbers
                 isSecondPlaceholderOn = true;
             }
         }
+
 
         // 'Clear DB' button
         private void button2_Click(object sender, EventArgs e)

@@ -29,11 +29,14 @@ namespace PrimeNumbers
                 CalculateNoDB(ref numList, a, b, mode);
         }
 
+
+        // calculate primes with DB enabled
         public static void CalculateDB(ref List<int> numList, int range_start, int range_end, string mode)
         {
             int temp;
 
-            // choosing between mono- and multi- threading depends on the complexity of calculations
+            // choosing between mono- and multi- threading depends on the complexity of calculations.
+            // below is the mono-threading variant.
             if ( ((range_end - range_start) < 150000 || mode == "mono") && mode != "multi")
             {
                 temp = numList[0];
@@ -97,9 +100,12 @@ namespace PrimeNumbers
             }
         }
 
+
+        // calculate primes without DB
         public static void CalculateNoDB(ref List<int> numList, int range_start, int range_end, string mode)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
+            // below is the mono-threading variant.
             if ( ((range_end - range_start) < 150000 || mode == "mono") && mode != "multi")
             {
                 for (int i = range_start; i <= range_end; i++)
@@ -119,6 +125,8 @@ namespace PrimeNumbers
             }
         }
 
+
+        // compares calculated and verified primes
         public string VerifyCalculations(List<int> numList)
         {
             string output = "";
@@ -179,6 +187,7 @@ namespace PrimeNumbers
                 return output;
             }
         }
+
 
         public static bool IsPrime(int num)
         {
