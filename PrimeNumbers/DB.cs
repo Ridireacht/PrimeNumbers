@@ -14,6 +14,7 @@ namespace PrimeNumbers
         private const string path = "calculated_primes.db";
 
 
+        // create database for storing prime numbers
         public static void CreateDatabase()
         {
             using SqliteConnection connection = new("Data Source=" + path);
