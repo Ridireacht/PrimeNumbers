@@ -12,8 +12,8 @@ namespace PrimeNumbers
     internal class Calculator
     {
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
-        private String calculation_mode = "auto";
         private int range_start, range_end;
+        private String calculation_mode = "auto";
 
 
 
@@ -41,20 +41,20 @@ namespace PrimeNumbers
             // number list comes empty by default. if not, then it was succesfully supplemented
             // with data from DB - we need to handle this situation separately
             if (numList.Any())
-                CalculateDB(ref numList, range_start, range_end, mode);
+                CalculateDB(ref numList);
             else
-                CalculateNoDB(ref numList, range_start, range_end, mode);
+                CalculateNoDB(ref numList);
         }
 
 
         // calculates prime numbers with DB enabled
-        public static void CalculateDB(ref List<int> numList, int range_start, int range_end, string mode)
+        public void CalculateDB(ref List<int> numList)
         {
             int temp;
 
             // choosing between mono- and multi- threading depends on the complexity of calculations.
             // below is the mono-threading variant.
-            if ( ((range_end - range_start) < 150000 || mode == "mono") && mode != "multi")
+            if ( ((range_end - range_start) < 150000 || calculation_mode == "mono") && calculation_mode != "multi")
             {
                 temp = numList[0];
 
@@ -119,7 +119,7 @@ namespace PrimeNumbers
 
 
         // calculates prime numbers with DB disabled
-        public static void CalculateNoDB(ref List<int> numList, int range_start, int range_end, string mode)
+        public void CalculateNoDB(ref List<int> numList)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
             // below is the mono-threading variant.
