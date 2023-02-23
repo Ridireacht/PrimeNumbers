@@ -61,14 +61,25 @@ namespace PrimeNumbers
                         // need to calculate all prime numbers between said range_start
                         // and the point where DB data begins
                         temp = numList[0];
+                        int position = 0;
 
                         if (range_start != temp)
                         {
                             // even numbers aren't prime, so we'll skip their checking
-                            if ((range_start % 2 == 0) && (range_end != 2))
-                                range_start++;
+                            if (range_start % 2 == 0)
+                            {
+                                if (range_start == 2)
+                                {
+                                    numList.Insert(position, 2);
+                                    position++;
+                                }
 
-                            for (int i = range_start, position = 0; i < temp; i += 2)
+                                range_start++;
+                            }
+
+
+                            // iteration itself
+                            for (int i = range_start; i < temp; i += 2)
                                 if (IsPrimeOdd(i))
                                 {
                                     numList.Insert(position, i);
@@ -84,9 +95,16 @@ namespace PrimeNumbers
                         if (range_end != temp)
                         {
                             // even numbers aren't prime, so we'll skip their checking
-                            if ((temp % 2 == 0) && (temp != 2))
-                                temp++;
+                            if (temp % 2 == 0)
+                            {
+                                if (temp == 2)
+                                    numList.Insert(position, 2);
 
+                                temp++;
+                            }
+
+
+                            // iteration itself
                             for (int i = temp; i <= range_end; i += 2)
                                 if (IsPrimeOdd(i))
                                     numList.Add(i);
@@ -151,10 +169,16 @@ namespace PrimeNumbers
                 case "mono":
                     {
                         // even numbers aren't prime, so we'll skip their checking
-                        if ((range_start % 2 == 0) && (range_end != 2))
-                            range_start++;
+                        if (range_start % 2 == 0)
+                        {
+                            if (range_start == 2)
+                                numList.Add(2); 
+
+                            range_end++;
+                        }
 
 
+                        // iteration itself
                         for (int i = range_start; i <= range_end; i += 2)
                             if (IsPrimeOdd(i))
                                 numList.Add(i);
