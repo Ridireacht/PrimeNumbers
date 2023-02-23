@@ -225,12 +225,15 @@ namespace PrimeNumbers
         }
 
 
+        // simple check for whether a number is prime or not. used
+        // where it's impossible to implement optimization of said algorithm
         public static bool IsPrime(int num)
         {
             // all the numbers matching the statements below aren't prime,
             // so we skip them immediately
             if (((num % 2 == 0) && (num != 2)) || ((num % 3 == 0) && (num != 3)))
                 return false;
+
 
             for (int i = 2; i <= Math.Sqrt(num); i++)
                 if (num % i == 0)
