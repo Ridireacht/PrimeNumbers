@@ -263,7 +263,7 @@ namespace PrimeNumbers
                 if (isCorrect)
                     output += "\r\nAll calculations were done right.";
                 else
-                    output += "\nCalculations done wrong.";
+                    output += "\r\nCalculations done wrong.";
 
 
                 return output;
