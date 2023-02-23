@@ -12,21 +12,43 @@ namespace PrimeNumbers
     internal class Calculator
     {
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
-        private int a, b;
+        private String calculation_mode = "auto";
+        private int range_start, range_end;
 
 
         public void SetEnds(int a, int b)
         {
-            this.a = a;
-            this.b = b;
+            this.range_start = a;
+            this.range_end = b;
         }
 
-        public void GetPrimes(ref List<int> numList, string mode = "auto")
+
+        // main method of the class - other methods invoked from here.
+        // it also configures the mode of further calculations.
+        public void GetPrimes(ref List<int> numList, int range_start, int range_end, string mode = "auto")
         {
-            if (numList.Any())
-                CalculateDB(ref numList, a, b, mode);
+
+            this.range_start = range_start;
+            this.range_end = range_start;
+
+            // from my observations, mono-threading mode goes faster than multi-threading one
+            // as long as range of numbers to be checked is smaller than 150000 units
+            if (mode == "auto")
+                if ((range_end - range_start) < 150000)
+                    calculation_mode = "mono";
+                else
+                    calculation_mode = "multi";
+
             else
-                CalculateNoDB(ref numList, a, b, mode);
+                calculation_mode = mode;
+
+
+            // number list comes empty by default. if not, then it was succesfully supplemented
+            // with data from DB - we need to handle this situation separately
+            if (numList.Any())
+                CalculateDB(ref numList, range_start, range_end, mode);
+            else
+                CalculateNoDB(ref numList, range_start, range_end, mode);
         }
 
 
