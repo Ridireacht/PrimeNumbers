@@ -23,7 +23,7 @@ namespace PrimeNumbers
         {
             // range ends set for the whole class
             this.range_start = range_start;
-            this.range_end = range_start;
+            this.range_end = range_end;
 
 
             // from my observations, mono-threading mode goes faster than multi-threading one
@@ -63,22 +63,35 @@ namespace PrimeNumbers
                         temp = numList[0];
 
                         if (range_start != temp)
-                            for (int i = range_start, j = 0; i < temp; i++)
-                                if (IsPrime(i))
+                        {
+                            // even numbers aren't prime, so we'll skip their checking
+                            if ((range_start % 2 == 0) && (range_end != 2))
+                                range_start++;
+
+                            for (int i = range_start, j = 0; i < temp; i += 2)
+                                if (IsPrime2(i))
                                 {
                                     numList.Insert(j, i);
                                     j++;
                                 }
+                        }
 
 
                         // same goes if DB data doesn't cover range between its last
                         // number and range_end - we have to calculate it manually
-                        temp = numList.Last();
+                        temp = numList.Last() + 1;
 
                         if (range_end != temp)
-                            for (int i = temp + 1; i <= range_end; i++)
-                                if (IsPrime(i))
+                        {
+                            // even numbers aren't prime, so we'll skip their checking
+                            if ((temp % 2 == 0) && (temp != 2))
+                                temp++;
+
+                            for (int i = temp; i <= range_end; i += 2)
+                                if (IsPrime2(i))
                                     numList.Add(i);
+                        }
+
 
                         break;
                     }
