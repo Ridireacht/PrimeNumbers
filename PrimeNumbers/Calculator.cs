@@ -98,7 +98,7 @@ namespace PrimeNumbers
                             if (temp % 2 == 0)
                             {
                                 if (temp == 2)
-                                    numList.Insert(position, 2);
+                                    numList.Add(2);
 
                                 temp++;
                             }
@@ -174,7 +174,7 @@ namespace PrimeNumbers
                             if (range_start == 2)
                                 numList.Add(2); 
 
-                            range_end++;
+                            range_start++;
                         }
 
 
