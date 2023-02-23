@@ -80,7 +80,7 @@ namespace PrimeNumbers
 
                             // iteration itself
                             for (int i = range_start; i < temp; i += 2)
-                                if (IsPrimeOdd(i))
+                                if (IsPrime(i))
                                 {
                                     numList.Insert(position, i);
                                     position++;
@@ -94,19 +94,8 @@ namespace PrimeNumbers
 
                         if (range_end != temp)
                         {
-                            // even numbers aren't prime, so we'll skip their checking
-                            if (temp % 2 == 0)
-                            {
-                                if (temp == 2)
-                                    numList.Add(2);
-
-                                temp++;
-                            }
-
-
-                            // iteration itself
                             for (int i = temp; i <= range_end; i += 2)
-                                if (IsPrimeOdd(i))
+                                if (IsPrime(i))
                                     numList.Add(i);
                         }
 
@@ -137,7 +126,7 @@ namespace PrimeNumbers
 
                             // iteration through whole set
                             var primes_set = from n in numbers_set.AsParallel().AsOrdered()
-                                                where IsPrimeOdd(n)
+                                                where IsPrime(n)
                                                 select n;
 
 
@@ -197,7 +186,7 @@ namespace PrimeNumbers
 
                         // iteration itself
                         for (int i = range_start; i <= range_end; i += 2)
-                            if (IsPrimeOdd(i))
+                            if (IsPrime(i))
                                 numList.Add(i);
 
                         break;
@@ -215,7 +204,7 @@ namespace PrimeNumbers
 
                         // iteration through whole set
                         var primes_set = from n in numbers_set.AsParallel().AsOrdered()
-                                            where IsPrimeOdd(n)
+                                            where IsPrime(n)
                                             select n;
 
                         
@@ -298,28 +287,9 @@ namespace PrimeNumbers
 
 
 
-        // full check for whether a number is prime or not. used
-        // where it's impossible to skip even numbers during loops
-        public static bool IsPrime(int num)
-        {
-            // all the numbers matching the statements below aren't prime,
-            // so we skip them immediately
-            if (((num % 2 == 0) && (num != 2)) || ((num % 3 == 0) && (num != 3)))
-                return false;
-
-
-            for (int i = 2; i <= Math.Sqrt(num); i++)
-                if (num % i == 0)
-                    return false;
-
-            return true;
-        }
-
-
-
         // shortened version which doesn't check for whether number is even or
         // not (loop skips these numbers itself)
-        public static bool IsPrimeOdd(int num)
+        public static bool IsPrime(int num)
         {
             // numbers divisible by 3 aren't prime, so we skip them immediately
             if ((num % 3 == 0) && (num != 3))
