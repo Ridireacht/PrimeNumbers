@@ -188,6 +188,10 @@ namespace PrimeNumbers
             int lastCorrect = 0;
             int numsChecked = 0;
 
+            List<int> verification_list = new List<int>();
+            verification_list.AddRange(verificationPrimes);
+
+
 
             // if no primes calculated (their list is empty)
             if (!numList.Any())
@@ -197,13 +201,13 @@ namespace PrimeNumbers
             else
             {
                 // remove unnecessary elements to match this list with the actual 'calculated primes' list by starting position
-                verificationPrimes.RemoveRange(0, verificationPrimes.IndexOf(numList[0]));
+                verification_list.RemoveRange(0, verification_list.IndexOf(numList[0]));
 
                 // if there are more calculated primes other than verification ones
-                if (numList.Last() > verificationPrimes.Last())
+                if (numList.Last() > verification_list.Last())
                 {
-                    output += $"\r\nUnable to check all the numbers calculated as the last prime in verification list is {verificationPrimes.Last()}.\r\n";
-                    range_end = verificationPrimes.Count;
+                    output += $"\r\nUnable to check all the numbers calculated as the last prime in verification list is {verification_list.Last()}.\r\n";
+                    range_end = verification_list.Count;
                 }
 
 
@@ -214,13 +218,13 @@ namespace PrimeNumbers
                 {
                     numsChecked += 1;
 
-                    if (verificationPrimes[i] != numList[i])
+                    if (verification_list[i] != numList[i])
                     {
                         isCorrect = false;
                         break;
                     }
 
-                    lastCorrect = verificationPrimes[i];
+                    lastCorrect = verification_list[i];
                 }
 
 
