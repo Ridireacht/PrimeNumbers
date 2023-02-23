@@ -47,6 +47,7 @@ namespace PrimeNumbers
         }
 
 
+
         // calculates prime numbers with DB enabled
         public void CalculateDB(ref List<int> numList)
         {
@@ -56,29 +57,28 @@ namespace PrimeNumbers
             {
                 case "mono":
                     {
+                        // if the DB data doesn't cover range from the start, we
+                        // need to calculate all prime numbers between said range_start
+                        // and the point where DB data begins
                         temp = numList[0];
 
                         if (range_start != temp)
-                        {
                             for (int i = range_start, j = 0; i < temp; i++)
                                 if (IsPrime(i))
                                 {
                                     numList.Insert(j, i);
                                     j++;
                                 }
-                        }
 
 
+                        // same goes if DB data doesn't cover range between its last
+                        // number and range_end - we have to calculate it manually
                         temp = numList.Last();
 
                         if (range_end != temp)
-                        {
-                            temp += 1;
-
-                            for (int i = temp; i <= range_end; i++)
+                            for (int i = temp + 1; i <= range_end; i++)
                                 if (IsPrime(i))
                                     numList.Add(i);
-                        }
 
                         break;
                     }
@@ -86,6 +86,9 @@ namespace PrimeNumbers
 
                 case "multi":
                     {
+                        // if the DB data doesn't cover range from the start, we
+                        // need to calculate all prime numbers between said range_start
+                        // and the point where DB data begins
                         temp = numList[0];
 
                         if (range_start != temp)
@@ -103,6 +106,8 @@ namespace PrimeNumbers
                         }
 
 
+                        // same goes if DB data doesn't cover range between its last
+                        // number and range_end - we have to calculate it manually
                         temp = numList.Last();
 
                         if (range_end != temp)
