@@ -14,9 +14,13 @@ The app also comes out with the "verification list" - a list of prime numbers al
 </br>
 
 ## Project structure
-* Calculator.cs - class responsible for all sort of calculations
-* DB.cs - class responsible for interactions with database
-* IO.cs - class responsible for handling input (of range ends) and output (of primes calculated)
-* Window.cs - class responsible for handling all GUI stuff
+* <b>Calculator.cs</b> - all sort of calculations
+* <b>DB.cs</b> - interactions with database
+* <b>IO.cs</b> - handling input (of range ends) and output (of primes calculated)
+* <b>Window.cs</b> - handling all GUI stuff
 
-Based on .NET 6, GUI made on WinForms, SQLite used as database
+Based on <b>.NET 6</b>.
+
+GUI made on <b>WinForms</b>.
+
+<b>SQLite</b> used as database
