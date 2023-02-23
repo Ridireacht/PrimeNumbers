@@ -137,12 +137,11 @@ namespace PrimeNumbers
             {
                 case "mono":
                     {
-                        // even numbers won't be prime, so we'll skip their checking
-                        if (range_start % 2 == 0)
+                        // even numbers aren't prime, so we'll skip their checking
+                        if ((range_start % 2 == 0) && (range_end != 2))
                             range_start++;
 
 
-                        // going through all range
                         for (int i = range_start; i <= range_end; i += 2)
                             if (IsPrime2(i))
                                 numList.Add(i);
