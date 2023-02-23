@@ -1,6 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
-using Microsoft.Data.Sqlite;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 

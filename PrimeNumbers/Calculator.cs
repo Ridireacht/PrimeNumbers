@@ -1,8 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using System.Collections.Generic;
-using PrimeNumbers.Properties;
-using System.Linq;
+﻿using PrimeNumbers.Properties;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("PrimeNumbers.Tests")]
 
@@ -146,7 +146,7 @@ namespace PrimeNumbers
         // calculates prime numbers with DB disabled
         public void CalculateNoDB(ref List<int> numList)
         {
-            switch(calculation_mode)
+            switch (calculation_mode)
             {
                 case "mono":
                     {
@@ -188,7 +188,7 @@ namespace PrimeNumbers
             int lastCorrect = 0;
             int numsChecked = 0;
 
-            List<int> verification_list = new List<int>();
+            List<int> verification_list = new();
             verification_list.AddRange(verificationPrimes);
 
 

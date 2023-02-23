@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 
 namespace PrimeNumbers
@@ -103,11 +103,11 @@ namespace PrimeNumbers
                     timer = Stopwatch.StartNew();
                     textBox1.Text += c.VerifyCalculations(primes);
 
-                        // if verification succeded
-                        if (textBox1.Text.Contains("All calculations were done right."))
-                            isCorrect = true;
-                        else
-                            isCorrect = false;
+                    // if verification succeded
+                    if (textBox1.Text.Contains("All calculations were done right."))
+                        isCorrect = true;
+                    else
+                        isCorrect = false;
 
                     timer.Stop();
                     Console.WriteLine($"\r\nVerification took {timer.ElapsedMilliseconds}ms");
@@ -199,7 +199,7 @@ namespace PrimeNumbers
             {
                 // default name
                 saveFileDialog1.FileName = "primes";
-                
+
                 // file extensions
                 saveFileDialog1.DefaultExt = "txt";
                 saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
