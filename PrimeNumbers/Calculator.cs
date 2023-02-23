@@ -68,11 +68,11 @@ namespace PrimeNumbers
                             if ((range_start % 2 == 0) && (range_end != 2))
                                 range_start++;
 
-                            for (int i = range_start, j = 0; i < temp; i += 2)
+                            for (int i = range_start, position = 0; i < temp; i += 2)
                                 if (IsPrime2(i))
                                 {
-                                    numList.Insert(j, i);
-                                    j++;
+                                    numList.Insert(position, i);
+                                    position++;
                                 }
                         }
 
@@ -110,11 +110,11 @@ namespace PrimeNumbers
                                         where IsPrime(n)
                                         select n;
 
-                            int j = 0;
+                            int position = 0;
                             foreach (var i in thing)
                             {
-                                numList.Insert(j, i);
-                                j++;
+                                numList.Insert(position, i);
+                                position++;
                             }
                         }
 
