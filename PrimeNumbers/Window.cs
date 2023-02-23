@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.ComponentModel.DataAnnotations;
 
 namespace PrimeNumbers
 {
@@ -102,8 +103,8 @@ namespace PrimeNumbers
                     timer = Stopwatch.StartNew();
                     textBox1.Text += c.VerifyCalculations(primes);
 
-                        // if response ends with "... correcT."
-                        if (textBox1.Text[^2] == 't')
+                        // if verification succeded
+                        if (textBox1.Text.Contains("All calculations were done right."))
                             isCorrect = true;
                         else
                             isCorrect = false;
