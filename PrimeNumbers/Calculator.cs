@@ -121,27 +121,15 @@ namespace PrimeNumbers
                         // need to calculate all prime numbers between said range_start
                         // and the point where DB data begins
                         temp = numList[0];
-                        int position = 0;
 
                         if (range_start != temp)
                         {
-                            if (range_start == 2)
-                            {
-                                numList.Insert(position, 2);
-                                position++;
-                            }
+                            var thing = from n in (Enumerable.Range(range_start, temp - range_start)).AsParallel().AsOrdered()
+                                        where IsPrime(n)
+                                        select n;
 
-
-                            // getting odd numbers only (that's why we needed the code above - to include '2' if there is)
-                            var numbers_set = Enumerable.Range(range_start, temp - range_start).Select(x => x * 2 - 1);
-
-                            // iteration through whole set
-                            var primes_set = from n in numbers_set.AsParallel().AsOrdered()
-                                                where IsPrimeOdd(n)
-                                                select n;
-
-
-                            foreach (var i in primes_set)
+                            int position = 0;
+                            foreach (var i in thing)
                             {
                                 numList.Insert(position, i);
                                 position++;
@@ -155,18 +143,13 @@ namespace PrimeNumbers
 
                         if (range_end != temp)
                         {
-                            temp++;
+                            temp += 1;
 
-                            // getting odd numbers only (that's why we needed the code above - to include '2' if there is)
-                            var numbers_set = Enumerable.Range(temp, range_end - temp).Select(x => x * 2 - 1);
+                            var thing = from n in (Enumerable.Range(temp, range_end - temp)).AsParallel().AsOrdered()
+                                        where IsPrime(n)
+                                        select n;
 
-                            // iteration through whole set
-                            var primes_set = from n in numbers_set.AsParallel().AsOrdered()
-                                                where IsPrime(n)
-                                                select n;
-
-
-                            foreach (var i in primes_set)
+                            foreach (var i in thing)
                                 numList.Add(i);
                         }
 
@@ -215,10 +198,9 @@ namespace PrimeNumbers
 
                         // iteration through whole set
                         var primes_set = from n in numbers_set.AsParallel().AsOrdered()
-                                            where IsPrimeOdd(n)
+                                            where IsPrime(n)
                                             select n;
 
-                        
                         foreach (var i in primes_set)
                             numList.Add(i);
 
