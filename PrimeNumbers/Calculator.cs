@@ -137,8 +137,14 @@ namespace PrimeNumbers
             {
                 case "mono":
                     {
-                        for (int i = range_start; i <= range_end; i++)
-                            if (IsPrime(i))
+                        // even numbers won't be prime, so we'll skip their checking
+                        if (range_start % 2 == 0)
+                            range_start++;
+
+
+                        // going through all range
+                        for (int i = range_start; i <= range_end; i += 2)
+                            if (IsPrime2(i))
                                 numList.Add(i);
 
                         break;
@@ -225,13 +231,32 @@ namespace PrimeNumbers
         }
 
 
-        // simple check for whether a number is prime or not. used
-        // where it's impossible to implement optimization of said algorithm
+
+        // full check for whether a number is prime or not. used
+        // where it's impossible to skip even numbers during loops
         public static bool IsPrime(int num)
         {
             // all the numbers matching the statements below aren't prime,
             // so we skip them immediately
             if (((num % 2 == 0) && (num != 2)) || ((num % 3 == 0) && (num != 3)))
+                return false;
+
+
+            for (int i = 2; i <= Math.Sqrt(num); i++)
+                if (num % i == 0)
+                    return false;
+
+            return true;
+        }
+
+
+
+        // shortened version which doesn't check for whether number is even or
+        // not (loop skips these numbers itself)
+        public static bool IsPrime2(int num)
+        {
+            // numbers divisible by 3 aren't prime, so we skip them immediately
+            if ((num % 3 == 0) && (num != 3))
                 return false;
 
 
