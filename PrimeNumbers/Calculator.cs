@@ -189,11 +189,19 @@ namespace PrimeNumbers
 
                 case "multi":
                     {
-                        var thing = from n in (Enumerable.Range(range_start, range_end - range_start)).AsParallel().AsOrdered()
-                                    where IsPrime(n)
-                                    select n;
+                        if (range_start == 2)
+                            numList.Add(2);
 
-                        foreach (var i in thing)
+                        // getting odd numbers only (that's why we needed the code above - to include '2' if there is)
+                        var numbers_set = Enumerable.Range(range_start, range_end - range_start).Select(x => x * 2 - 1);
+
+
+                        // iteration through whole set
+                        var primes_set = from n in numbers_set.AsParallel().AsOrdered()
+                                            where IsPrime(n)
+                                            select n;
+
+                        foreach (var i in primes_set)
                             numList.Add(i);
 
                         break;
