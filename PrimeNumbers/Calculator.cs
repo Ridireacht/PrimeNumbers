@@ -69,7 +69,7 @@ namespace PrimeNumbers
                                 range_start++;
 
                             for (int i = range_start, position = 0; i < temp; i += 2)
-                                if (IsPrime2(i))
+                                if (IsPrimeOdd(i))
                                 {
                                     numList.Insert(position, i);
                                     position++;
@@ -88,7 +88,7 @@ namespace PrimeNumbers
                                 temp++;
 
                             for (int i = temp; i <= range_end; i += 2)
-                                if (IsPrime2(i))
+                                if (IsPrimeOdd(i))
                                     numList.Add(i);
                         }
 
@@ -156,7 +156,7 @@ namespace PrimeNumbers
 
 
                         for (int i = range_start; i <= range_end; i += 2)
-                            if (IsPrime2(i))
+                            if (IsPrimeOdd(i))
                                 numList.Add(i);
 
                         break;
@@ -265,7 +265,7 @@ namespace PrimeNumbers
 
         // shortened version which doesn't check for whether number is even or
         // not (loop skips these numbers itself)
-        public static bool IsPrime2(int num)
+        public static bool IsPrimeOdd(int num)
         {
             // numbers divisible by 3 aren't prime, so we skip them immediately
             if ((num % 3 == 0) && (num != 3))
