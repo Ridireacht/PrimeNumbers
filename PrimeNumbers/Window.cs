@@ -78,18 +78,16 @@ namespace PrimeNumbers
                         DB.GetFromDatabase(ref primes, a, b);
                     }
 
-                    c.SetEnds(a, b);
-
 
                     // calculation
                     timer = Stopwatch.StartNew();
 
                     if (radioButton1.Checked)
-                        c.GetPrimes(ref primes, "mono");
+                        c.GetPrimes(ref primes, a, b, "mono");
                     else if (radioButton2.Checked)
-                        c.GetPrimes(ref primes, "multi");
+                        c.GetPrimes(ref primes, a, b, "multi");
                     else
-                        c.GetPrimes(ref primes);
+                        c.GetPrimes(ref primes, a, b);
 
                     timer.Stop();
 

@@ -16,20 +16,15 @@ namespace PrimeNumbers
         private int range_start, range_end;
 
 
-        public void SetEnds(int a, int b)
-        {
-            this.range_start = a;
-            this.range_end = b;
-        }
-
 
         // main method of the class - other methods invoked from here.
-        // it also configures the mode of further calculations.
+        // it also configures the values necessary for calculations.
         public void GetPrimes(ref List<int> numList, int range_start, int range_end, string mode = "auto")
         {
-
+            // range ends set for the whole class
             this.range_start = range_start;
             this.range_end = range_start;
+
 
             // from my observations, mono-threading mode goes faster than multi-threading one
             // as long as range of numbers to be checked is smaller than 150000 units
@@ -52,7 +47,7 @@ namespace PrimeNumbers
         }
 
 
-        // calculate primes with DB enabled
+        // calculates prime numbers with DB enabled
         public static void CalculateDB(ref List<int> numList, int range_start, int range_end, string mode)
         {
             int temp;
@@ -123,7 +118,7 @@ namespace PrimeNumbers
         }
 
 
-        // calculate primes without DB
+        // calculates prime numbers with DB disabled
         public static void CalculateNoDB(ref List<int> numList, int range_start, int range_end, string mode)
         {
             // choosing between mono- and multi- threading depends on the complexity of calculations
