@@ -124,29 +124,37 @@ namespace PrimeNumbers
         }
 
 
+
         // calculates prime numbers with DB disabled
         public void CalculateNoDB(ref List<int> numList)
         {
-            // choosing between mono- and multi- threading depends on the complexity of calculations
-            // below is the mono-threading variant.
-            if ( ((range_end - range_start) < 150000 || mode == "mono") && mode != "multi")
+            switch(calculation_mode)
             {
-                for (int i = range_start; i <= range_end; i++)
-                    if (IsPrime(i))
-                        numList.Add(i);
+                case "mono":
+                    {
+                        for (int i = range_start; i <= range_end; i++)
+                            if (IsPrime(i))
+                                numList.Add(i);
+
+                        break;
+                    }
+
+
+                case "multi":
+                    {
+                        var thing = from n in (Enumerable.Range(range_start, range_end - range_start)).AsParallel().AsOrdered()
+                                    where IsPrime(n)
+                                    select n;
+
+                        foreach (var i in thing)
+                            numList.Add(i);
+
+                        break;
+                    }
             }
 
-            // multi-threading calculations
-            else
-            {
-                var thing = from n in (Enumerable.Range(range_start, range_end - range_start)).AsParallel().AsOrdered()
-                            where IsPrime(n)
-                            select n;
-
-                foreach (var i in thing)
-                    numList.Add(i);
-            }
         }
+
 
 
         // compares calculated and verified primes
