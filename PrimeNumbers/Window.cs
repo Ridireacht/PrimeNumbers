@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace PrimeNumbers
 {
