@@ -147,7 +147,7 @@ namespace PrimeNumbers
                             temp++;
 
                             // getting odd numbers only (that's why we needed the code above - to include '2' if there is)
-                            var numbers_set = Enumerable.Range(temp, range_end - temp).Select(x => x * 2 - 1);
+                            var numbers_set = Enumerable.Range(temp, range_end - temp - 1).Select(x => x * 2 - 1);
 
                             // iteration through whole set
                             var primes_set = from n in numbers_set.AsParallel().AsOrdered()
