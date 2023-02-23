@@ -180,7 +180,7 @@ namespace PrimeNumbers
 
 
 
-        // compares calculated and verified primes
+        // compares calculated and verified primes, collects statistics
         public string VerifyCalculations(List<int> numList)
         {
             string output = "";
