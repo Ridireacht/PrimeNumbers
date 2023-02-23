@@ -13,7 +13,7 @@ namespace PrimeNumbers
     {
         private readonly List<int> verificationPrimes = Resources.verification_primes.Split('\t').Select(n => Convert.ToInt32(n)).ToList();
         private int range_start, range_end;
-        private String calculation_mode = "auto";
+        private string calculation_mode = "auto";
 
 
 
@@ -52,69 +52,75 @@ namespace PrimeNumbers
         {
             int temp;
 
-            // choosing between mono- and multi- threading depends on the complexity of calculations.
-            // below is the mono-threading variant.
-            if ( ((range_end - range_start) < 150000 || calculation_mode == "mono") && calculation_mode != "multi")
+            switch (calculation_mode)
             {
-                temp = numList[0];
-
-                if (range_start != temp)
-                {
-                    for (int i = range_start, j = 0; i < temp; i++)
-                        if (IsPrime(i))
-                        {
-                            numList.Insert(j, i);
-                            j++;
-                        }
-                }
-
-
-                temp = numList.Last();
-
-                if (range_end != temp)
-                {
-                    temp += 1;
-
-                    for (int i = temp; i <= range_end; i++)
-                        if (IsPrime(i))
-                            numList.Add(i);
-                }
-            }
-
-            // multi-threading calculations
-            else
-            {
-                temp = numList[0];
-
-                if (range_start != temp)
-                {
-                    var thing = from n in (Enumerable.Range(range_start, temp - range_start)).AsParallel().AsOrdered()
-                                where IsPrime(n)
-                                select n;
-
-                    int j = 0;
-                    foreach (var i in thing)
+                case "mono":
                     {
-                        numList.Insert(j, i);
-                        j++;
+                        temp = numList[0];
+
+                        if (range_start != temp)
+                        {
+                            for (int i = range_start, j = 0; i < temp; i++)
+                                if (IsPrime(i))
+                                {
+                                    numList.Insert(j, i);
+                                    j++;
+                                }
+                        }
+
+
+                        temp = numList.Last();
+
+                        if (range_end != temp)
+                        {
+                            temp += 1;
+
+                            for (int i = temp; i <= range_end; i++)
+                                if (IsPrime(i))
+                                    numList.Add(i);
+                        }
+
+                        break;
                     }
-                }
 
 
-                temp = numList.Last();
+                case "multi":
+                    {
+                        temp = numList[0];
 
-                if (range_end != temp)
-                {
-                    temp += 1;
+                        if (range_start != temp)
+                        {
+                            var thing = from n in (Enumerable.Range(range_start, temp - range_start)).AsParallel().AsOrdered()
+                                        where IsPrime(n)
+                                        select n;
 
-                    var thing = from n in (Enumerable.Range(temp, range_end - temp)).AsParallel().AsOrdered()
-                                where IsPrime(n)
-                                select n;
+                            int j = 0;
+                            foreach (var i in thing)
+                            {
+                                numList.Insert(j, i);
+                                j++;
+                            }
+                        }
 
-                    foreach (var i in thing)
-                        numList.Add(i);
-                }
+
+                        temp = numList.Last();
+
+                        if (range_end != temp)
+                        {
+                            temp += 1;
+
+                            var thing = from n in (Enumerable.Range(temp, range_end - temp)).AsParallel().AsOrdered()
+                                        where IsPrime(n)
+                                        select n;
+
+                            foreach (var i in thing)
+                                numList.Add(i);
+                        }
+
+                        break;
+                    }
             }
+
         }
 
 
