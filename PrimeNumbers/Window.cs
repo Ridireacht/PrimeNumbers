@@ -11,8 +11,8 @@ namespace PrimeNumbers
     {
 
         // global vars
-        int a = 0,
-            b = 0;
+        int range_start = 0,
+            range_end = 0;
 
         bool isOutput,
              isDatabase,
@@ -40,7 +40,7 @@ namespace PrimeNumbers
         // 'Calculate!' button
         private void button1_Click(object sender, EventArgs e)
         {
-            // nullify status of multiple-times-used vars
+            // nullify status of multiple-time-used vars
             textBox1.Text = "";
             primes.RemoveRange(0, primes.Count);
 
@@ -52,13 +52,13 @@ namespace PrimeNumbers
                 if (IO.TryRangeEnd(textBox3.Text) != null)
                 {
                     // in case everything is alright
-                    a = Int32.Parse(textBox2.Text);
-                    b = Int32.Parse(textBox3.Text);
+                    range_start = Int32.Parse(textBox2.Text);
+                    range_end = Int32.Parse(textBox3.Text);
 
 
                     // swap order of ends if incorrect
-                    if (a > b)
-                        (a, b) = (b, a);
+                    if (range_start > range_end)
+                        (range_start, range_end) = (range_end, range_start);
 
 
                     // set flags and options
@@ -75,19 +75,19 @@ namespace PrimeNumbers
                     if (isDatabase)
                     {
                         DB.CreateDatabase();
-                        DB.GetFromDatabase(ref primes, a, b);
+                        DB.GetFromDatabase(ref primes, range_start, range_end);
                     }
 
 
-                    // calculation
+                    // calculation itself
                     timer = Stopwatch.StartNew();
 
                     if (radioButton1.Checked)
-                        c.GetPrimes(ref primes, a, b, "mono");
+                        c.GetPrimes(ref primes, range_start, range_end, "mono");
                     else if (radioButton2.Checked)
-                        c.GetPrimes(ref primes, a, b, "multi");
+                        c.GetPrimes(ref primes, range_start, range_end, "multi");
                     else
-                        c.GetPrimes(ref primes, a, b);
+                        c.GetPrimes(ref primes, range_start, range_end);
 
                     timer.Stop();
 
