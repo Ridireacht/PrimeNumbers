@@ -189,7 +189,7 @@ namespace PrimeNumbers
 
                 case "multi":
                     {
-                        var thing = from n in (Enumerable.Range(range_start, range_end - range_start)).AsParallel().AsOrdered()
+                        var thing = from n in (Enumerable.Range(range_start, range_end - range_start + 1)).AsParallel().AsOrdered()
                                     where IsPrime(n)
                                     select n;
 
